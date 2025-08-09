@@ -1,1 +1,37 @@
+# macOS system files
 .DS_Store
+
+# Xcode user-specific data
+*/xcuserdata/
+*.xcuserstate
+
+# Xcode build output
+DerivedData/
+build/
+
+# Swift Package Manager
+.build/
+Packages/
+Package.pins
+# Keep Package.resolved so versions are fixed for anyone cloning
+#!Package.resolved
+
+# CocoaPods
+Pods/
+
+# Carthage
+Carthage/Build/
+
+# Fastlane
+fastlane/report.xml
+fastlane/Preview.html
+fastlane/screenshots
+fastlane/test_output
+
+# Simulator logs and device data
+*.simdevicetype
+*.simruntime
+
+# Temporary files
+*.swp
+*.lock
