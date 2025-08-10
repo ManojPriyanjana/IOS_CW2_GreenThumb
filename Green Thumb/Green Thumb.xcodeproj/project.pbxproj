@@ -13,6 +13,16 @@
 		2B1D15FD2E487274000B2AE8 /* DiseaseIdentifierViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B1D15FC2E487265000B2AE8 /* DiseaseIdentifierViewModel.swift */; };
 		2B1D15FF2E48729C000B2AE8 /* ImagePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B1D15FE2E487297000B2AE8 /* ImagePicker.swift */; };
 		2B1D16012E4872CE000B2AE8 /* DiseaseIdentifierView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B1D16002E4872CA000B2AE8 /* DiseaseIdentifierView.swift */; };
+		2B1D16062E4886AE000B2AE8 /* SettingsKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B1D16052E48869F000B2AE8 /* SettingsKeys.swift */; };
+		2B1D16082E4886C4000B2AE8 /* AppSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B1D16072E4886C0000B2AE8 /* AppSettings.swift */; };
+		2B1D160A2E4886DD000B2AE8 /* SettingsStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B1D16092E4886DA000B2AE8 /* SettingsStore.swift */; };
+		2B1D160C2E4886F0000B2AE8 /* UserDefaultsSettingsStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B1D160B2E4886ED000B2AE8 /* UserDefaultsSettingsStore.swift */; };
+		2B1D160E2E48871F000B2AE8 /* NotificationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B1D160D2E488701000B2AE8 /* NotificationManager.swift */; };
+		2B1D16102E488738000B2AE8 /* FaceIDManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B1D160F2E488734000B2AE8 /* FaceIDManager.swift */; };
+		2B1D16122E488747000B2AE8 /* SettingsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B1D16112E488745000B2AE8 /* SettingsViewModel.swift */; };
+		2B1D16162E488775000B2AE8 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B1D16152E488772000B2AE8 /* SettingsView.swift */; };
+		2B1D16182E488788000B2AE8 /* QuietHoursView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B1D16172E488784000B2AE8 /* QuietHoursView.swift */; };
+		2B1D161A2E48879A000B2AE8 /* ManageStorageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B1D16192E488798000B2AE8 /* ManageStorageView.swift */; };
 		2B327DFC2E44624C00CB8F1D /* Green_ThumbApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B327DFB2E44624C00CB8F1D /* Green_ThumbApp.swift */; };
 		2B327DFE2E44624C00CB8F1D /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B327DFD2E44624C00CB8F1D /* ContentView.swift */; };
 		2B327E022E44624E00CB8F1D /* Persistence.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B327E012E44624E00CB8F1D /* Persistence.swift */; };
@@ -51,6 +61,16 @@
 		2B1D15FC2E487265000B2AE8 /* DiseaseIdentifierViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiseaseIdentifierViewModel.swift; sourceTree = "<group>"; };
 		2B1D15FE2E487297000B2AE8 /* ImagePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePicker.swift; sourceTree = "<group>"; };
 		2B1D16002E4872CA000B2AE8 /* DiseaseIdentifierView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiseaseIdentifierView.swift; sourceTree = "<group>"; };
+		2B1D16052E48869F000B2AE8 /* SettingsKeys.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsKeys.swift; sourceTree = "<group>"; };
+		2B1D16072E4886C0000B2AE8 /* AppSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppSettings.swift; sourceTree = "<group>"; };
+		2B1D16092E4886DA000B2AE8 /* SettingsStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsStore.swift; sourceTree = "<group>"; };
+		2B1D160B2E4886ED000B2AE8 /* UserDefaultsSettingsStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultsSettingsStore.swift; sourceTree = "<group>"; };
+		2B1D160D2E488701000B2AE8 /* NotificationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationManager.swift; sourceTree = "<group>"; };
+		2B1D160F2E488734000B2AE8 /* FaceIDManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FaceIDManager.swift; sourceTree = "<group>"; };
+		2B1D16112E488745000B2AE8 /* SettingsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewModel.swift; sourceTree = "<group>"; };
+		2B1D16152E488772000B2AE8 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
+		2B1D16172E488784000B2AE8 /* QuietHoursView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuietHoursView.swift; sourceTree = "<group>"; };
+		2B1D16192E488798000B2AE8 /* ManageStorageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ManageStorageView.swift; sourceTree = "<group>"; };
 		2B327DF82E44624C00CB8F1D /* Green Thumb.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Green Thumb.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		2B327DFB2E44624C00CB8F1D /* Green_ThumbApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Green_ThumbApp.swift; sourceTree = "<group>"; };
 		2B327DFD2E44624C00CB8F1D /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -122,6 +142,23 @@
 			path = StoreLocator;
 			sourceTree = "<group>";
 		};
+		2B1D16042E4885FC000B2AE8 /* Settings */ = {
+			isa = PBXGroup;
+			children = (
+				2B1D16192E488798000B2AE8 /* ManageStorageView.swift */,
+				2B1D16172E488784000B2AE8 /* QuietHoursView.swift */,
+				2B1D16152E488772000B2AE8 /* SettingsView.swift */,
+				2B1D16112E488745000B2AE8 /* SettingsViewModel.swift */,
+				2B1D160F2E488734000B2AE8 /* FaceIDManager.swift */,
+				2B1D160D2E488701000B2AE8 /* NotificationManager.swift */,
+				2B1D160B2E4886ED000B2AE8 /* UserDefaultsSettingsStore.swift */,
+				2B1D16092E4886DA000B2AE8 /* SettingsStore.swift */,
+				2B1D16072E4886C0000B2AE8 /* AppSettings.swift */,
+				2B1D16052E48869F000B2AE8 /* SettingsKeys.swift */,
+			);
+			path = Settings;
+			sourceTree = "<group>";
+		};
 		2B327DEF2E44624C00CB8F1D = {
 			isa = PBXGroup;
 			children = (
@@ -147,6 +184,7 @@
 		2B327E312E44783F00CB8F1D /* Modules */ = {
 			isa = PBXGroup;
 			children = (
+				2B1D16042E4885FC000B2AE8 /* Settings */,
 				2B1D15F52E4868EC000B2AE8 /* StoreLocator */,
 				2B327E3B2E44819700CB8F1D /* Profile */,
 				2B327E392E44810000CB8F1D /* Harvesting */,
@@ -395,6 +433,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				2B327E022E44624E00CB8F1D /* Persistence.swift in Sources */,
+				2B1D16122E488747000B2AE8 /* SettingsViewModel.swift in Sources */,
 				2BA7FEBD2E471D8D00720C5A /* DashboardItem.swift in Sources */,
 				2B1D16012E4872CE000B2AE8 /* DiseaseIdentifierView.swift in Sources */,
 				2B327E512E448DE100CB8F1D /* AuthViewModel.swift in Sources */,
@@ -402,13 +441,22 @@
 				2B1D15FB2E486B0B000B2AE8 /* Place.swift in Sources */,
 				2B1D15F92E48695A000B2AE8 /* StoreLocatorView.swift in Sources */,
 				2BA7FEC12E471DB400720C5A /* DashboardView.swift in Sources */,
+				2B1D16162E488775000B2AE8 /* SettingsView.swift in Sources */,
 				2B327DFE2E44624C00CB8F1D /* ContentView.swift in Sources */,
 				2B327E502E448DB800CB8F1D /* LoginView.swift in Sources */,
 				2BA7FEBF2E471D9F00720C5A /* DashboardTile.swift in Sources */,
+				2B1D160C2E4886F0000B2AE8 /* UserDefaultsSettingsStore.swift in Sources */,
+				2B1D160A2E4886DD000B2AE8 /* SettingsStore.swift in Sources */,
+				2B1D16182E488788000B2AE8 /* QuietHoursView.swift in Sources */,
 				2B1D15FD2E487274000B2AE8 /* DiseaseIdentifierViewModel.swift in Sources */,
+				2B1D161A2E48879A000B2AE8 /* ManageStorageView.swift in Sources */,
 				2B1D15FF2E48729C000B2AE8 /* ImagePicker.swift in Sources */,
+				2B1D16082E4886C4000B2AE8 /* AppSettings.swift in Sources */,
 				2B327DFC2E44624C00CB8F1D /* Green_ThumbApp.swift in Sources */,
+				2B1D160E2E48871F000B2AE8 /* NotificationManager.swift in Sources */,
+				2B1D16062E4886AE000B2AE8 /* SettingsKeys.swift in Sources */,
 				2B1D15F72E486934000B2AE8 /* StoreLocatorViewModel.swift in Sources */,
+				2B1D16102E488738000B2AE8 /* FaceIDManager.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
