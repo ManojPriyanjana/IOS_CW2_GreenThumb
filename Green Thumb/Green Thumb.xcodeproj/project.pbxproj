@@ -10,6 +10,9 @@
 		2B1D15F72E486934000B2AE8 /* StoreLocatorViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B1D15F62E48692C000B2AE8 /* StoreLocatorViewModel.swift */; };
 		2B1D15F92E48695A000B2AE8 /* StoreLocatorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B1D15F82E486955000B2AE8 /* StoreLocatorView.swift */; };
 		2B1D15FB2E486B0B000B2AE8 /* Place.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B1D15FA2E486B07000B2AE8 /* Place.swift */; };
+		2B1D15FD2E487274000B2AE8 /* DiseaseIdentifierViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B1D15FC2E487265000B2AE8 /* DiseaseIdentifierViewModel.swift */; };
+		2B1D15FF2E48729C000B2AE8 /* ImagePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B1D15FE2E487297000B2AE8 /* ImagePicker.swift */; };
+		2B1D16012E4872CE000B2AE8 /* DiseaseIdentifierView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B1D16002E4872CA000B2AE8 /* DiseaseIdentifierView.swift */; };
 		2B327DFC2E44624C00CB8F1D /* Green_ThumbApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B327DFB2E44624C00CB8F1D /* Green_ThumbApp.swift */; };
 		2B327DFE2E44624C00CB8F1D /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B327DFD2E44624C00CB8F1D /* ContentView.swift */; };
 		2B327E022E44624E00CB8F1D /* Persistence.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B327E012E44624E00CB8F1D /* Persistence.swift */; };
@@ -22,7 +25,6 @@
 		2BA7FEBD2E471D8D00720C5A /* DashboardItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BA7FEBC2E471D8100720C5A /* DashboardItem.swift */; };
 		2BA7FEBF2E471D9F00720C5A /* DashboardTile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BA7FEBE2E471D9B00720C5A /* DashboardTile.swift */; };
 		2BA7FEC12E471DB400720C5A /* DashboardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BA7FEC02E471DB000720C5A /* DashboardView.swift */; };
-		2BA7FEC32E474ED800720C5A /* DiseaseDetectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BA7FEC22E474ED300720C5A /* DiseaseDetectionView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -46,6 +48,9 @@
 		2B1D15F62E48692C000B2AE8 /* StoreLocatorViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoreLocatorViewModel.swift; sourceTree = "<group>"; };
 		2B1D15F82E486955000B2AE8 /* StoreLocatorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoreLocatorView.swift; sourceTree = "<group>"; };
 		2B1D15FA2E486B07000B2AE8 /* Place.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Place.swift; sourceTree = "<group>"; };
+		2B1D15FC2E487265000B2AE8 /* DiseaseIdentifierViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiseaseIdentifierViewModel.swift; sourceTree = "<group>"; };
+		2B1D15FE2E487297000B2AE8 /* ImagePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePicker.swift; sourceTree = "<group>"; };
+		2B1D16002E4872CA000B2AE8 /* DiseaseIdentifierView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiseaseIdentifierView.swift; sourceTree = "<group>"; };
 		2B327DF82E44624C00CB8F1D /* Green Thumb.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Green Thumb.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		2B327DFB2E44624C00CB8F1D /* Green_ThumbApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Green_ThumbApp.swift; sourceTree = "<group>"; };
 		2B327DFD2E44624C00CB8F1D /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -59,7 +64,6 @@
 		2BA7FEBC2E471D8100720C5A /* DashboardItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardItem.swift; sourceTree = "<group>"; };
 		2BA7FEBE2E471D9B00720C5A /* DashboardTile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardTile.swift; sourceTree = "<group>"; };
 		2BA7FEC02E471DB000720C5A /* DashboardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardView.swift; sourceTree = "<group>"; };
-		2BA7FEC22E474ED300720C5A /* DiseaseDetectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiseaseDetectionView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
@@ -209,7 +213,9 @@
 		2B327E382E4480EE00CB8F1D /* DiseaseDetection */ = {
 			isa = PBXGroup;
 			children = (
-				2BA7FEC22E474ED300720C5A /* DiseaseDetectionView.swift */,
+				2B1D16002E4872CA000B2AE8 /* DiseaseIdentifierView.swift */,
+				2B1D15FE2E487297000B2AE8 /* ImagePicker.swift */,
+				2B1D15FC2E487265000B2AE8 /* DiseaseIdentifierViewModel.swift */,
 			);
 			path = DiseaseDetection;
 			sourceTree = "<group>";
@@ -390,8 +396,8 @@
 			files = (
 				2B327E022E44624E00CB8F1D /* Persistence.swift in Sources */,
 				2BA7FEBD2E471D8D00720C5A /* DashboardItem.swift in Sources */,
+				2B1D16012E4872CE000B2AE8 /* DiseaseIdentifierView.swift in Sources */,
 				2B327E512E448DE100CB8F1D /* AuthViewModel.swift in Sources */,
-				2BA7FEC32E474ED800720C5A /* DiseaseDetectionView.swift in Sources */,
 				2B327E532E448DF200CB8F1D /* SignupView.swift in Sources */,
 				2B1D15FB2E486B0B000B2AE8 /* Place.swift in Sources */,
 				2B1D15F92E48695A000B2AE8 /* StoreLocatorView.swift in Sources */,
@@ -399,6 +405,8 @@
 				2B327DFE2E44624C00CB8F1D /* ContentView.swift in Sources */,
 				2B327E502E448DB800CB8F1D /* LoginView.swift in Sources */,
 				2BA7FEBF2E471D9F00720C5A /* DashboardTile.swift in Sources */,
+				2B1D15FD2E487274000B2AE8 /* DiseaseIdentifierViewModel.swift in Sources */,
+				2B1D15FF2E48729C000B2AE8 /* ImagePicker.swift in Sources */,
 				2B327DFC2E44624C00CB8F1D /* Green_ThumbApp.swift in Sources */,
 				2B1D15F72E486934000B2AE8 /* StoreLocatorViewModel.swift in Sources */,
 			);

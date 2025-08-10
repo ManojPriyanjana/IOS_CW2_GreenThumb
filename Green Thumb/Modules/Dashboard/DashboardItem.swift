@@ -17,7 +17,7 @@ extension DashboardItem {
             title: "Disease Identifier",
             systemImage: "leaf.fill",
             color: .green,
-            destination: AnyView(DiseaseDetectionView())   // <- now exists
+            destination: AnyView(DiseaseIdentifierView())   // <- now exists
         ),
         DashboardItem(
             title: "My Garden",
