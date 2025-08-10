@@ -42,6 +42,16 @@ extension DashboardItem {
             systemImage: "mappin.and.ellipse",
             color: .purple,
             destination: AnyView(Text("Store (coming soon)"))
+        ),
+        DashboardItem(
+            title: "Store Locator",
+            systemImage: "mappin.and.ellipse",
+            color: .purple,
+            destination: AnyView(StoreLocatorView())
         )
+
+        // In your Dashboard items list
+
+
     ]
 }

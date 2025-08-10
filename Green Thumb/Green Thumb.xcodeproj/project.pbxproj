@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2B1D15F72E486934000B2AE8 /* StoreLocatorViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B1D15F62E48692C000B2AE8 /* StoreLocatorViewModel.swift */; };
+		2B1D15F92E48695A000B2AE8 /* StoreLocatorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B1D15F82E486955000B2AE8 /* StoreLocatorView.swift */; };
+		2B1D15FB2E486B0B000B2AE8 /* Place.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B1D15FA2E486B07000B2AE8 /* Place.swift */; };
 		2B327DFC2E44624C00CB8F1D /* Green_ThumbApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B327DFB2E44624C00CB8F1D /* Green_ThumbApp.swift */; };
 		2B327DFE2E44624C00CB8F1D /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B327DFD2E44624C00CB8F1D /* ContentView.swift */; };
 		2B327E022E44624E00CB8F1D /* Persistence.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B327E012E44624E00CB8F1D /* Persistence.swift */; };
@@ -40,6 +43,9 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		2B1D15F62E48692C000B2AE8 /* StoreLocatorViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoreLocatorViewModel.swift; sourceTree = "<group>"; };
+		2B1D15F82E486955000B2AE8 /* StoreLocatorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoreLocatorView.swift; sourceTree = "<group>"; };
+		2B1D15FA2E486B07000B2AE8 /* Place.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Place.swift; sourceTree = "<group>"; };
 		2B327DF82E44624C00CB8F1D /* Green Thumb.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Green Thumb.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		2B327DFB2E44624C00CB8F1D /* Green_ThumbApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Green_ThumbApp.swift; sourceTree = "<group>"; };
 		2B327DFD2E44624C00CB8F1D /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -102,6 +108,16 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		2B1D15F52E4868EC000B2AE8 /* StoreLocator */ = {
+			isa = PBXGroup;
+			children = (
+				2B1D15FA2E486B07000B2AE8 /* Place.swift */,
+				2B1D15F82E486955000B2AE8 /* StoreLocatorView.swift */,
+				2B1D15F62E48692C000B2AE8 /* StoreLocatorViewModel.swift */,
+			);
+			path = StoreLocator;
+			sourceTree = "<group>";
+		};
 		2B327DEF2E44624C00CB8F1D = {
 			isa = PBXGroup;
 			children = (
@@ -127,8 +143,8 @@
 		2B327E312E44783F00CB8F1D /* Modules */ = {
 			isa = PBXGroup;
 			children = (
+				2B1D15F52E4868EC000B2AE8 /* StoreLocator */,
 				2B327E3B2E44819700CB8F1D /* Profile */,
-				2B327E3A2E44817D00CB8F1D /* StoreLocator */,
 				2B327E392E44810000CB8F1D /* Harvesting */,
 				2B327E382E4480EE00CB8F1D /* DiseaseDetection */,
 				2B327E372E4480D700CB8F1D /* Weather */,
@@ -203,13 +219,6 @@
 			children = (
 			);
 			path = Harvesting;
-			sourceTree = "<group>";
-		};
-		2B327E3A2E44817D00CB8F1D /* StoreLocator */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = StoreLocator;
 			sourceTree = "<group>";
 		};
 		2B327E3B2E44819700CB8F1D /* Profile */ = {
@@ -384,11 +393,14 @@
 				2B327E512E448DE100CB8F1D /* AuthViewModel.swift in Sources */,
 				2BA7FEC32E474ED800720C5A /* DiseaseDetectionView.swift in Sources */,
 				2B327E532E448DF200CB8F1D /* SignupView.swift in Sources */,
+				2B1D15FB2E486B0B000B2AE8 /* Place.swift in Sources */,
+				2B1D15F92E48695A000B2AE8 /* StoreLocatorView.swift in Sources */,
 				2BA7FEC12E471DB400720C5A /* DashboardView.swift in Sources */,
 				2B327DFE2E44624C00CB8F1D /* ContentView.swift in Sources */,
 				2B327E502E448DB800CB8F1D /* LoginView.swift in Sources */,
 				2BA7FEBF2E471D9F00720C5A /* DashboardTile.swift in Sources */,
 				2B327DFC2E44624C00CB8F1D /* Green_ThumbApp.swift in Sources */,
+				2B1D15F72E486934000B2AE8 /* StoreLocatorViewModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -550,6 +562,9 @@
 				CURRENT_PROJECT_VERSION = 1;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "Green-Thumb-Info.plist";
+				INFOPLIST_KEY_LSApplicationCategoryType = "";
+				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "We use your location to find nearby garden stores.";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -577,6 +592,9 @@
 				CURRENT_PROJECT_VERSION = 1;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "Green-Thumb-Info.plist";
+				INFOPLIST_KEY_LSApplicationCategoryType = "";
+				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "We use your location to find nearby garden stores.";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
