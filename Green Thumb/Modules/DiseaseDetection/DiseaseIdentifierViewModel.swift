@@ -13,17 +13,17 @@ final class DiseaseIdentifierViewModel: ObservableObject {
     // MARK: - Public
 
     func classifySelectedImage() {
-        guard let uiImage = selectedImage,
-              let cgImage = uiImage.cgImage else {
+        guard let uiImage = selectedImage, let cgImage = uiImage.cgImage else {
             errorMessage = "Please select a valid image."
             return
         }
+
         isProcessing = true
         resultLabel = nil
         confidence = nil
         errorMessage = nil
 
-        Task.detached { [weak self] in
+        Task(priority: .userInitiated) { [weak self] in
             await self?.classify(cgImage: cgImage)
         }
     }
@@ -32,8 +32,9 @@ final class DiseaseIdentifierViewModel: ObservableObject {
 
     private func classify(cgImage: CGImage) async {
         do {
-            let model = try loadModelFromBundle()
+            let model = try loadModel()
             let vnModel = try VNCoreMLModel(for: model)
+
             let request = VNCoreMLRequest(model: vnModel)
             request.imageCropAndScaleOption = .centerCrop
 
@@ -52,20 +53,64 @@ final class DiseaseIdentifierViewModel: ObservableObject {
                 self.isProcessing = false
             }
         } catch {
-            await publishError(error.localizedDescription)
+            await publishError("Model error: \(error.localizedDescription)")
         }
     }
 
-    private func loadModelFromBundle() throws -> MLModel {
-        // Looks for a compiled model named PlantDiseaseClassifier.mlmodelc
-        guard let url = Bundle.main.url(forResource: "PlantDiseaseClassifier", withExtension: "mlmodelc") else {
-            throw NSError(domain: "DiseaseIdentifier",
-                          code: -1,
-                          userInfo: [NSLocalizedDescriptionKey:
-                                     "Model not found. Add PlantDiseaseClassifier.mlmodel to the app target."])
+    // MARK: - Model loader (filename-first with smart fallbacks)
+
+    /// Looks for a compiled Core ML model in the app bundle.
+    /// Keep your file named `PlantDiseaseClassifier.mlmodel` in Xcode with Target Membership
+    private func loadModel() throws -> MLModel {
+        let fm = FileManager.default
+
+        // 1) Expected file name
+        if let url = Bundle.main.url(forResource: "PlantDiseaseClassifier", withExtension: "mlmodelc") {
+            print("Using model: \(url.lastPathComponent)")
+            return try MLModel(contentsOf: url)
         }
-        return try MLModel(contentsOf: url)
+
+        // 2) Common alternate name (e.g., you added MobileNetV2)
+        if let url = Bundle.main.url(forResource: "MobileNetV2", withExtension: "mlmodelc") {
+            print("Using model (MobileNetV2): \(url.lastPathComponent)")
+            return try MLModel(contentsOf: url)
+        }
+
+        // 3) Any compiled model present in the bundle
+        if let all = Bundle.main.urls(forResourcesWithExtension: "mlmodelc", subdirectory: nil),
+           let first = all.first {
+            let names = all.map { $0.lastPathComponent }.joined(separator: ", ")
+            print("Expected PlantDiseaseClassifier.mlmodelc; found: [\(names)]. Using: \(first.lastPathComponent)")
+            return try MLModel(contentsOf: first)
+        }
+
+        // 4) Compile raw .mlmodel at runtime if present
+        if let raw = Bundle.main.url(forResource: "PlantDiseaseClassifier", withExtension: "mlmodel") {
+            let compiled = try MLModel.compileModel(at: raw)
+            print("Compiled at runtime: \(compiled.lastPathComponent)")
+            return try MLModel(contentsOf: compiled)
+        }
+        if let rawAlt = Bundle.main.url(forResource: "MobileNetV2", withExtension: "mlmodel") {
+            let compiled = try MLModel.compileModel(at: rawAlt)
+            print("Compiled at runtime (MobileNetV2): \(compiled.lastPathComponent)")
+            return try MLModel(contentsOf: compiled)
+        }
+
+        // 5) Give a helpful error if nothing is bundled
+        var hint = "Add PlantDiseaseClassifier.mlmodel to the project with Target Membership checked."
+        if let bundlePath = Bundle.main.bundlePath as String? {
+            hint += " App bundle: \(bundlePath)"
+            if let enumerator = fm.enumerator(atPath: bundlePath) {
+                let mlc = enumerator.compactMap { ($0 as? String)?.hasSuffix(".mlmodelc") == true ? ($0 as? String) : nil }
+                if !mlc.isEmpty { hint += " Found in bundle: \(mlc.joined(separator: ", "))" }
+            }
+        }
+
+        throw NSError(domain: "DiseaseIdentifier", code: -404,
+                      userInfo: [NSLocalizedDescriptionKey: "Model not found in bundle. \(hint)"])
     }
+
+    // MARK: - Helpers
 
     @MainActor
     private func publishError(_ message: String) {
