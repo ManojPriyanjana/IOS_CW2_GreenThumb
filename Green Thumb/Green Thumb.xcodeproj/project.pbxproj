@@ -246,6 +246,11 @@
 		2B327E372E4480D700CB8F1D /* Weather */ = {
 			isa = PBXGroup;
 			children = (
+				2BB3C9D72E4A242600717B31 /*  View */,
+				2BB3C9D62E4A241900717B31 /* ViewModel */,
+				2BB3C9D52E4A240C00717B31 /* Location */,
+				2BB3C9D42E4A240000717B31 /* Service */,
+				2BB3C9D32E4A23E600717B31 /* Model */,
 			);
 			path = Weather;
 			sourceTree = "<group>";
@@ -283,6 +288,41 @@
 				2B327E012E44624E00CB8F1D /* Persistence.swift */,
 			);
 			path = App;
+			sourceTree = "<group>";
+		};
+		2BB3C9D32E4A23E600717B31 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		2BB3C9D42E4A240000717B31 /* Service */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Service;
+			sourceTree = "<group>";
+		};
+		2BB3C9D52E4A240C00717B31 /* Location */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Location;
+			sourceTree = "<group>";
+		};
+		2BB3C9D62E4A241900717B31 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		2BB3C9D72E4A242600717B31 /*  View */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = " View";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
