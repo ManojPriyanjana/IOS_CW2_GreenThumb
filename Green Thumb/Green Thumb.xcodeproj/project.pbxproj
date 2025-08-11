@@ -35,7 +35,7 @@
 		2BA7FEBD2E471D8D00720C5A /* DashboardItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BA7FEBC2E471D8100720C5A /* DashboardItem.swift */; };
 		2BA7FEBF2E471D9F00720C5A /* DashboardTile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BA7FEBE2E471D9B00720C5A /* DashboardTile.swift */; };
 		2BA7FEC12E471DB400720C5A /* DashboardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BA7FEC02E471DB000720C5A /* DashboardView.swift */; };
-		2BB3C91E2E49AD3600717B31 /* MobileNetV2.mlmodel in Sources */ = {isa = PBXBuildFile; fileRef = 2BB3C91D2E49AD3600717B31 /* MobileNetV2.mlmodel */; };
+		2BB3C97A2E49EDBA00717B31 /* PlantDiseaseClassifier.mlpackage in Sources */ = {isa = PBXBuildFile; fileRef = 2BB3C9792E49EDBA00717B31 /* PlantDiseaseClassifier.mlpackage */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -85,7 +85,7 @@
 		2BA7FEBC2E471D8100720C5A /* DashboardItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardItem.swift; sourceTree = "<group>"; };
 		2BA7FEBE2E471D9B00720C5A /* DashboardTile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardTile.swift; sourceTree = "<group>"; };
 		2BA7FEC02E471DB000720C5A /* DashboardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardView.swift; sourceTree = "<group>"; };
-		2BB3C91D2E49AD3600717B31 /* MobileNetV2.mlmodel */ = {isa = PBXFileReference; lastKnownFileType = file.mlmodel; path = MobileNetV2.mlmodel; sourceTree = "<group>"; };
+		2BB3C9792E49EDBA00717B31 /* PlantDiseaseClassifier.mlpackage */ = {isa = PBXFileReference; lastKnownFileType = folder.mlpackage; path = PlantDiseaseClassifier.mlpackage; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
@@ -256,7 +256,7 @@
 				2B1D16002E4872CA000B2AE8 /* DiseaseIdentifierView.swift */,
 				2B1D15FE2E487297000B2AE8 /* ImagePicker.swift */,
 				2B1D15FC2E487265000B2AE8 /* DiseaseIdentifierViewModel.swift */,
-				2BB3C91D2E49AD3600717B31 /* MobileNetV2.mlmodel */,
+				2BB3C9792E49EDBA00717B31 /* PlantDiseaseClassifier.mlpackage */,
 			);
 			path = DiseaseDetection;
 			sourceTree = "<group>";
@@ -444,7 +444,6 @@
 				2B1D15FB2E486B0B000B2AE8 /* Place.swift in Sources */,
 				2B1D15F92E48695A000B2AE8 /* StoreLocatorView.swift in Sources */,
 				2BA7FEC12E471DB400720C5A /* DashboardView.swift in Sources */,
-				2BB3C91E2E49AD3600717B31 /* MobileNetV2.mlmodel in Sources */,
 				2B1D16162E488775000B2AE8 /* SettingsView.swift in Sources */,
 				2B327DFE2E44624C00CB8F1D /* ContentView.swift in Sources */,
 				2B327E502E448DB800CB8F1D /* LoginView.swift in Sources */,
@@ -457,6 +456,7 @@
 				2B1D15FF2E48729C000B2AE8 /* ImagePicker.swift in Sources */,
 				2B1D16082E4886C4000B2AE8 /* AppSettings.swift in Sources */,
 				2B327DFC2E44624C00CB8F1D /* Green_ThumbApp.swift in Sources */,
+				2BB3C97A2E49EDBA00717B31 /* PlantDiseaseClassifier.mlpackage in Sources */,
 				2B1D160E2E48871F000B2AE8 /* NotificationManager.swift in Sources */,
 				2B1D16062E4886AE000B2AE8 /* SettingsKeys.swift in Sources */,
 				2B1D15F72E486934000B2AE8 /* StoreLocatorViewModel.swift in Sources */,
