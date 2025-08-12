@@ -35,14 +35,9 @@ extension DashboardItem {
             title: "Weather",
             systemImage: "cloud.sun.fill",
             color: .orange,
-            destination: AnyView(Text("Weather (coming soon)"))
+            destination: AnyView(WeatherView(apiKey: "15845b53595b293a72d288d11d16cb39"))
         ),
-        DashboardItem(
-            title: "Store Locator",
-            systemImage: "mappin.and.ellipse",
-            color: .purple,
-            destination: AnyView(Text("Store (coming soon)"))
-        ),
+     
         DashboardItem(
             title: "Store Locator",
             systemImage: "mappin.and.ellipse",
