@@ -1,9 +1,13 @@
+// Modules/Dashboard/Views/DashboardView.swift
 import SwiftUI
 
-struct OldDashboardView: View {
+struct DashboardView: View {
     var body: some View {
-        Text("Welcome to Green Thumb")
-            .font(.title)
-            .padding()
+        NavigationStack {
+            Text("Welcome to GreenThumb 🌿")
+                .font(.title2)
+                .padding()
+                .navigationTitle("Dashboard")
+        }
     }
 }

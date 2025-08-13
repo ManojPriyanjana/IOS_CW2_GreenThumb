@@ -1,42 +1,16 @@
+// Modules/Authentication/Views/SignupView.swift
 import SwiftUI
 
 struct SignupView: View {
-    @StateObject private var viewModel = AuthViewModel()
-    @Environment(\.dismiss) var dismiss
-    @State private var showSuccessAlert = false
-
+    @Environment(\.dismiss) private var dismiss
     var body: some View {
-        VStack(spacing: 20) {
-            Text("Sign Up")
-                .font(.title)
-
-            TextField("Email", text: $viewModel.email)
-                .autocapitalization(.none)
-                .textFieldStyle(RoundedBorderTextFieldStyle())
-
-            SecureField("Password", text: $viewModel.password)
-                .textFieldStyle(RoundedBorderTextFieldStyle())
-
-            Button("Create Account") {
-                viewModel.signup {
-                    showSuccessAlert = true
-                }
+        NavigationStack {
+            VStack(spacing: 16) {
+                Text("Sign Up placeholder")
+                Button("Close") { dismiss() }
             }
-            .buttonStyle(.borderedProminent)
-
-            Button("Cancel") {
-                dismiss()
-            }
-
-            Text(viewModel.errorMessage)
-                .foregroundColor(.red)
-                .font(.footnote)
-        }
-        .padding()
-        .alert("Account created successfully!", isPresented: $showSuccessAlert) {
-            Button("OK") {
-                dismiss() // Go back to LoginView
-            }
+            .padding()
+            .navigationTitle("Sign Up")
         }
     }
 }
