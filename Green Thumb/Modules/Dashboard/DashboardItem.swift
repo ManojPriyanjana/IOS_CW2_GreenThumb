@@ -13,6 +13,15 @@ struct DashboardItem: Identifiable, Hashable, Equatable {
 
 extension DashboardItem {
     static var all: [DashboardItem] = [
+        
+        // NEW CARD (wired to PlantListView)
+             DashboardItem(
+                 title: "My Plants",
+                 systemImage: "leaf.circle",
+                 color: .mint,
+                 destination: AnyView(PlantListView())
+             ),
+
         DashboardItem(
             title: "Disease Identifier",
             systemImage: "leaf.fill",
