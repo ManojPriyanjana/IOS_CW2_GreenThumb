@@ -1,14 +1,27 @@
+//
+//import SwiftUI
+//
+//struct ContentView: View {
+//    var body: some View {
+//        DashboardView()
+////        LoginView()
+//    }
+//}
+//
+//#Preview {
+////    LoginView()
+////    ContentView()
+//}
 
 import SwiftUI
 
 struct ContentView: View {
     var body: some View {
-        DashboardView()
-//        LoginView()
+        AuthGateView()                  // <- NOT DashboardView()
     }
 }
 
 #Preview {
-//    LoginView()
-//    ContentView()
+    ContentView().environmentObject(SessionStore())
 }
+
