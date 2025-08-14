@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="23788" systemVersion="24F74" minimumToolsVersion="Automatic" sourceLanguage="Swift" usedWithSwiftData="YES" userDefinedModelVersionIdentifier="">
+    <entity name="CDPlant" representedClassName="CDPlant" syncable="YES" codeGenerationType="class">
+        <attribute name="addedAt" attributeType="Date" usesScalarValueType="NO"/>
+        <attribute name="health" attributeType="String"/>
+        <attribute name="id" attributeType="UUID" usesScalarValueType="NO"/>
+        <attribute name="lastWatered" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
+        <attribute name="light" optional="YES" attributeType="String"/>
+        <attribute name="location" optional="YES" attributeType="String"/>
+        <attribute name="logsData" optional="YES" attributeType="Binary"/>
+        <attribute name="name" attributeType="String"/>
+        <attribute name="notes" optional="YES" attributeType="String"/>
+        <attribute name="photosData" optional="YES" attributeType="Binary"/>
+        <attribute name="potSize" optional="YES" attributeType="String"/>
+        <attribute name="schedulesData" optional="YES" attributeType="Binary"/>
+        <attribute name="species" optional="YES" attributeType="String"/>
+        <attribute name="tagsData" optional="YES" attributeType="Binary"/>
+        <attribute name="wateringIntervalDays" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
+    </entity>
+</model>

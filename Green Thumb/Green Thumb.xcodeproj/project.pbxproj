@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2B0418862E4DA3C300339B96 /* GreenThumbModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 2B0418842E4DA3C300339B96 /* GreenThumbModel.xcdatamodeld */; };
 		2B1D15F72E486934000B2AE8 /* StoreLocatorViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B1D15F62E48692C000B2AE8 /* StoreLocatorViewModel.swift */; };
 		2B1D15F92E48695A000B2AE8 /* StoreLocatorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B1D15F82E486955000B2AE8 /* StoreLocatorView.swift */; };
 		2B1D15FB2E486B0B000B2AE8 /* Place.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B1D15FA2E486B07000B2AE8 /* Place.swift */; };
@@ -82,6 +83,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		2B0418852E4DA3C300339B96 /* GreenThumbModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = GreenThumbModel.xcdatamodel; sourceTree = "<group>"; };
 		2B1D15F62E48692C000B2AE8 /* StoreLocatorViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoreLocatorViewModel.swift; sourceTree = "<group>"; };
 		2B1D15F82E486955000B2AE8 /* StoreLocatorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoreLocatorView.swift; sourceTree = "<group>"; };
 		2B1D15FA2E486B07000B2AE8 /* Place.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Place.swift; sourceTree = "<group>"; };
@@ -268,6 +270,7 @@
 		2B327DEF2E44624C00CB8F1D = {
 			isa = PBXGroup;
 			children = (
+				2B0418842E4DA3C300339B96 /* GreenThumbModel.xcdatamodeld */,
 				2B327E3C2E44844800CB8F1D /* App */,
 				2B327E312E44783F00CB8F1D /* Modules */,
 				2B327DFA2E44624C00CB8F1D /* Green Thumb */,
@@ -680,6 +683,7 @@
 				2B7FD7D02E4CA1D200B98E2F /* PlantListViewModel.swift in Sources */,
 				2B24F4992E4C3C2E00B3E9EC /* SessionStore.swift in Sources */,
 				2B24F4A32E4C3C9000B3E9EC /* AuthViewModel.swift in Sources */,
+				2B0418862E4DA3C300339B96 /* GreenThumbModel.xcdatamodeld in Sources */,
 				2B1D15F72E486934000B2AE8 /* StoreLocatorViewModel.swift in Sources */,
 				2B24F49C2E4C3C5C00B3E9EC /* LoginView.swift in Sources */,
 				2B1D16102E488738000B2AE8 /* FaceIDManager.swift in Sources */,
@@ -846,8 +850,10 @@
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "Green-Thumb-Info.plist";
 				INFOPLIST_KEY_LSApplicationCategoryType = "";
-				INFOPLIST_KEY_NSFaceIDUsageDescription = "$(MARKETING_VERSION)";
+				INFOPLIST_KEY_NSCalendarsUsageDescription = "";
+				INFOPLIST_KEY_NSFaceIDUsageDescription = 1.0;
 				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "We use your location to find nearby garden stores.";
+				INFOPLIST_KEY_NSRemindersUsageDescription = "";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -877,8 +883,10 @@
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "Green-Thumb-Info.plist";
 				INFOPLIST_KEY_LSApplicationCategoryType = "";
-				INFOPLIST_KEY_NSFaceIDUsageDescription = "$(MARKETING_VERSION)";
+				INFOPLIST_KEY_NSCalendarsUsageDescription = "";
+				INFOPLIST_KEY_NSFaceIDUsageDescription = 1.0;
 				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "We use your location to find nearby garden stores.";
+				INFOPLIST_KEY_NSRemindersUsageDescription = "";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -1034,6 +1042,19 @@
 			productName = FirebaseFirestore;
 		};
 /* End XCSwiftPackageProductDependency section */
+
+/* Begin XCVersionGroup section */
+		2B0418842E4DA3C300339B96 /* GreenThumbModel.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				2B0418852E4DA3C300339B96 /* GreenThumbModel.xcdatamodel */,
+			);
+			currentVersion = 2B0418852E4DA3C300339B96 /* GreenThumbModel.xcdatamodel */;
+			path = GreenThumbModel.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = 2B327DF02E44624C00CB8F1D /* Project object */;
 }
