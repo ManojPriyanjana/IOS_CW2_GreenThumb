@@ -1,2 +1,44 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="23788" systemVersion="24F74" minimumToolsVersion="Automatic" sourceLanguage="Swift" usedWithSwiftData="YES" userDefinedModelVersionIdentifier=""/>
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="23788" systemVersion="24F74" minimumToolsVersion="Automatic" sourceLanguage="Swift" usedWithSwiftData="YES" userDefinedModelVersionIdentifier="">
+    <entity name="CareTask" representedClassName="CareTask" syncable="YES" codeGenerationType="class">
+        <attribute name="completedDate" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
+        <attribute name="dueDate" attributeType="Date" usesScalarValueType="NO"/>
+        <attribute name="id" attributeType="UUID" usesScalarValueType="NO"/>
+        <attribute name="isCompleted" attributeType="Boolean" usesScalarValueType="YES"/>
+        <attribute name="type" attributeType="String"/>
+        <relationship name="plant" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Plant" inverseName="tasks" inverseEntity="Plant"/>
+    </entity>
+    <entity name="HealthLog" representedClassName="HealthLog" syncable="YES" codeGenerationType="class">
+        <attribute name="date" attributeType="Date" usesScalarValueType="NO"/>
+        <attribute name="id" attributeType="UUID" usesScalarValueType="NO"/>
+        <attribute name="note" optional="YES" attributeType="String"/>
+        <attribute name="photo" optional="YES" attributeType="Binary"/>
+        <attribute name="statusScore" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
+        <relationship name="plant" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Plant" inverseName="logs" inverseEntity="Plant"/>
+    </entity>
+    <entity name="Plant" representedClassName="Plant" syncable="YES" codeGenerationType="class">
+        <attribute name="commonName" attributeType="String"/>
+        <attribute name="dateAdded" attributeType="Date" usesScalarValueType="NO"/>
+        <attribute name="fertilizeFreqDays" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="healthStatus" attributeType="String"/>
+        <attribute name="id" attributeType="UUID" usesScalarValueType="NO"/>
+        <attribute name="lastFertilized" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
+        <attribute name="lastWatered" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
+        <attribute name="lightLevel" attributeType="String"/>
+        <attribute name="location" optional="YES" attributeType="String"/>
+        <attribute name="photo" optional="YES" attributeType="Binary"/>
+        <attribute name="potSizeCM" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
+        <attribute name="scientificName" optional="YES" attributeType="String"/>
+        <attribute name="wateringFreqDays" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
+        <relationship name="logs" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="HealthLog" inverseName="plant" inverseEntity="HealthLog"/>
+        <relationship name="photos" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="PlantPhoto" inverseName="plant" inverseEntity="PlantPhoto"/>
+        <relationship name="tasks" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="CareTask" inverseName="plant" inverseEntity="CareTask"/>
+    </entity>
+    <entity name="PlantPhoto" representedClassName="PlantPhoto" syncable="YES" codeGenerationType="class">
+        <attribute name="caption" optional="YES" attributeType="String"/>
+        <attribute name="date" attributeType="Date" usesScalarValueType="NO"/>
+        <attribute name="id" attributeType="UUID" usesScalarValueType="NO"/>
+        <attribute name="imageDate" attributeType="Binary"/>
+        <relationship name="plant" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Plant" inverseName="photos" inverseEntity="Plant"/>
+    </entity>
+</model>

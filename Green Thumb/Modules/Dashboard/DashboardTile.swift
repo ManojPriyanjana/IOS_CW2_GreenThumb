@@ -24,3 +24,8 @@ struct DashboardTile: View {
         .shadow(radius: 2, y: 1)
     }
 }
+
+#Preview {
+    DashboardTile(item: .previewItem)
+        .padding()
+}

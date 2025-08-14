@@ -7,7 +7,19 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		2B0418862E4DA3C300339B96 /* GreenThumbModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 2B0418842E4DA3C300339B96 /* GreenThumbModel.xcdatamodeld */; };
+		2B0418AD2E4DC3E100339B96 /* GreenThumbDataModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 2B0418AB2E4DC3E100339B96 /* GreenThumbDataModel.xcdatamodeld */; };
+		2B0418B02E4DDB5600339B96 /* PersistenceController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B0418AF2E4DDB5200339B96 /* PersistenceController.swift */; };
+		2B0418B92E4DDDE000339B96 /* Enums.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B0418B82E4DDDBE00339B96 /* Enums.swift */; };
+		2B0418BB2E4DDE0700339B96 /* ReminderScheduler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B0418BA2E4DDE0400339B96 /* ReminderScheduler.swift */; };
+		2B0418BD2E4DDE3800339B96 /* NewPlantState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B0418BC2E4DDE2F00339B96 /* NewPlantState.swift */; };
+		2B0418BF2E4DDE5C00339B96 /* StepperHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B0418BE2E4DDE5400339B96 /* StepperHeader.swift */; };
+		2B0418C12E4DDEE500339B96 /* PhotoStepView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B0418C02E4DDEE200339B96 /* PhotoStepView.swift */; };
+		2B0418C32E4DDEFA00339B96 /* SpeciesStepView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B0418C22E4DDEF600339B96 /* SpeciesStepView.swift */; };
+		2B0418C52E4DDF0D00339B96 /* DetailsStepView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B0418C42E4DDF0B00339B96 /* DetailsStepView.swift */; };
+		2B0418C72E4DDF2600339B96 /* PreviewStepView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B0418C62E4DDF2300339B96 /* PreviewStepView.swift */; };
+		2B0418C92E4DDF4100339B96 /* AddPlantFlowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B0418C82E4DDF3E00339B96 /* AddPlantFlowView.swift */; };
+		2B0418CB2E4DDF9500339B96 /* PlantDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B0418CA2E4DDF7700339B96 /* PlantDetailView.swift */; };
+		2B0418CD2E4DDFAF00339B96 /* MyGardenView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B0418CC2E4DDFAD00339B96 /* MyGardenView.swift */; };
 		2B1D15F72E486934000B2AE8 /* StoreLocatorViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B1D15F62E48692C000B2AE8 /* StoreLocatorViewModel.swift */; };
 		2B1D15F92E48695A000B2AE8 /* StoreLocatorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B1D15F82E486955000B2AE8 /* StoreLocatorView.swift */; };
 		2B1D15FB2E486B0B000B2AE8 /* Place.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B1D15FA2E486B07000B2AE8 /* Place.swift */; };
@@ -47,7 +59,6 @@
 		2B2B78952E4AFA0500F56877 /* SuggestionEngine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B2B78942E4AF9FA00F56877 /* SuggestionEngine.swift */; };
 		2B327DFC2E44624C00CB8F1D /* Green_ThumbApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B327DFB2E44624C00CB8F1D /* Green_ThumbApp.swift */; };
 		2B327DFE2E44624C00CB8F1D /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B327DFD2E44624C00CB8F1D /* ContentView.swift */; };
-		2B327E022E44624E00CB8F1D /* Persistence.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B327E012E44624E00CB8F1D /* Persistence.swift */; };
 		2B327E292E446AF000CB8F1D /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = 2B327E282E446AF000CB8F1D /* FirebaseAuth */; };
 		2B327E2B2E446AF000CB8F1D /* FirebaseCore in Frameworks */ = {isa = PBXBuildFile; productRef = 2B327E2A2E446AF000CB8F1D /* FirebaseCore */; };
 		2B327E2D2E446AF000CB8F1D /* FirebaseFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = 2B327E2C2E446AF000CB8F1D /* FirebaseFirestore */; };
@@ -75,7 +86,19 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		2B0418852E4DA3C300339B96 /* GreenThumbModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = GreenThumbModel.xcdatamodel; sourceTree = "<group>"; };
+		2B0418AC2E4DC3E100339B96 /* GreenThumbDataModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = GreenThumbDataModel.xcdatamodel; sourceTree = "<group>"; };
+		2B0418AF2E4DDB5200339B96 /* PersistenceController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersistenceController.swift; sourceTree = "<group>"; };
+		2B0418B82E4DDDBE00339B96 /* Enums.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Enums.swift; sourceTree = "<group>"; };
+		2B0418BA2E4DDE0400339B96 /* ReminderScheduler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReminderScheduler.swift; sourceTree = "<group>"; };
+		2B0418BC2E4DDE2F00339B96 /* NewPlantState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewPlantState.swift; sourceTree = "<group>"; };
+		2B0418BE2E4DDE5400339B96 /* StepperHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StepperHeader.swift; sourceTree = "<group>"; };
+		2B0418C02E4DDEE200339B96 /* PhotoStepView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoStepView.swift; sourceTree = "<group>"; };
+		2B0418C22E4DDEF600339B96 /* SpeciesStepView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpeciesStepView.swift; sourceTree = "<group>"; };
+		2B0418C42E4DDF0B00339B96 /* DetailsStepView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailsStepView.swift; sourceTree = "<group>"; };
+		2B0418C62E4DDF2300339B96 /* PreviewStepView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreviewStepView.swift; sourceTree = "<group>"; };
+		2B0418C82E4DDF3E00339B96 /* AddPlantFlowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddPlantFlowView.swift; sourceTree = "<group>"; };
+		2B0418CA2E4DDF7700339B96 /* PlantDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlantDetailView.swift; sourceTree = "<group>"; };
+		2B0418CC2E4DDFAD00339B96 /* MyGardenView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyGardenView.swift; sourceTree = "<group>"; };
 		2B1D15F62E48692C000B2AE8 /* StoreLocatorViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoreLocatorViewModel.swift; sourceTree = "<group>"; };
 		2B1D15F82E486955000B2AE8 /* StoreLocatorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoreLocatorView.swift; sourceTree = "<group>"; };
 		2B1D15FA2E486B07000B2AE8 /* Place.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Place.swift; sourceTree = "<group>"; };
@@ -116,7 +139,6 @@
 		2B327DF82E44624C00CB8F1D /* Green Thumb.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Green Thumb.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		2B327DFB2E44624C00CB8F1D /* Green_ThumbApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Green_ThumbApp.swift; sourceTree = "<group>"; };
 		2B327DFD2E44624C00CB8F1D /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
-		2B327E012E44624E00CB8F1D /* Persistence.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Persistence.swift; sourceTree = "<group>"; };
 		2B327E0A2E44624E00CB8F1D /* Green ThumbTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Green ThumbTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		2B327E142E44624E00CB8F1D /* Green ThumbUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Green ThumbUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		2BA7FEBC2E471D8100720C5A /* DashboardItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardItem.swift; sourceTree = "<group>"; };
@@ -171,6 +193,75 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		2B0418AE2E4DDB2300339B96 /* Data */ = {
+			isa = PBXGroup;
+			children = (
+				2B0418AF2E4DDB5200339B96 /* PersistenceController.swift */,
+			);
+			path = Data;
+			sourceTree = "<group>";
+		};
+		2B0418B12E4DDCEC00339B96 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				2B0418B82E4DDDBE00339B96 /* Enums.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		2B0418B22E4DDCFE00339B96 /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				2B0418BA2E4DDE0400339B96 /* ReminderScheduler.swift */,
+			);
+			path = Services;
+			sourceTree = "<group>";
+		};
+		2B0418B32E4DDD1600339B96 /* ViewModels */ = {
+			isa = PBXGroup;
+			children = (
+				2B0418BC2E4DDE2F00339B96 /* NewPlantState.swift */,
+			);
+			path = ViewModels;
+			sourceTree = "<group>";
+		};
+		2B0418B42E4DDD3200339B96 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				2B0418CC2E4DDFAD00339B96 /* MyGardenView.swift */,
+				2B0418CA2E4DDF7700339B96 /* PlantDetailView.swift */,
+				2B0418B52E4DDD4200339B96 /* AddPlant */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		2B0418B52E4DDD4200339B96 /* AddPlant */ = {
+			isa = PBXGroup;
+			children = (
+				2B0418C82E4DDF3E00339B96 /* AddPlantFlowView.swift */,
+				2B0418C62E4DDF2300339B96 /* PreviewStepView.swift */,
+				2B0418C42E4DDF0B00339B96 /* DetailsStepView.swift */,
+				2B0418C22E4DDEF600339B96 /* SpeciesStepView.swift */,
+				2B0418C02E4DDEE200339B96 /* PhotoStepView.swift */,
+				2B0418BE2E4DDE5400339B96 /* StepperHeader.swift */,
+			);
+			path = AddPlant;
+			sourceTree = "<group>";
+		};
+		2B0418B62E4DDD6800339B96 /* Previews */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Previews;
+			sourceTree = "<group>";
+		};
+		2B0418B72E4DDD8600339B96 /* Tests */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Tests;
+			sourceTree = "<group>";
+		};
 		2B1D15F52E4868EC000B2AE8 /* StoreLocator */ = {
 			isa = PBXGroup;
 			children = (
@@ -254,7 +345,7 @@
 		2B327DEF2E44624C00CB8F1D = {
 			isa = PBXGroup;
 			children = (
-				2B0418842E4DA3C300339B96 /* GreenThumbModel.xcdatamodeld */,
+				2B0418AB2E4DC3E100339B96 /* GreenThumbDataModel.xcdatamodeld */,
 				2B327E3C2E44844800CB8F1D /* App */,
 				2B327E312E44783F00CB8F1D /* Modules */,
 				2B327DFA2E44624C00CB8F1D /* Green Thumb */,
@@ -316,6 +407,13 @@
 		2B327E342E44809900CB8F1D /* PlantManagement */ = {
 			isa = PBXGroup;
 			children = (
+				2B0418B72E4DDD8600339B96 /* Tests */,
+				2B0418B62E4DDD6800339B96 /* Previews */,
+				2B0418B42E4DDD3200339B96 /* Views */,
+				2B0418B32E4DDD1600339B96 /* ViewModels */,
+				2B0418B22E4DDCFE00339B96 /* Services */,
+				2B0418B12E4DDCEC00339B96 /* Models */,
+				2B0418AE2E4DDB2300339B96 /* Data */,
 			);
 			path = PlantManagement;
 			sourceTree = "<group>";
@@ -378,7 +476,6 @@
 				2B24F4A42E4C3D5A00B3E9EC /* AuthGateView.swift */,
 				2B327DFD2E44624C00CB8F1D /* ContentView.swift */,
 				2B327DFB2E44624C00CB8F1D /* Green_ThumbApp.swift */,
-				2B327E012E44624E00CB8F1D /* Persistence.swift */,
 			);
 			path = App;
 			sourceTree = "<group>";
@@ -579,10 +676,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				2B2B788A2E4AE83200F56877 /* WeatherView.swift in Sources */,
-				2B327E022E44624E00CB8F1D /* Persistence.swift in Sources */,
 				2B1D16122E488747000B2AE8 /* SettingsViewModel.swift in Sources */,
 				2B24F4922E4C3BF900B3E9EC /* AuthService.swift in Sources */,
 				2B2B78902E4AF98D00F56877 /* ForecastServicing.swift in Sources */,
+				2B0418CD2E4DDFAF00339B96 /* MyGardenView.swift in Sources */,
+				2B0418C32E4DDEFA00339B96 /* SpeciesStepView.swift in Sources */,
 				2BA7FEBD2E471D8D00720C5A /* DashboardItem.swift in Sources */,
 				2B2B78842E4AE7CC00F56877 /* OpenWeatherClient.swift in Sources */,
 				2B24F4A52E4C3D6000B3E9EC /* AuthGateView.swift in Sources */,
@@ -592,9 +690,12 @@
 				2B24F49E2E4C3C6500B3E9EC /* SignupView.swift in Sources */,
 				2B2B788E2E4AF96A00F56877 /* ForecastModels.swift in Sources */,
 				2B2B78822E4AE7AB00F56877 /* WeatherServicing.swift in Sources */,
+				2B0418B02E4DDB5600339B96 /* PersistenceController.swift in Sources */,
+				2B0418C12E4DDEE500339B96 /* PhotoStepView.swift in Sources */,
 				2BA7FEC12E471DB400720C5A /* DashboardView.swift in Sources */,
 				2B24F4942E4C3C0600B3E9EC /* KeychainService.swift in Sources */,
 				2B1D16162E488775000B2AE8 /* SettingsView.swift in Sources */,
+				2B0418C92E4DDF4100339B96 /* AddPlantFlowView.swift in Sources */,
 				2B2B78922E4AF9A100F56877 /* OpenWeatherForecastClient.swift in Sources */,
 				2B327DFE2E44624C00CB8F1D /* ContentView.swift in Sources */,
 				2B2B78882E4AE81500F56877 /* WeatherViewModel.swift in Sources */,
@@ -603,7 +704,11 @@
 				2B24F4A82E4C4D0000B3E9EC /* SecuritySettingsView.swift in Sources */,
 				2B1D160C2E4886F0000B2AE8 /* UserDefaultsSettingsStore.swift in Sources */,
 				2B24F4A02E4C3C7100B3E9EC /* LockView.swift in Sources */,
+				2B0418BF2E4DDE5C00339B96 /* StepperHeader.swift in Sources */,
+				2B0418BD2E4DDE3800339B96 /* NewPlantState.swift in Sources */,
+				2B0418CB2E4DDF9500339B96 /* PlantDetailView.swift in Sources */,
 				2B2B78862E4AE7F200F56877 /* LocationProvider.swift in Sources */,
+				2B0418AD2E4DC3E100339B96 /* GreenThumbDataModel.xcdatamodeld in Sources */,
 				2B1D160A2E4886DD000B2AE8 /* SettingsStore.swift in Sources */,
 				2B1D16182E488788000B2AE8 /* QuietHoursView.swift in Sources */,
 				2B1D15FD2E487274000B2AE8 /* DiseaseIdentifierViewModel.swift in Sources */,
@@ -619,10 +724,13 @@
 				2B1D16062E4886AE000B2AE8 /* SettingsKeys.swift in Sources */,
 				2B24F4992E4C3C2E00B3E9EC /* SessionStore.swift in Sources */,
 				2B24F4A32E4C3C9000B3E9EC /* AuthViewModel.swift in Sources */,
-				2B0418862E4DA3C300339B96 /* GreenThumbModel.xcdatamodeld in Sources */,
+				2B0418C72E4DDF2600339B96 /* PreviewStepView.swift in Sources */,
 				2B1D15F72E486934000B2AE8 /* StoreLocatorViewModel.swift in Sources */,
 				2B24F49C2E4C3C5C00B3E9EC /* LoginView.swift in Sources */,
+				2B0418B92E4DDDE000339B96 /* Enums.swift in Sources */,
 				2B1D16102E488738000B2AE8 /* FaceIDManager.swift in Sources */,
+				2B0418BB2E4DDE0700339B96 /* ReminderScheduler.swift in Sources */,
+				2B0418C52E4DDF0D00339B96 /* DetailsStepView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -789,6 +897,7 @@
 				INFOPLIST_KEY_NSCalendarsUsageDescription = "";
 				INFOPLIST_KEY_NSFaceIDUsageDescription = 1.0;
 				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "We use your location to find nearby garden stores.";
+				INFOPLIST_KEY_NSPhotoLibraryAddUsageDescription = "";
 				INFOPLIST_KEY_NSRemindersUsageDescription = "";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -822,6 +931,7 @@
 				INFOPLIST_KEY_NSCalendarsUsageDescription = "";
 				INFOPLIST_KEY_NSFaceIDUsageDescription = 1.0;
 				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "We use your location to find nearby garden stores.";
+				INFOPLIST_KEY_NSPhotoLibraryAddUsageDescription = "";
 				INFOPLIST_KEY_NSRemindersUsageDescription = "";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -980,13 +1090,13 @@
 /* End XCSwiftPackageProductDependency section */
 
 /* Begin XCVersionGroup section */
-		2B0418842E4DA3C300339B96 /* GreenThumbModel.xcdatamodeld */ = {
+		2B0418AB2E4DC3E100339B96 /* GreenThumbDataModel.xcdatamodeld */ = {
 			isa = XCVersionGroup;
 			children = (
-				2B0418852E4DA3C300339B96 /* GreenThumbModel.xcdatamodel */,
+				2B0418AC2E4DC3E100339B96 /* GreenThumbDataModel.xcdatamodel */,
 			);
-			currentVersion = 2B0418852E4DA3C300339B96 /* GreenThumbModel.xcdatamodel */;
-			path = GreenThumbModel.xcdatamodeld;
+			currentVersion = 2B0418AC2E4DC3E100339B96 /* GreenThumbDataModel.xcdatamodel */;
+			path = GreenThumbDataModel.xcdatamodeld;
 			sourceTree = "<group>";
 			versionGroupType = wrapper.xcdatamodel;
 		};
