@@ -23,9 +23,10 @@ struct TabHost: View {
                         .padding()
 
                 case .profile:
-                    Text("Profile")
-                        .font(.title)
-                        .padding()
+//                    Text("Profile")
+//                        .font(.title)
+//                        .padding()
+                    TaskListView()
 
                 case .settings:
                     SettingsView()

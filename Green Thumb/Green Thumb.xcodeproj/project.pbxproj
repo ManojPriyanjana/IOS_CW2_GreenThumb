@@ -65,6 +65,18 @@
 		2B78B1112E4EFA0A001A46C6 /* CustomTabBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B78B1102E4EFA07001A46C6 /* CustomTabBar.swift */; };
 		2B78B1132E4EFA37001A46C6 /* TabHost.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B78B1122E4EFA24001A46C6 /* TabHost.swift */; };
 		2B78B1162E4EFC04001A46C6 /* AppTab.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B78B1152E4EFBFD001A46C6 /* AppTab.swift */; };
+		2B78B1272E4F0F9C001A46C6 /* TaskDataModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 2B78B1252E4F0F9C001A46C6 /* TaskDataModel.xcdatamodeld */; };
+		2B78B12A2E4F14CD001A46C6 /* TaskItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B78B1292E4F14C9001A46C6 /* TaskItem.swift */; };
+		2B78B12C2E4F14EC001A46C6 /* TaskRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B78B12B2E4F14EA001A46C6 /* TaskRepository.swift */; };
+		2B78B12E2E4F1529001A46C6 /* CoreDataStack+Task.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B78B12D2E4F1525001A46C6 /* CoreDataStack+Task.swift */; };
+		2B78B1302E4F1552001A46C6 /* TaskScheduler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B78B12F2E4F1550001A46C6 /* TaskScheduler.swift */; };
+		2B78B1322E4F156D001A46C6 /* TaskListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B78B1312E4F1565001A46C6 /* TaskListViewModel.swift */; };
+		2B78B1362E4F15A3001A46C6 /* TaskTheme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B78B1352E4F159B001A46C6 /* TaskTheme.swift */; };
+		2B78B1382E4F15BC001A46C6 /* TaskRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B78B1372E4F15B6001A46C6 /* TaskRowView.swift */; };
+		2B78B13A2E4F15D1001A46C6 /* TaskListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B78B1392E4F15CE001A46C6 /* TaskListView.swift */; };
+		2B78B13C2E4F15E7001A46C6 /* TaskEditorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B78B13B2E4F15E3001A46C6 /* TaskEditorView.swift */; };
+		2B78B13E2E4F17F7001A46C6 /* Binding+OptionalDate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B78B13D2E4F17F2001A46C6 /* Binding+OptionalDate.swift */; };
+		2B78B1402E4F1BA2001A46C6 /* TaskEditorViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B78B13F2E4F1B2F001A46C6 /* TaskEditorViewModel.swift */; };
 		2BA7FEBD2E471D8D00720C5A /* DashboardItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BA7FEBC2E471D8100720C5A /* DashboardItem.swift */; };
 		2BA7FEBF2E471D9F00720C5A /* DashboardTile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BA7FEBE2E471D9B00720C5A /* DashboardTile.swift */; };
 		2BA7FEC12E471DB400720C5A /* DashboardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BA7FEC02E471DB000720C5A /* DashboardView.swift */; };
@@ -147,6 +159,18 @@
 		2B78B1102E4EFA07001A46C6 /* CustomTabBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTabBar.swift; sourceTree = "<group>"; };
 		2B78B1122E4EFA24001A46C6 /* TabHost.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabHost.swift; sourceTree = "<group>"; };
 		2B78B1152E4EFBFD001A46C6 /* AppTab.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppTab.swift; sourceTree = "<group>"; };
+		2B78B1262E4F0F9C001A46C6 /* TaskDataModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = TaskDataModel.xcdatamodel; sourceTree = "<group>"; };
+		2B78B1292E4F14C9001A46C6 /* TaskItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskItem.swift; sourceTree = "<group>"; };
+		2B78B12B2E4F14EA001A46C6 /* TaskRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskRepository.swift; sourceTree = "<group>"; };
+		2B78B12D2E4F1525001A46C6 /* CoreDataStack+Task.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CoreDataStack+Task.swift"; sourceTree = "<group>"; };
+		2B78B12F2E4F1550001A46C6 /* TaskScheduler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskScheduler.swift; sourceTree = "<group>"; };
+		2B78B1312E4F1565001A46C6 /* TaskListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskListViewModel.swift; sourceTree = "<group>"; };
+		2B78B1352E4F159B001A46C6 /* TaskTheme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskTheme.swift; sourceTree = "<group>"; };
+		2B78B1372E4F15B6001A46C6 /* TaskRowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskRowView.swift; sourceTree = "<group>"; };
+		2B78B1392E4F15CE001A46C6 /* TaskListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskListView.swift; sourceTree = "<group>"; };
+		2B78B13B2E4F15E3001A46C6 /* TaskEditorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskEditorView.swift; sourceTree = "<group>"; };
+		2B78B13D2E4F17F2001A46C6 /* Binding+OptionalDate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Binding+OptionalDate.swift"; sourceTree = "<group>"; };
+		2B78B13F2E4F1B2F001A46C6 /* TaskEditorViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskEditorViewModel.swift; sourceTree = "<group>"; };
 		2BA7FEBC2E471D8100720C5A /* DashboardItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardItem.swift; sourceTree = "<group>"; };
 		2BA7FEBE2E471D9B00720C5A /* DashboardTile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardTile.swift; sourceTree = "<group>"; };
 		2BA7FEC02E471DB000720C5A /* DashboardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardView.swift; sourceTree = "<group>"; };
@@ -374,6 +398,7 @@
 		2B327E312E44783F00CB8F1D /* Modules */ = {
 			isa = PBXGroup;
 			children = (
+				2B78B1282E4F0FDA001A46C6 /* Task */,
 				2B78B10D2E4EF91F001A46C6 /* Navigation */,
 				2B1D16042E4885FC000B2AE8 /* Settings */,
 				2B1D15F52E4868EC000B2AE8 /* StoreLocator */,
@@ -382,7 +407,6 @@
 				2B327E382E4480EE00CB8F1D /* DiseaseDetection */,
 				2B327E372E4480D700CB8F1D /* Weather */,
 				2B327E362E4480C200CB8F1D /* HealthLog */,
-				2B327E352E4480B400CB8F1D /* Tasks */,
 				2B327E342E44809900CB8F1D /* PlantManagement */,
 				2B327E332E44808100CB8F1D /* Dashboard */,
 				2B327E322E4478C500CB8F1D /* Authentication */,
@@ -423,13 +447,6 @@
 				2B0418AE2E4DDB2300339B96 /* Data */,
 			);
 			path = PlantManagement;
-			sourceTree = "<group>";
-		};
-		2B327E352E4480B400CB8F1D /* Tasks */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Tasks;
 			sourceTree = "<group>";
 		};
 		2B327E362E4480C200CB8F1D /* HealthLog */ = {
@@ -495,6 +512,25 @@
 				2B78B1102E4EFA07001A46C6 /* CustomTabBar.swift */,
 			);
 			path = Navigation;
+			sourceTree = "<group>";
+		};
+		2B78B1282E4F0FDA001A46C6 /* Task */ = {
+			isa = PBXGroup;
+			children = (
+				2B78B13F2E4F1B2F001A46C6 /* TaskEditorViewModel.swift */,
+				2B78B13D2E4F17F2001A46C6 /* Binding+OptionalDate.swift */,
+				2B78B13B2E4F15E3001A46C6 /* TaskEditorView.swift */,
+				2B78B1392E4F15CE001A46C6 /* TaskListView.swift */,
+				2B78B1372E4F15B6001A46C6 /* TaskRowView.swift */,
+				2B78B1352E4F159B001A46C6 /* TaskTheme.swift */,
+				2B78B1312E4F1565001A46C6 /* TaskListViewModel.swift */,
+				2B78B12F2E4F1550001A46C6 /* TaskScheduler.swift */,
+				2B78B12D2E4F1525001A46C6 /* CoreDataStack+Task.swift */,
+				2B78B12B2E4F14EA001A46C6 /* TaskRepository.swift */,
+				2B78B1292E4F14C9001A46C6 /* TaskItem.swift */,
+				2B78B1252E4F0F9C001A46C6 /* TaskDataModel.xcdatamodeld */,
+			);
+			path = Task;
 			sourceTree = "<group>";
 		};
 		2BB3C9D32E4A23E600717B31 /* Model */ = {
@@ -698,12 +734,17 @@
 				2B2B78902E4AF98D00F56877 /* ForecastServicing.swift in Sources */,
 				2B0418CD2E4DDFAF00339B96 /* MyGardenView.swift in Sources */,
 				2B0418C32E4DDEFA00339B96 /* SpeciesStepView.swift in Sources */,
+				2B78B12C2E4F14EC001A46C6 /* TaskRepository.swift in Sources */,
+				2B78B13A2E4F15D1001A46C6 /* TaskListView.swift in Sources */,
 				2BA7FEBD2E471D8D00720C5A /* DashboardItem.swift in Sources */,
 				2B2B78842E4AE7CC00F56877 /* OpenWeatherClient.swift in Sources */,
 				2B24F4A52E4C3D6000B3E9EC /* AuthGateView.swift in Sources */,
 				2B1D16012E4872CE000B2AE8 /* DiseaseIdentifierView.swift in Sources */,
 				2B1D15FB2E486B0B000B2AE8 /* Place.swift in Sources */,
 				2B78B1162E4EFC04001A46C6 /* AppTab.swift in Sources */,
+				2B78B1382E4F15BC001A46C6 /* TaskRowView.swift in Sources */,
+				2B78B13E2E4F17F7001A46C6 /* Binding+OptionalDate.swift in Sources */,
+				2B78B1302E4F1552001A46C6 /* TaskScheduler.swift in Sources */,
 				2B1D15F92E48695A000B2AE8 /* StoreLocatorView.swift in Sources */,
 				2B24F49E2E4C3C6500B3E9EC /* SignupView.swift in Sources */,
 				2B2B788E2E4AF96A00F56877 /* ForecastModels.swift in Sources */,
@@ -713,6 +754,8 @@
 				2B78B1132E4EFA37001A46C6 /* TabHost.swift in Sources */,
 				2BA7FEC12E471DB400720C5A /* DashboardView.swift in Sources */,
 				2B24F4942E4C3C0600B3E9EC /* KeychainService.swift in Sources */,
+				2B78B1322E4F156D001A46C6 /* TaskListViewModel.swift in Sources */,
+				2B78B12A2E4F14CD001A46C6 /* TaskItem.swift in Sources */,
 				2B1D16162E488775000B2AE8 /* SettingsView.swift in Sources */,
 				2B0418C92E4DDF4100339B96 /* AddPlantFlowView.swift in Sources */,
 				2B2B78922E4AF9A100F56877 /* OpenWeatherForecastClient.swift in Sources */,
@@ -726,13 +769,16 @@
 				2B24F4A02E4C3C7100B3E9EC /* LockView.swift in Sources */,
 				2B0418BF2E4DDE5C00339B96 /* StepperHeader.swift in Sources */,
 				2B0418BD2E4DDE3800339B96 /* NewPlantState.swift in Sources */,
+				2B78B1272E4F0F9C001A46C6 /* TaskDataModel.xcdatamodeld in Sources */,
 				2B0418CB2E4DDF9500339B96 /* PlantDetailView.swift in Sources */,
 				2B2B78862E4AE7F200F56877 /* LocationProvider.swift in Sources */,
 				2B0418AD2E4DC3E100339B96 /* GreenThumbDataModel.xcdatamodeld in Sources */,
 				2B1D160A2E4886DD000B2AE8 /* SettingsStore.swift in Sources */,
 				2B1D16182E488788000B2AE8 /* QuietHoursView.swift in Sources */,
+				2B78B12E2E4F1529001A46C6 /* CoreDataStack+Task.swift in Sources */,
 				2B1D15FD2E487274000B2AE8 /* DiseaseIdentifierViewModel.swift in Sources */,
 				2B2B78952E4AFA0500F56877 /* SuggestionEngine.swift in Sources */,
+				2B78B1362E4F15A3001A46C6 /* TaskTheme.swift in Sources */,
 				2B1D161A2E48879A000B2AE8 /* ManageStorageView.swift in Sources */,
 				2B1D15FF2E48729C000B2AE8 /* ImagePicker.swift in Sources */,
 				2B1D16082E4886C4000B2AE8 /* AppSettings.swift in Sources */,
@@ -743,9 +789,11 @@
 				2B1D160E2E48871F000B2AE8 /* NotificationManager.swift in Sources */,
 				2B1D16062E4886AE000B2AE8 /* SettingsKeys.swift in Sources */,
 				2B24F4992E4C3C2E00B3E9EC /* SessionStore.swift in Sources */,
+				2B78B13C2E4F15E7001A46C6 /* TaskEditorView.swift in Sources */,
 				2B24F4A32E4C3C9000B3E9EC /* AuthViewModel.swift in Sources */,
 				2B0418C72E4DDF2600339B96 /* PreviewStepView.swift in Sources */,
 				2B1D15F72E486934000B2AE8 /* StoreLocatorViewModel.swift in Sources */,
+				2B78B1402E4F1BA2001A46C6 /* TaskEditorViewModel.swift in Sources */,
 				2B24F49C2E4C3C5C00B3E9EC /* LoginView.swift in Sources */,
 				2B0418B92E4DDDE000339B96 /* Enums.swift in Sources */,
 				2B1D16102E488738000B2AE8 /* FaceIDManager.swift in Sources */,
@@ -916,7 +964,6 @@
 				INFOPLIST_KEY_LSApplicationCategoryType = "";
 				INFOPLIST_KEY_NSCalendarsUsageDescription = "";
 				INFOPLIST_KEY_NSFaceIDUsageDescription = 1.0;
-				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "We use your location to find nearby garden stores.";
 				INFOPLIST_KEY_NSPhotoLibraryAddUsageDescription = "";
 				INFOPLIST_KEY_NSRemindersUsageDescription = "";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
@@ -950,7 +997,6 @@
 				INFOPLIST_KEY_LSApplicationCategoryType = "";
 				INFOPLIST_KEY_NSCalendarsUsageDescription = "";
 				INFOPLIST_KEY_NSFaceIDUsageDescription = 1.0;
-				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "We use your location to find nearby garden stores.";
 				INFOPLIST_KEY_NSPhotoLibraryAddUsageDescription = "";
 				INFOPLIST_KEY_NSRemindersUsageDescription = "";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
@@ -1117,6 +1163,16 @@
 			);
 			currentVersion = 2B0418AC2E4DC3E100339B96 /* GreenThumbDataModel.xcdatamodel */;
 			path = GreenThumbDataModel.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+		2B78B1252E4F0F9C001A46C6 /* TaskDataModel.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				2B78B1262E4F0F9C001A46C6 /* TaskDataModel.xcdatamodel */,
+			);
+			currentVersion = 2B78B1262E4F0F9C001A46C6 /* TaskDataModel.xcdatamodel */;
+			path = TaskDataModel.xcdatamodeld;
 			sourceTree = "<group>";
 			versionGroupType = wrapper.xcdatamodel;
 		};

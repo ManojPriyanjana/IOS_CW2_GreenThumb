@@ -9,5 +9,7 @@
 		<key>NSAppClipRequestLocationConfirmation</key>
 		<false/>
 	</dict>
+	<key>NSUserNotificationsUsageDescription</key>
+	<string>We use your location to find nearby garden stores.</string>
 </dict>
 </plist>
