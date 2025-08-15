@@ -13,7 +13,8 @@ struct AuthGateView: View {
             case .locked:
                 LockView()
             case .authenticated:
-                DashboardView()   // your real app entry
+//                DashboardView()   // real app entry
+                  TabHost()
             }
         }
         .animation(.default, value: session.phase)

@@ -6,14 +6,14 @@ import UIKit
 
 final class DiseaseIdentifierViewModel: ObservableObject {
 
-    // MARK: - Types
+  
     struct Prediction: Identifiable {
         let id = UUID()
         let label: String
         let prob: Double   // 0...1
     }
 
-    // MARK: - State
+    //  State
     @Published var selectedImage: UIImage? = nil
     @Published var resultLabel: String? = nil
     @Published var confidence: Double? = nil        // 0...1
@@ -24,7 +24,7 @@ final class DiseaseIdentifierViewModel: ObservableObject {
     /// Below this, we call the result "Unsure".
     private let minConfidence: Double = 0.55
 
-    // MARK: - Public
+    // Public
 
     func classifySelectedImage() {
         guard let uiImage = selectedImage, let cgImage = uiImage.cgImage else {
@@ -43,7 +43,7 @@ final class DiseaseIdentifierViewModel: ObservableObject {
         }
     }
 
-    // MARK: - Core ML + Vision
+    // Core ML + Vision
 
     private func classify(cgImage: CGImage) async {
         do {
@@ -82,7 +82,7 @@ final class DiseaseIdentifierViewModel: ObservableObject {
         }
     }
 
-    // MARK: - Normalization
+    // Normalization
 
     /// Convert raw VN results to sorted (label, probability) pairs.
     /// If any "confidence" looks like a logit (>1) we softmax; else we clamp 0…1.
@@ -102,7 +102,7 @@ final class DiseaseIdentifierViewModel: ObservableObject {
         }
     }
 
-    // MARK: - Model loader (filename-first with smart fallbacks)
+    // Model loader (filename-first with smart fallbacks)
 
     /// Works with `.mlmodelc` compiled from `.mlmodel` or `.mlpackage`
     private func loadModel() throws -> MLModel {
@@ -146,7 +146,7 @@ final class DiseaseIdentifierViewModel: ObservableObject {
         )
     }
 
-    // MARK: - Helpers
+    // Helpers
 
     @MainActor
     private func publishError(_ message: String) {
