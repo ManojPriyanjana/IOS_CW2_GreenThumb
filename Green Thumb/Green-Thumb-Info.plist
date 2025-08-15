@@ -10,6 +10,6 @@
 		<false/>
 	</dict>
 	<key>NSUserNotificationsUsageDescription</key>
-	<string>We use your location to find nearby garden stores.</string>
+	<string></string>
 </dict>
 </plist>
