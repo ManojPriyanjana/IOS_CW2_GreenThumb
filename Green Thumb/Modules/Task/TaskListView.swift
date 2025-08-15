@@ -18,7 +18,6 @@ struct TaskListView: View {
                 TextField("Search tasks…", text: $vm.search)
                     .textFieldStyle(.roundedBorder)
                     .padding(.horizontal)
-                    .onChange(of: vm.search) { _ in Task { await vm.refresh() } }
 
                 List {
                     ForEach(vm.tasks) { item in
@@ -35,11 +34,12 @@ struct TaskListView: View {
                     Button { showEditor = true } label: { Image(systemName: "plus") }
                 }
             }
-
-
             .sheet(isPresented: $showEditor, onDismiss: { Task { await vm.refresh() } }) {
                 TaskEditorView()
             }
         }
+        //Re-fetch whenever the filter or search text changes
+        .task(id: vm.filter) { await vm.refresh() }
+        .task(id: vm.search) { await vm.refresh() }
     }
 }
