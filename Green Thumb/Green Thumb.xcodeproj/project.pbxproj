@@ -403,7 +403,6 @@
 				2B1D16042E4885FC000B2AE8 /* Settings */,
 				2B1D15F52E4868EC000B2AE8 /* StoreLocator */,
 				2B327E3B2E44819700CB8F1D /* Profile */,
-				2B327E392E44810000CB8F1D /* Harvesting */,
 				2B327E382E4480EE00CB8F1D /* DiseaseDetection */,
 				2B327E372E4480D700CB8F1D /* Weather */,
 				2B327E362E4480C200CB8F1D /* HealthLog */,
@@ -478,13 +477,6 @@
 				2BB3C9792E49EDBA00717B31 /* PlantDiseaseClassifier.mlpackage */,
 			);
 			path = DiseaseDetection;
-			sourceTree = "<group>";
-		};
-		2B327E392E44810000CB8F1D /* Harvesting */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Harvesting;
 			sourceTree = "<group>";
 		};
 		2B327E3B2E44819700CB8F1D /* Profile */ = {
