@@ -9,7 +9,7 @@ enum AppTab: CaseIterable, Hashable {
         case .dashboard: return "Home"
         case .plants:    return "Plants"
         case .stores:    return "Stores"
-        case .profile:   return "Profile"
+        case .profile:   return "Tasks"
         case .settings:  return "Settings"
         }
     }
@@ -19,7 +19,7 @@ enum AppTab: CaseIterable, Hashable {
         case .dashboard: return "house.fill"
         case .plants:    return "leaf.fill"
         case .stores:    return "mappin.and.ellipse"
-        case .profile:   return "person.crop.circle"
+        case .profile:   return "checkmark.circle.fill"
         case .settings:  return "gearshape.fill"
         }
     }
