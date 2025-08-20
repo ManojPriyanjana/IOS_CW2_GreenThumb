@@ -61,10 +61,17 @@ extension DashboardItem {
             systemImage: "mappin.and.ellipse",
             color: .purple,
             destination: AnyView(StoreLocatorView())
+        ),
+        DashboardItem(
+            title: "Harvest",
+            systemImage: "scissors",
+            color: Color.green,                    // or your theme color
+            destination: AnyView(HarvestListView())
         )
+        
     ]
 
-    // MARK: - Previews
+    // Previews
     static let previewItem = DashboardItem(
         title: "My Garden",
         systemImage: "sprinkler.and.droplets",

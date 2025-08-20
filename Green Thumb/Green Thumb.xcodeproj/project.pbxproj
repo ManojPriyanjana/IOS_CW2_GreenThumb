@@ -36,6 +36,13 @@
 		2B1D16162E488775000B2AE8 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B1D16152E488772000B2AE8 /* SettingsView.swift */; };
 		2B1D16182E488788000B2AE8 /* QuietHoursView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B1D16172E488784000B2AE8 /* QuietHoursView.swift */; };
 		2B1D161A2E48879A000B2AE8 /* ManageStorageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B1D16192E488798000B2AE8 /* ManageStorageView.swift */; };
+		2B1DE5D02E547B4B00FED637 /* Plant+HarvestComputed.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B1DE5CF2E547B4700FED637 /* Plant+HarvestComputed.swift */; };
+		2B1DE5D22E547B6000FED637 /* GTProgressBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B1DE5D12E547B5E00FED637 /* GTProgressBar.swift */; };
+		2B1DE5D42E547B6F00FED637 /* PlantAvatar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B1DE5D32E547B6D00FED637 /* PlantAvatar.swift */; };
+		2B1DE5D62E547B8800FED637 /* HarvestRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B1DE5D52E547B8600FED637 /* HarvestRowView.swift */; };
+		2B1DE5D82E547B9700FED637 /* WeekStrip.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B1DE5D72E547B9500FED637 /* WeekStrip.swift */; };
+		2B1DE5DA2E547BA600FED637 /* AddHarvestSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B1DE5D92E547BA300FED637 /* AddHarvestSheet.swift */; };
+		2B1DE5DC2E547BC300FED637 /* HarvestListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B1DE5DB2E547BC100FED637 /* HarvestListView.swift */; };
 		2B24F4922E4C3BF900B3E9EC /* AuthService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B24F4912E4C3BF600B3E9EC /* AuthService.swift */; };
 		2B24F4942E4C3C0600B3E9EC /* KeychainService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B24F4932E4C3C0400B3E9EC /* KeychainService.swift */; };
 		2B24F4962E4C3C1000B3E9EC /* BiometricAuth.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B24F4952E4C3C0E00B3E9EC /* BiometricAuth.swift */; };
@@ -130,6 +137,13 @@
 		2B1D16152E488772000B2AE8 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
 		2B1D16172E488784000B2AE8 /* QuietHoursView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuietHoursView.swift; sourceTree = "<group>"; };
 		2B1D16192E488798000B2AE8 /* ManageStorageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ManageStorageView.swift; sourceTree = "<group>"; };
+		2B1DE5CF2E547B4700FED637 /* Plant+HarvestComputed.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Plant+HarvestComputed.swift"; sourceTree = "<group>"; };
+		2B1DE5D12E547B5E00FED637 /* GTProgressBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GTProgressBar.swift; sourceTree = "<group>"; };
+		2B1DE5D32E547B6D00FED637 /* PlantAvatar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlantAvatar.swift; sourceTree = "<group>"; };
+		2B1DE5D52E547B8600FED637 /* HarvestRowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HarvestRowView.swift; sourceTree = "<group>"; };
+		2B1DE5D72E547B9500FED637 /* WeekStrip.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeekStrip.swift; sourceTree = "<group>"; };
+		2B1DE5D92E547BA300FED637 /* AddHarvestSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddHarvestSheet.swift; sourceTree = "<group>"; };
+		2B1DE5DB2E547BC100FED637 /* HarvestListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HarvestListView.swift; sourceTree = "<group>"; };
 		2B24F4912E4C3BF600B3E9EC /* AuthService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthService.swift; sourceTree = "<group>"; };
 		2B24F4932E4C3C0400B3E9EC /* KeychainService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeychainService.swift; sourceTree = "<group>"; };
 		2B24F4952E4C3C0E00B3E9EC /* BiometricAuth.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BiometricAuth.swift; sourceTree = "<group>"; };
@@ -320,6 +334,20 @@
 			path = Settings;
 			sourceTree = "<group>";
 		};
+		2B1DE5CE2E547B3800FED637 /* Harvest */ = {
+			isa = PBXGroup;
+			children = (
+				2B1DE5DB2E547BC100FED637 /* HarvestListView.swift */,
+				2B1DE5D92E547BA300FED637 /* AddHarvestSheet.swift */,
+				2B1DE5D72E547B9500FED637 /* WeekStrip.swift */,
+				2B1DE5D52E547B8600FED637 /* HarvestRowView.swift */,
+				2B1DE5D32E547B6D00FED637 /* PlantAvatar.swift */,
+				2B1DE5D12E547B5E00FED637 /* GTProgressBar.swift */,
+				2B1DE5CF2E547B4700FED637 /* Plant+HarvestComputed.swift */,
+			);
+			path = Harvest;
+			sourceTree = "<group>";
+		};
 		2B24F4902E4C3BEB00B3E9EC /* Services */ = {
 			isa = PBXGroup;
 			children = (
@@ -398,6 +426,7 @@
 		2B327E312E44783F00CB8F1D /* Modules */ = {
 			isa = PBXGroup;
 			children = (
+				2B1DE5CE2E547B3800FED637 /* Harvest */,
 				2B78B1282E4F0FDA001A46C6 /* Task */,
 				2B78B10D2E4EF91F001A46C6 /* Navigation */,
 				2B1D16042E4885FC000B2AE8 /* Settings */,
@@ -733,9 +762,12 @@
 				2B24F4A52E4C3D6000B3E9EC /* AuthGateView.swift in Sources */,
 				2B1D16012E4872CE000B2AE8 /* DiseaseIdentifierView.swift in Sources */,
 				2B1D15FB2E486B0B000B2AE8 /* Place.swift in Sources */,
+				2B1DE5D42E547B6F00FED637 /* PlantAvatar.swift in Sources */,
 				2B78B1162E4EFC04001A46C6 /* AppTab.swift in Sources */,
+				2B1DE5D22E547B6000FED637 /* GTProgressBar.swift in Sources */,
 				2B78B1382E4F15BC001A46C6 /* TaskRowView.swift in Sources */,
 				2B78B13E2E4F17F7001A46C6 /* Binding+OptionalDate.swift in Sources */,
+				2B1DE5D62E547B8800FED637 /* HarvestRowView.swift in Sources */,
 				2B78B1302E4F1552001A46C6 /* TaskScheduler.swift in Sources */,
 				2B1D15F92E48695A000B2AE8 /* StoreLocatorView.swift in Sources */,
 				2B24F49E2E4C3C6500B3E9EC /* SignupView.swift in Sources */,
@@ -775,13 +807,17 @@
 				2B1D15FF2E48729C000B2AE8 /* ImagePicker.swift in Sources */,
 				2B1D16082E4886C4000B2AE8 /* AppSettings.swift in Sources */,
 				2B327DFC2E44624C00CB8F1D /* Green_ThumbApp.swift in Sources */,
+				2B1DE5DA2E547BA600FED637 /* AddHarvestSheet.swift in Sources */,
 				2BB3C97A2E49EDBA00717B31 /* PlantDiseaseClassifier.mlpackage in Sources */,
 				2B24F4962E4C3C1000B3E9EC /* BiometricAuth.swift in Sources */,
 				2B2B78802E4AE76900F56877 /* WeatherModels.swift in Sources */,
 				2B1D160E2E48871F000B2AE8 /* NotificationManager.swift in Sources */,
 				2B1D16062E4886AE000B2AE8 /* SettingsKeys.swift in Sources */,
+				2B1DE5D82E547B9700FED637 /* WeekStrip.swift in Sources */,
 				2B24F4992E4C3C2E00B3E9EC /* SessionStore.swift in Sources */,
 				2B78B13C2E4F15E7001A46C6 /* TaskEditorView.swift in Sources */,
+				2B1DE5DC2E547BC300FED637 /* HarvestListView.swift in Sources */,
+				2B1DE5D02E547B4B00FED637 /* Plant+HarvestComputed.swift in Sources */,
 				2B24F4A32E4C3C9000B3E9EC /* AuthViewModel.swift in Sources */,
 				2B0418C72E4DDF2600339B96 /* PreviewStepView.swift in Sources */,
 				2B1D15F72E486934000B2AE8 /* StoreLocatorViewModel.swift in Sources */,
