@@ -84,6 +84,16 @@
 		2B78B13C2E4F15E7001A46C6 /* TaskEditorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B78B13B2E4F15E3001A46C6 /* TaskEditorView.swift */; };
 		2B78B13E2E4F17F7001A46C6 /* Binding+OptionalDate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B78B13D2E4F17F2001A46C6 /* Binding+OptionalDate.swift */; };
 		2B78B1402E4F1BA2001A46C6 /* TaskEditorViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B78B13F2E4F1B2F001A46C6 /* TaskEditorViewModel.swift */; };
+		2BA3545B2E56CD9B009E82C6 /* SampleData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BA3545A2E56CD99009E82C6 /* SampleData.swift */; };
+		2BA3545D2E56CDA3009E82C6 /* StubProviders.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BA3545C2E56CDA3009E82C6 /* StubProviders.swift */; };
+		2BA3545F2E56CDB8009E82C6 /* QuickLogSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BA3545E2E56CDB6009E82C6 /* QuickLogSheet.swift */; };
+		2BA354612E56CDC8009E82C6 /* PlantHealthDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BA354602E56CDC0009E82C6 /* PlantHealthDetail.swift */; };
+		2BA354632E56CDD1009E82C6 /* HealthOverviewView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BA354622E56CDCF009E82C6 /* HealthOverviewView.swift */; };
+		2BA354652E56CDE7009E82C6 /* Adapters.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BA354642E56CDE1009E82C6 /* Adapters.swift */; };
+		2BA354672E56CDEF009E82C6 /* HealthRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BA354662E56CDED009E82C6 /* HealthRepository.swift */; };
+		2BA354692E56CDF9009E82C6 /* Providers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BA354682E56CDF7009E82C6 /* Providers.swift */; };
+		2BA3546B2E56CE00009E82C6 /* HealthModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BA3546A2E56CDFF009E82C6 /* HealthModels.swift */; };
+		2BA3546D2E56CE08009E82C6 /* HealthScoreEngine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BA3546C2E56CE07009E82C6 /* HealthScoreEngine.swift */; };
 		2BA7FEBD2E471D8D00720C5A /* DashboardItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BA7FEBC2E471D8100720C5A /* DashboardItem.swift */; };
 		2BA7FEBF2E471D9F00720C5A /* DashboardTile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BA7FEBE2E471D9B00720C5A /* DashboardTile.swift */; };
 		2BA7FEC12E471DB400720C5A /* DashboardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BA7FEC02E471DB000720C5A /* DashboardView.swift */; };
@@ -185,6 +195,16 @@
 		2B78B13B2E4F15E3001A46C6 /* TaskEditorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskEditorView.swift; sourceTree = "<group>"; };
 		2B78B13D2E4F17F2001A46C6 /* Binding+OptionalDate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Binding+OptionalDate.swift"; sourceTree = "<group>"; };
 		2B78B13F2E4F1B2F001A46C6 /* TaskEditorViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskEditorViewModel.swift; sourceTree = "<group>"; };
+		2BA3545A2E56CD99009E82C6 /* SampleData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SampleData.swift; sourceTree = "<group>"; };
+		2BA3545C2E56CDA3009E82C6 /* StubProviders.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StubProviders.swift; sourceTree = "<group>"; };
+		2BA3545E2E56CDB6009E82C6 /* QuickLogSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuickLogSheet.swift; sourceTree = "<group>"; };
+		2BA354602E56CDC0009E82C6 /* PlantHealthDetail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlantHealthDetail.swift; sourceTree = "<group>"; };
+		2BA354622E56CDCF009E82C6 /* HealthOverviewView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HealthOverviewView.swift; sourceTree = "<group>"; };
+		2BA354642E56CDE1009E82C6 /* Adapters.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Adapters.swift; sourceTree = "<group>"; };
+		2BA354662E56CDED009E82C6 /* HealthRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HealthRepository.swift; sourceTree = "<group>"; };
+		2BA354682E56CDF7009E82C6 /* Providers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Providers.swift; sourceTree = "<group>"; };
+		2BA3546A2E56CDFF009E82C6 /* HealthModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HealthModels.swift; sourceTree = "<group>"; };
+		2BA3546C2E56CE07009E82C6 /* HealthScoreEngine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HealthScoreEngine.swift; sourceTree = "<group>"; };
 		2BA7FEBC2E471D8100720C5A /* DashboardItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardItem.swift; sourceTree = "<group>"; };
 		2BA7FEBE2E471D9B00720C5A /* DashboardTile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardTile.swift; sourceTree = "<group>"; };
 		2BA7FEC02E471DB000720C5A /* DashboardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardView.swift; sourceTree = "<group>"; };
@@ -426,6 +446,7 @@
 		2B327E312E44783F00CB8F1D /* Modules */ = {
 			isa = PBXGroup;
 			children = (
+				2BA354532E56CD0F009E82C6 /* HealthLog */,
 				2B1DE5CE2E547B3800FED637 /* Harvest */,
 				2B78B1282E4F0FDA001A46C6 /* Task */,
 				2B78B10D2E4EF91F001A46C6 /* Navigation */,
@@ -434,7 +455,6 @@
 				2B327E3B2E44819700CB8F1D /* Profile */,
 				2B327E382E4480EE00CB8F1D /* DiseaseDetection */,
 				2B327E372E4480D700CB8F1D /* Weather */,
-				2B327E362E4480C200CB8F1D /* HealthLog */,
 				2B327E342E44809900CB8F1D /* PlantManagement */,
 				2B327E332E44808100CB8F1D /* Dashboard */,
 				2B327E322E4478C500CB8F1D /* Authentication */,
@@ -475,13 +495,6 @@
 				2B0418AE2E4DDB2300339B96 /* Data */,
 			);
 			path = PlantManagement;
-			sourceTree = "<group>";
-		};
-		2B327E362E4480C200CB8F1D /* HealthLog */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = HealthLog;
 			sourceTree = "<group>";
 		};
 		2B327E372E4480D700CB8F1D /* Weather */ = {
@@ -552,6 +565,55 @@
 				2B78B1252E4F0F9C001A46C6 /* TaskDataModel.xcdatamodeld */,
 			);
 			path = Task;
+			sourceTree = "<group>";
+		};
+		2BA354532E56CD0F009E82C6 /* HealthLog */ = {
+			isa = PBXGroup;
+			children = (
+				2BA354572E56CD42009E82C6 /* PreviewStubs */,
+				2BA354562E56CD39009E82C6 /* UI */,
+				2BA354552E56CD34009E82C6 /* Data */,
+				2BA354542E56CD2C009E82C6 /* Domain */,
+			);
+			path = HealthLog;
+			sourceTree = "<group>";
+		};
+		2BA354542E56CD2C009E82C6 /* Domain */ = {
+			isa = PBXGroup;
+			children = (
+				2BA3546C2E56CE07009E82C6 /* HealthScoreEngine.swift */,
+				2BA3546A2E56CDFF009E82C6 /* HealthModels.swift */,
+				2BA354682E56CDF7009E82C6 /* Providers.swift */,
+			);
+			path = Domain;
+			sourceTree = "<group>";
+		};
+		2BA354552E56CD34009E82C6 /* Data */ = {
+			isa = PBXGroup;
+			children = (
+				2BA354662E56CDED009E82C6 /* HealthRepository.swift */,
+				2BA354642E56CDE1009E82C6 /* Adapters.swift */,
+			);
+			path = Data;
+			sourceTree = "<group>";
+		};
+		2BA354562E56CD39009E82C6 /* UI */ = {
+			isa = PBXGroup;
+			children = (
+				2BA354622E56CDCF009E82C6 /* HealthOverviewView.swift */,
+				2BA354602E56CDC0009E82C6 /* PlantHealthDetail.swift */,
+				2BA3545E2E56CDB6009E82C6 /* QuickLogSheet.swift */,
+			);
+			path = UI;
+			sourceTree = "<group>";
+		};
+		2BA354572E56CD42009E82C6 /* PreviewStubs */ = {
+			isa = PBXGroup;
+			children = (
+				2BA3545C2E56CDA3009E82C6 /* StubProviders.swift */,
+				2BA3545A2E56CD99009E82C6 /* SampleData.swift */,
+			);
+			path = PreviewStubs;
 			sourceTree = "<group>";
 		};
 		2BB3C9D32E4A23E600717B31 /* Model */ = {
@@ -752,6 +814,7 @@
 				2B2B788A2E4AE83200F56877 /* WeatherView.swift in Sources */,
 				2B1D16122E488747000B2AE8 /* SettingsViewModel.swift in Sources */,
 				2B24F4922E4C3BF900B3E9EC /* AuthService.swift in Sources */,
+				2BA354632E56CDD1009E82C6 /* HealthOverviewView.swift in Sources */,
 				2B2B78902E4AF98D00F56877 /* ForecastServicing.swift in Sources */,
 				2B0418CD2E4DDFAF00339B96 /* MyGardenView.swift in Sources */,
 				2B0418C32E4DDEFA00339B96 /* SpeciesStepView.swift in Sources */,
@@ -772,25 +835,31 @@
 				2B1D15F92E48695A000B2AE8 /* StoreLocatorView.swift in Sources */,
 				2B24F49E2E4C3C6500B3E9EC /* SignupView.swift in Sources */,
 				2B2B788E2E4AF96A00F56877 /* ForecastModels.swift in Sources */,
+				2BA3545B2E56CD9B009E82C6 /* SampleData.swift in Sources */,
 				2B2B78822E4AE7AB00F56877 /* WeatherServicing.swift in Sources */,
 				2B0418B02E4DDB5600339B96 /* PersistenceController.swift in Sources */,
 				2B0418C12E4DDEE500339B96 /* PhotoStepView.swift in Sources */,
 				2B78B1132E4EFA37001A46C6 /* TabHost.swift in Sources */,
 				2BA7FEC12E471DB400720C5A /* DashboardView.swift in Sources */,
 				2B24F4942E4C3C0600B3E9EC /* KeychainService.swift in Sources */,
+				2BA354612E56CDC8009E82C6 /* PlantHealthDetail.swift in Sources */,
 				2B78B1322E4F156D001A46C6 /* TaskListViewModel.swift in Sources */,
 				2B78B12A2E4F14CD001A46C6 /* TaskItem.swift in Sources */,
 				2B1D16162E488775000B2AE8 /* SettingsView.swift in Sources */,
+				2BA3546D2E56CE08009E82C6 /* HealthScoreEngine.swift in Sources */,
 				2B0418C92E4DDF4100339B96 /* AddPlantFlowView.swift in Sources */,
 				2B2B78922E4AF9A100F56877 /* OpenWeatherForecastClient.swift in Sources */,
 				2B327DFE2E44624C00CB8F1D /* ContentView.swift in Sources */,
 				2B2B78882E4AE81500F56877 /* WeatherViewModel.swift in Sources */,
+				2BA354672E56CDEF009E82C6 /* HealthRepository.swift in Sources */,
 				2B2B788C2E4AEAD700F56877 /* PlaceSearchView.swift in Sources */,
 				2BA7FEBF2E471D9F00720C5A /* DashboardTile.swift in Sources */,
 				2B24F4A82E4C4D0000B3E9EC /* SecuritySettingsView.swift in Sources */,
 				2B1D160C2E4886F0000B2AE8 /* UserDefaultsSettingsStore.swift in Sources */,
+				2BA354652E56CDE7009E82C6 /* Adapters.swift in Sources */,
 				2B78B1112E4EFA0A001A46C6 /* CustomTabBar.swift in Sources */,
 				2B24F4A02E4C3C7100B3E9EC /* LockView.swift in Sources */,
+				2BA3546B2E56CE00009E82C6 /* HealthModels.swift in Sources */,
 				2B0418BF2E4DDE5C00339B96 /* StepperHeader.swift in Sources */,
 				2B0418BD2E4DDE3800339B96 /* NewPlantState.swift in Sources */,
 				2B78B1272E4F0F9C001A46C6 /* TaskDataModel.xcdatamodeld in Sources */,
@@ -804,6 +873,7 @@
 				2B2B78952E4AFA0500F56877 /* SuggestionEngine.swift in Sources */,
 				2B78B1362E4F15A3001A46C6 /* TaskTheme.swift in Sources */,
 				2B1D161A2E48879A000B2AE8 /* ManageStorageView.swift in Sources */,
+				2BA3545D2E56CDA3009E82C6 /* StubProviders.swift in Sources */,
 				2B1D15FF2E48729C000B2AE8 /* ImagePicker.swift in Sources */,
 				2B1D16082E4886C4000B2AE8 /* AppSettings.swift in Sources */,
 				2B327DFC2E44624C00CB8F1D /* Green_ThumbApp.swift in Sources */,
@@ -816,6 +886,7 @@
 				2B1DE5D82E547B9700FED637 /* WeekStrip.swift in Sources */,
 				2B24F4992E4C3C2E00B3E9EC /* SessionStore.swift in Sources */,
 				2B78B13C2E4F15E7001A46C6 /* TaskEditorView.swift in Sources */,
+				2BA3545F2E56CDB8009E82C6 /* QuickLogSheet.swift in Sources */,
 				2B1DE5DC2E547BC300FED637 /* HarvestListView.swift in Sources */,
 				2B1DE5D02E547B4B00FED637 /* Plant+HarvestComputed.swift in Sources */,
 				2B24F4A32E4C3C9000B3E9EC /* AuthViewModel.swift in Sources */,
@@ -824,6 +895,7 @@
 				2B78B1402E4F1BA2001A46C6 /* TaskEditorViewModel.swift in Sources */,
 				2B24F49C2E4C3C5C00B3E9EC /* LoginView.swift in Sources */,
 				2B0418B92E4DDDE000339B96 /* Enums.swift in Sources */,
+				2BA354692E56CDF9009E82C6 /* Providers.swift in Sources */,
 				2B1D16102E488738000B2AE8 /* FaceIDManager.swift in Sources */,
 				2B0418BB2E4DDE0700339B96 /* ReminderScheduler.swift in Sources */,
 				2B0418C52E4DDF0D00339B96 /* DetailsStepView.swift in Sources */,
