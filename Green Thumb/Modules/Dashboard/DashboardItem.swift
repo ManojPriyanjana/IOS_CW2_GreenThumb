@@ -67,7 +67,15 @@ extension DashboardItem {
             systemImage: "scissors",
             color: Color.green,                    // or your theme color
             destination: AnyView(HarvestListView())
-        )
+        ),
+        // Plant Health
+        DashboardItem(
+            title: "Health",
+            systemImage: "heart.text.square",
+            color: .green, // brand colour
+            destination: AnyView(HealthStatusDashboardView())
+        ),
+        
         
     ]
 
