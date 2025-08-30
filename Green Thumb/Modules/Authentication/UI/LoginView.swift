@@ -17,6 +17,13 @@ struct LoginView: View {
 
                 SecureField("Password", text: $vm.password)
                     .textFieldStyle(.roundedBorder)
+                //------------------------
+                // Inside LoginView, near the password field area:
+                NavigationLink("Forgot Password?", destination: ForgotPasswordView())
+                    .font(.footnote)
+                    .padding(.top, 4)
+
+                //------------------------
 
                 if BiometricAuth.kind() != .none {
                     Toggle("Enable Face ID / Touch ID", isOn: $vm.wantsBiometrics)
