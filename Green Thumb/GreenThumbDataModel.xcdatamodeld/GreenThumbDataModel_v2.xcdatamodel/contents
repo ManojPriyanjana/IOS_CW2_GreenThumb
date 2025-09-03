@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="23788" systemVersion="24F74" minimumToolsVersion="Automatic" sourceLanguage="Swift" usedWithSwiftData="YES" userDefinedModelVersionIdentifier="">
+    <entity name="HarvestLog" representedClassName="HarvestLog" syncable="YES" codeGenerationType="class">
+        <attribute name="actualDate" attributeType="Date" usesScalarValueType="NO"/>
+        <attribute name="id" attributeType="UUID" usesScalarValueType="NO"/>
+        <attribute name="notes" optional="YES" attributeType="String"/>
+        <attribute name="photoData" optional="YES" attributeType="Binary"/>
+        <attribute name="quality" optional="YES" attributeType="String"/>
+        <attribute name="quantity" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
+        <attribute name="unit" optional="YES" attributeType="String"/>
+        <relationship name="schedule" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="HarvestSchedule" inverseName="logs" inverseEntity="HarvestSchedule"/>
+    </entity>
+    <entity name="HarvestSchedule" representedClassName="HarvestSchedule" syncable="YES" codeGenerationType="class">
+        <attribute name="expectedEnd" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
+        <attribute name="expectedStart" attributeType="Date" usesScalarValueType="NO"/>
+        <attribute name="id" attributeType="UUID" usesScalarValueType="NO"/>
+        <attribute name="notes" optional="YES" attributeType="String"/>
+        <attribute name="reminderID" optional="YES" attributeType="String"/>
+        <attribute name="scheduleType" attributeType="String"/>
+        <attribute name="status" attributeType="String"/>
+        <relationship name="logs" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="HarvestLog" inverseName="schedule" inverseEntity="HarvestLog"/>
+        <relationship name="plant" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Plant" inverseName="harvestSchedules" inverseEntity="Plant"/>
+    </entity>
+    <entity name="HealthIssue" representedClassName=".HealthIssue" syncable="YES" codeGenerationType="class">
+        <attribute name="category" attributeType="String"/>
+        <attribute name="createdAt" attributeType="Date" usesScalarValueType="NO"/>
+        <attribute name="followUpDate" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
+        <attribute name="id" attributeType="UUID" usesScalarValueType="NO"/>
+        <attribute name="notes" optional="YES" attributeType="String"/>
+        <attribute name="photoData" optional="YES" attributeType="Binary"/>
+        <attribute name="resolvedAt" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
+        <attribute name="status" attributeType="String"/>
+        <attribute name="subtype" optional="YES" attributeType="String"/>
+        <relationship name="plant" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Plant" inverseName="healthIssues" inverseEntity="Plant"/>
+    </entity>
+    <entity name="Plant" representedClassName=".Plant" syncable="YES" codeGenerationType="class">
+        <attribute name="category" attributeType="String"/>
+        <attribute name="id" attributeType="UUID" usesScalarValueType="NO"/>
+        <attribute name="location" optional="YES" attributeType="String"/>
+        <attribute name="name" attributeType="String"/>
+        <attribute name="notes" optional="YES" attributeType="String"/>
+        <attribute name="photoData" optional="YES" attributeType="Binary"/>
+        <attribute name="plantingDate" attributeType="Date" usesScalarValueType="NO"/>
+        <relationship name="harvestSchedules" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="HarvestSchedule" inverseName="plant" inverseEntity="HarvestSchedule"/>
+        <relationship name="healthIssues" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="HealthIssue" inverseName="plant" inverseEntity="HealthIssue"/>
+        <relationship name="tasks" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Task" inverseName="plant" inverseEntity="Task"/>
+    </entity>
+    <entity name="Task" representedClassName="CareTask" syncable="YES" codeGenerationType="class">
+        <attribute name="createdAt" attributeType="Date" usesScalarValueType="NO"/>
+        <attribute name="dueDate" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
+        <attribute name="id" attributeType="UUID" usesScalarValueType="NO"/>
+        <attribute name="isRecurring" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
+        <attribute name="priority" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="reminderID" optional="YES" attributeType="String"/>
+        <attribute name="status" attributeType="String"/>
+        <attribute name="title" attributeType="String"/>
+        <attribute name="type" optional="YES" attributeType="String"/>
+        <relationship name="plant" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Plant" inverseName="tasks" inverseEntity="Plant"/>
+    </entity>
+</model>

@@ -14,8 +14,9 @@ struct TabHost: View {
 
                 case .plants:
                     Text("Plants")
-                        .font(.title)
-                        .padding()
+//                        .font(.title)
+//                        .padding()
+                        PlantListView()
 
                 case .stores:
                     Text("Nearby Stores")
@@ -23,10 +24,12 @@ struct TabHost: View {
                         .padding()
 
                 case .profile:
-//                    Text("Profile")
+                    Text("Profile")
 //                        .font(.title)
 //                        .padding()
-                    TaskListView()
+                          
+                case.tasks:
+                    NavigationStack { AllTasksView() }
 
                 case .settings:
                     SettingsView()

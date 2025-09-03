@@ -2,7 +2,7 @@ import SwiftUI
 
 /// All tabs used in the app + their labels/icons
 enum AppTab: CaseIterable, Hashable {
-    case dashboard, plants, stores, profile, settings
+    case dashboard, plants, stores, profile, settings,tasks
 
     var title: String {
         switch self {
@@ -11,6 +11,7 @@ enum AppTab: CaseIterable, Hashable {
         case .stores:    return "Stores"
         case .profile:   return "Tasks"
         case .settings:  return "Settings"
+        case .tasks:    return "Tasks"
         }
     }
 
@@ -21,6 +22,8 @@ enum AppTab: CaseIterable, Hashable {
         case .stores:    return "mappin.and.ellipse"
         case .profile:   return "checkmark.circle.fill"
         case .settings:  return "gearshape.fill"
+        case .tasks:     return "checklist"
+        
         }
     }
 }

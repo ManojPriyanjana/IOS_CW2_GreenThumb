@@ -21,7 +21,7 @@ final class SessionStore: ObservableObject {
         Task { await bootstrap() }
     }
 
-    // MARK: - Lifecycle
+    //Lifecycle
 
     func bootstrap() async {
         if auth.currentUser() != nil {
@@ -35,7 +35,7 @@ final class SessionStore: ObservableObject {
         }
     }
 
-    // MARK: - Auth
+    //  Auth
 
     func signUp(email: String, password: String) async {
         await withErrorHandling {
@@ -61,7 +61,7 @@ final class SessionStore: ObservableObject {
         }
     }
 
-    // MARK: - Biometrics / Keychain
+    // Biometrics / Keychain
 
     func setBiometricsEnabled(_ enabled: Bool) {
         biometricsEnabled = enabled
@@ -80,7 +80,7 @@ final class SessionStore: ObservableObject {
         }
     }
 
-    // MARK: - Helpers
+    // Helpers
 
     private func postSignIn() async throws {
         if biometricsEnabled, let uid = auth.currentUser()?.uid {

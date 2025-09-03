@@ -7,19 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		2B0418AD2E4DC3E100339B96 /* GreenThumbDataModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 2B0418AB2E4DC3E100339B96 /* GreenThumbDataModel.xcdatamodeld */; };
-		2B0418B02E4DDB5600339B96 /* PersistenceController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B0418AF2E4DDB5200339B96 /* PersistenceController.swift */; };
-		2B0418B92E4DDDE000339B96 /* Enums.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B0418B82E4DDDBE00339B96 /* Enums.swift */; };
-		2B0418BB2E4DDE0700339B96 /* ReminderScheduler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B0418BA2E4DDE0400339B96 /* ReminderScheduler.swift */; };
-		2B0418BD2E4DDE3800339B96 /* NewPlantState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B0418BC2E4DDE2F00339B96 /* NewPlantState.swift */; };
-		2B0418BF2E4DDE5C00339B96 /* StepperHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B0418BE2E4DDE5400339B96 /* StepperHeader.swift */; };
-		2B0418C12E4DDEE500339B96 /* PhotoStepView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B0418C02E4DDEE200339B96 /* PhotoStepView.swift */; };
-		2B0418C32E4DDEFA00339B96 /* SpeciesStepView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B0418C22E4DDEF600339B96 /* SpeciesStepView.swift */; };
-		2B0418C52E4DDF0D00339B96 /* DetailsStepView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B0418C42E4DDF0B00339B96 /* DetailsStepView.swift */; };
-		2B0418C72E4DDF2600339B96 /* PreviewStepView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B0418C62E4DDF2300339B96 /* PreviewStepView.swift */; };
-		2B0418C92E4DDF4100339B96 /* AddPlantFlowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B0418C82E4DDF3E00339B96 /* AddPlantFlowView.swift */; };
-		2B0418CB2E4DDF9500339B96 /* PlantDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B0418CA2E4DDF7700339B96 /* PlantDetailView.swift */; };
-		2B0418CD2E4DDFAF00339B96 /* MyGardenView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B0418CC2E4DDFAD00339B96 /* MyGardenView.swift */; };
 		2B1D15F72E486934000B2AE8 /* StoreLocatorViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B1D15F62E48692C000B2AE8 /* StoreLocatorViewModel.swift */; };
 		2B1D15F92E48695A000B2AE8 /* StoreLocatorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B1D15F82E486955000B2AE8 /* StoreLocatorView.swift */; };
 		2B1D15FB2E486B0B000B2AE8 /* Place.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B1D15FA2E486B07000B2AE8 /* Place.swift */; };
@@ -36,13 +23,6 @@
 		2B1D16162E488775000B2AE8 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B1D16152E488772000B2AE8 /* SettingsView.swift */; };
 		2B1D16182E488788000B2AE8 /* QuietHoursView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B1D16172E488784000B2AE8 /* QuietHoursView.swift */; };
 		2B1D161A2E48879A000B2AE8 /* ManageStorageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B1D16192E488798000B2AE8 /* ManageStorageView.swift */; };
-		2B1DE5D02E547B4B00FED637 /* Plant+HarvestComputed.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B1DE5CF2E547B4700FED637 /* Plant+HarvestComputed.swift */; };
-		2B1DE5D22E547B6000FED637 /* GTProgressBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B1DE5D12E547B5E00FED637 /* GTProgressBar.swift */; };
-		2B1DE5D42E547B6F00FED637 /* PlantAvatar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B1DE5D32E547B6D00FED637 /* PlantAvatar.swift */; };
-		2B1DE5D62E547B8800FED637 /* HarvestRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B1DE5D52E547B8600FED637 /* HarvestRowView.swift */; };
-		2B1DE5D82E547B9700FED637 /* WeekStrip.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B1DE5D72E547B9500FED637 /* WeekStrip.swift */; };
-		2B1DE5DA2E547BA600FED637 /* AddHarvestSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B1DE5D92E547BA300FED637 /* AddHarvestSheet.swift */; };
-		2B1DE5DC2E547BC300FED637 /* HarvestListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B1DE5DB2E547BC100FED637 /* HarvestListView.swift */; };
 		2B24F4922E4C3BF900B3E9EC /* AuthService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B24F4912E4C3BF600B3E9EC /* AuthService.swift */; };
 		2B24F4942E4C3C0600B3E9EC /* KeychainService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B24F4932E4C3C0400B3E9EC /* KeychainService.swift */; };
 		2B24F4962E4C3C1000B3E9EC /* BiometricAuth.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B24F4952E4C3C0E00B3E9EC /* BiometricAuth.swift */; };
@@ -69,29 +49,18 @@
 		2B327E292E446AF000CB8F1D /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = 2B327E282E446AF000CB8F1D /* FirebaseAuth */; };
 		2B327E2B2E446AF000CB8F1D /* FirebaseCore in Frameworks */ = {isa = PBXBuildFile; productRef = 2B327E2A2E446AF000CB8F1D /* FirebaseCore */; };
 		2B327E2D2E446AF000CB8F1D /* FirebaseFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = 2B327E2C2E446AF000CB8F1D /* FirebaseFirestore */; };
-		2B6C8B2A2E5713E0007F4022 /* PlantHealthModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B6C8B292E5713DB007F4022 /* PlantHealthModels.swift */; };
-		2B6C8B2C2E57143E007F4022 /* Adapters.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B6C8B2B2E571438007F4022 /* Adapters.swift */; };
-		2B6C8B2E2E571458007F4022 /* HealthEngine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B6C8B2D2E571453007F4022 /* HealthEngine.swift */; };
-		2B6C8B302E57146B007F4022 /* HealthCenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B6C8B2F2E571469007F4022 /* HealthCenter.swift */; };
-		2B6C8B322E57147F007F4022 /* HealthStatusDashboardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B6C8B312E57147B007F4022 /* HealthStatusDashboardView.swift */; };
-		2B6C8B342E571490007F4022 /* HealthDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B6C8B332E57148E007F4022 /* HealthDetailView.swift */; };
-		2B6C8B362E57149C007F4022 /* HealthCheckFormView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B6C8B352E57149A007F4022 /* HealthCheckFormView.swift */; };
-		2B6C8B392E571658007F4022 /* PlantHealthRing.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B6C8B382E571654007F4022 /* PlantHealthRing.swift */; };
+		2B499DFB2E680CC7001B2808 /* TaskViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B499DFA2E680CC5001B2808 /* TaskViewModel.swift */; };
+		2B499DFD2E680D55001B2808 /* TaskRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B499DFC2E680D53001B2808 /* TaskRepository.swift */; };
+		2B499DFF2E6811F3001B2808 /* AllTasksView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B499DFE2E6811F1001B2808 /* AllTasksView.swift */; };
+		2B499E012E6813B6001B2808 /* AddGlobalTaskSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B499E002E6813B3001B2808 /* AddGlobalTaskSheet.swift */; };
+		2B5383E42E66E41E002FE418 /* PersistenceController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B5383E32E66E41B002FE418 /* PersistenceController.swift */; };
+		2B5384122E66FDD1002FE418 /* PlantRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B5384112E66FDCE002FE418 /* PlantRepository.swift */; };
+		2B5384142E66FE05002FE418 /* PlantListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B5384132E66FE03002FE418 /* PlantListView.swift */; };
+		2B5384162E66FE1D002FE418 /* PlantDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B5384152E66FE1B002FE418 /* PlantDetailView.swift */; };
+		2B5384202E67027C002FE418 /* GreenThumbDataModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 2B0418AB2E4DC3E100339B96 /* GreenThumbDataModel.xcdatamodeld */; };
 		2B78B1112E4EFA0A001A46C6 /* CustomTabBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B78B1102E4EFA07001A46C6 /* CustomTabBar.swift */; };
 		2B78B1132E4EFA37001A46C6 /* TabHost.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B78B1122E4EFA24001A46C6 /* TabHost.swift */; };
 		2B78B1162E4EFC04001A46C6 /* AppTab.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B78B1152E4EFBFD001A46C6 /* AppTab.swift */; };
-		2B78B1272E4F0F9C001A46C6 /* TaskDataModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 2B78B1252E4F0F9C001A46C6 /* TaskDataModel.xcdatamodeld */; };
-		2B78B12A2E4F14CD001A46C6 /* TaskItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B78B1292E4F14C9001A46C6 /* TaskItem.swift */; };
-		2B78B12C2E4F14EC001A46C6 /* TaskRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B78B12B2E4F14EA001A46C6 /* TaskRepository.swift */; };
-		2B78B12E2E4F1529001A46C6 /* CoreDataStack+Task.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B78B12D2E4F1525001A46C6 /* CoreDataStack+Task.swift */; };
-		2B78B1302E4F1552001A46C6 /* TaskScheduler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B78B12F2E4F1550001A46C6 /* TaskScheduler.swift */; };
-		2B78B1322E4F156D001A46C6 /* TaskListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B78B1312E4F1565001A46C6 /* TaskListViewModel.swift */; };
-		2B78B1362E4F15A3001A46C6 /* TaskTheme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B78B1352E4F159B001A46C6 /* TaskTheme.swift */; };
-		2B78B1382E4F15BC001A46C6 /* TaskRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B78B1372E4F15B6001A46C6 /* TaskRowView.swift */; };
-		2B78B13A2E4F15D1001A46C6 /* TaskListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B78B1392E4F15CE001A46C6 /* TaskListView.swift */; };
-		2B78B13C2E4F15E7001A46C6 /* TaskEditorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B78B13B2E4F15E3001A46C6 /* TaskEditorView.swift */; };
-		2B78B13E2E4F17F7001A46C6 /* Binding+OptionalDate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B78B13D2E4F17F2001A46C6 /* Binding+OptionalDate.swift */; };
-		2B78B1402E4F1BA2001A46C6 /* TaskEditorViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B78B13F2E4F1B2F001A46C6 /* TaskEditorViewModel.swift */; };
 		2BA7FEBD2E471D8D00720C5A /* DashboardItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BA7FEBC2E471D8100720C5A /* DashboardItem.swift */; };
 		2BA7FEBF2E471D9F00720C5A /* DashboardTile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BA7FEBE2E471D9B00720C5A /* DashboardTile.swift */; };
 		2BA7FEC12E471DB400720C5A /* DashboardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BA7FEC02E471DB000720C5A /* DashboardView.swift */; };
@@ -121,18 +90,6 @@
 
 /* Begin PBXFileReference section */
 		2B0418AC2E4DC3E100339B96 /* GreenThumbDataModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = GreenThumbDataModel.xcdatamodel; sourceTree = "<group>"; };
-		2B0418AF2E4DDB5200339B96 /* PersistenceController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersistenceController.swift; sourceTree = "<group>"; };
-		2B0418B82E4DDDBE00339B96 /* Enums.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Enums.swift; sourceTree = "<group>"; };
-		2B0418BA2E4DDE0400339B96 /* ReminderScheduler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReminderScheduler.swift; sourceTree = "<group>"; };
-		2B0418BC2E4DDE2F00339B96 /* NewPlantState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewPlantState.swift; sourceTree = "<group>"; };
-		2B0418BE2E4DDE5400339B96 /* StepperHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StepperHeader.swift; sourceTree = "<group>"; };
-		2B0418C02E4DDEE200339B96 /* PhotoStepView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoStepView.swift; sourceTree = "<group>"; };
-		2B0418C22E4DDEF600339B96 /* SpeciesStepView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpeciesStepView.swift; sourceTree = "<group>"; };
-		2B0418C42E4DDF0B00339B96 /* DetailsStepView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailsStepView.swift; sourceTree = "<group>"; };
-		2B0418C62E4DDF2300339B96 /* PreviewStepView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreviewStepView.swift; sourceTree = "<group>"; };
-		2B0418C82E4DDF3E00339B96 /* AddPlantFlowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddPlantFlowView.swift; sourceTree = "<group>"; };
-		2B0418CA2E4DDF7700339B96 /* PlantDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlantDetailView.swift; sourceTree = "<group>"; };
-		2B0418CC2E4DDFAD00339B96 /* MyGardenView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyGardenView.swift; sourceTree = "<group>"; };
 		2B1D15F62E48692C000B2AE8 /* StoreLocatorViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoreLocatorViewModel.swift; sourceTree = "<group>"; };
 		2B1D15F82E486955000B2AE8 /* StoreLocatorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoreLocatorView.swift; sourceTree = "<group>"; };
 		2B1D15FA2E486B07000B2AE8 /* Place.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Place.swift; sourceTree = "<group>"; };
@@ -149,13 +106,6 @@
 		2B1D16152E488772000B2AE8 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
 		2B1D16172E488784000B2AE8 /* QuietHoursView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuietHoursView.swift; sourceTree = "<group>"; };
 		2B1D16192E488798000B2AE8 /* ManageStorageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ManageStorageView.swift; sourceTree = "<group>"; };
-		2B1DE5CF2E547B4700FED637 /* Plant+HarvestComputed.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Plant+HarvestComputed.swift"; sourceTree = "<group>"; };
-		2B1DE5D12E547B5E00FED637 /* GTProgressBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GTProgressBar.swift; sourceTree = "<group>"; };
-		2B1DE5D32E547B6D00FED637 /* PlantAvatar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlantAvatar.swift; sourceTree = "<group>"; };
-		2B1DE5D52E547B8600FED637 /* HarvestRowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HarvestRowView.swift; sourceTree = "<group>"; };
-		2B1DE5D72E547B9500FED637 /* WeekStrip.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeekStrip.swift; sourceTree = "<group>"; };
-		2B1DE5D92E547BA300FED637 /* AddHarvestSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddHarvestSheet.swift; sourceTree = "<group>"; };
-		2B1DE5DB2E547BC100FED637 /* HarvestListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HarvestListView.swift; sourceTree = "<group>"; };
 		2B24F4912E4C3BF600B3E9EC /* AuthService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthService.swift; sourceTree = "<group>"; };
 		2B24F4932E4C3C0400B3E9EC /* KeychainService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeychainService.swift; sourceTree = "<group>"; };
 		2B24F4952E4C3C0E00B3E9EC /* BiometricAuth.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BiometricAuth.swift; sourceTree = "<group>"; };
@@ -182,29 +132,18 @@
 		2B327DFD2E44624C00CB8F1D /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		2B327E0A2E44624E00CB8F1D /* Green ThumbTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Green ThumbTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		2B327E142E44624E00CB8F1D /* Green ThumbUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Green ThumbUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
-		2B6C8B292E5713DB007F4022 /* PlantHealthModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlantHealthModels.swift; sourceTree = "<group>"; };
-		2B6C8B2B2E571438007F4022 /* Adapters.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Adapters.swift; sourceTree = "<group>"; };
-		2B6C8B2D2E571453007F4022 /* HealthEngine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HealthEngine.swift; sourceTree = "<group>"; };
-		2B6C8B2F2E571469007F4022 /* HealthCenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HealthCenter.swift; sourceTree = "<group>"; };
-		2B6C8B312E57147B007F4022 /* HealthStatusDashboardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HealthStatusDashboardView.swift; sourceTree = "<group>"; };
-		2B6C8B332E57148E007F4022 /* HealthDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HealthDetailView.swift; sourceTree = "<group>"; };
-		2B6C8B352E57149A007F4022 /* HealthCheckFormView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HealthCheckFormView.swift; sourceTree = "<group>"; };
-		2B6C8B382E571654007F4022 /* PlantHealthRing.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlantHealthRing.swift; sourceTree = "<group>"; };
+		2B499DFA2E680CC5001B2808 /* TaskViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskViewModel.swift; sourceTree = "<group>"; };
+		2B499DFC2E680D53001B2808 /* TaskRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskRepository.swift; sourceTree = "<group>"; };
+		2B499DFE2E6811F1001B2808 /* AllTasksView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllTasksView.swift; sourceTree = "<group>"; };
+		2B499E002E6813B3001B2808 /* AddGlobalTaskSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddGlobalTaskSheet.swift; sourceTree = "<group>"; };
+		2B5383E32E66E41B002FE418 /* PersistenceController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersistenceController.swift; sourceTree = "<group>"; };
+		2B5383E52E66E9D6002FE418 /* GreenThumbDataModel_v2.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = GreenThumbDataModel_v2.xcdatamodel; sourceTree = "<group>"; };
+		2B5384112E66FDCE002FE418 /* PlantRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlantRepository.swift; sourceTree = "<group>"; };
+		2B5384132E66FE03002FE418 /* PlantListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlantListView.swift; sourceTree = "<group>"; };
+		2B5384152E66FE1B002FE418 /* PlantDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlantDetailView.swift; sourceTree = "<group>"; };
 		2B78B1102E4EFA07001A46C6 /* CustomTabBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTabBar.swift; sourceTree = "<group>"; };
 		2B78B1122E4EFA24001A46C6 /* TabHost.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabHost.swift; sourceTree = "<group>"; };
 		2B78B1152E4EFBFD001A46C6 /* AppTab.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppTab.swift; sourceTree = "<group>"; };
-		2B78B1262E4F0F9C001A46C6 /* TaskDataModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = TaskDataModel.xcdatamodel; sourceTree = "<group>"; };
-		2B78B1292E4F14C9001A46C6 /* TaskItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskItem.swift; sourceTree = "<group>"; };
-		2B78B12B2E4F14EA001A46C6 /* TaskRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskRepository.swift; sourceTree = "<group>"; };
-		2B78B12D2E4F1525001A46C6 /* CoreDataStack+Task.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CoreDataStack+Task.swift"; sourceTree = "<group>"; };
-		2B78B12F2E4F1550001A46C6 /* TaskScheduler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskScheduler.swift; sourceTree = "<group>"; };
-		2B78B1312E4F1565001A46C6 /* TaskListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskListViewModel.swift; sourceTree = "<group>"; };
-		2B78B1352E4F159B001A46C6 /* TaskTheme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskTheme.swift; sourceTree = "<group>"; };
-		2B78B1372E4F15B6001A46C6 /* TaskRowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskRowView.swift; sourceTree = "<group>"; };
-		2B78B1392E4F15CE001A46C6 /* TaskListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskListView.swift; sourceTree = "<group>"; };
-		2B78B13B2E4F15E3001A46C6 /* TaskEditorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskEditorView.swift; sourceTree = "<group>"; };
-		2B78B13D2E4F17F2001A46C6 /* Binding+OptionalDate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Binding+OptionalDate.swift"; sourceTree = "<group>"; };
-		2B78B13F2E4F1B2F001A46C6 /* TaskEditorViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskEditorViewModel.swift; sourceTree = "<group>"; };
 		2BA7FEBC2E471D8100720C5A /* DashboardItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardItem.swift; sourceTree = "<group>"; };
 		2BA7FEBE2E471D9B00720C5A /* DashboardTile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardTile.swift; sourceTree = "<group>"; };
 		2BA7FEC02E471DB000720C5A /* DashboardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardView.swift; sourceTree = "<group>"; };
@@ -261,75 +200,6 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		2B0418AE2E4DDB2300339B96 /* Data */ = {
-			isa = PBXGroup;
-			children = (
-				2B0418AF2E4DDB5200339B96 /* PersistenceController.swift */,
-			);
-			path = Data;
-			sourceTree = "<group>";
-		};
-		2B0418B12E4DDCEC00339B96 /* Models */ = {
-			isa = PBXGroup;
-			children = (
-				2B0418B82E4DDDBE00339B96 /* Enums.swift */,
-			);
-			path = Models;
-			sourceTree = "<group>";
-		};
-		2B0418B22E4DDCFE00339B96 /* Services */ = {
-			isa = PBXGroup;
-			children = (
-				2B0418BA2E4DDE0400339B96 /* ReminderScheduler.swift */,
-			);
-			path = Services;
-			sourceTree = "<group>";
-		};
-		2B0418B32E4DDD1600339B96 /* ViewModels */ = {
-			isa = PBXGroup;
-			children = (
-				2B0418BC2E4DDE2F00339B96 /* NewPlantState.swift */,
-			);
-			path = ViewModels;
-			sourceTree = "<group>";
-		};
-		2B0418B42E4DDD3200339B96 /* Views */ = {
-			isa = PBXGroup;
-			children = (
-				2B0418CC2E4DDFAD00339B96 /* MyGardenView.swift */,
-				2B0418CA2E4DDF7700339B96 /* PlantDetailView.swift */,
-				2B0418B52E4DDD4200339B96 /* AddPlant */,
-			);
-			path = Views;
-			sourceTree = "<group>";
-		};
-		2B0418B52E4DDD4200339B96 /* AddPlant */ = {
-			isa = PBXGroup;
-			children = (
-				2B0418C82E4DDF3E00339B96 /* AddPlantFlowView.swift */,
-				2B0418C62E4DDF2300339B96 /* PreviewStepView.swift */,
-				2B0418C42E4DDF0B00339B96 /* DetailsStepView.swift */,
-				2B0418C22E4DDEF600339B96 /* SpeciesStepView.swift */,
-				2B0418C02E4DDEE200339B96 /* PhotoStepView.swift */,
-				2B0418BE2E4DDE5400339B96 /* StepperHeader.swift */,
-			);
-			path = AddPlant;
-			sourceTree = "<group>";
-		};
-		2B0418B62E4DDD6800339B96 /* Previews */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Previews;
-			sourceTree = "<group>";
-		};
-		2B0418B72E4DDD8600339B96 /* Tests */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Tests;
-			sourceTree = "<group>";
-		};
 		2B1D15F52E4868EC000B2AE8 /* StoreLocator */ = {
 			isa = PBXGroup;
 			children = (
@@ -356,20 +226,6 @@
 				2B1D16052E48869F000B2AE8 /* SettingsKeys.swift */,
 			);
 			path = Settings;
-			sourceTree = "<group>";
-		};
-		2B1DE5CE2E547B3800FED637 /* Harvest */ = {
-			isa = PBXGroup;
-			children = (
-				2B1DE5DB2E547BC100FED637 /* HarvestListView.swift */,
-				2B1DE5D92E547BA300FED637 /* AddHarvestSheet.swift */,
-				2B1DE5D72E547B9500FED637 /* WeekStrip.swift */,
-				2B1DE5D52E547B8600FED637 /* HarvestRowView.swift */,
-				2B1DE5D32E547B6D00FED637 /* PlantAvatar.swift */,
-				2B1DE5D12E547B5E00FED637 /* GTProgressBar.swift */,
-				2B1DE5CF2E547B4700FED637 /* Plant+HarvestComputed.swift */,
-			);
-			path = Harvest;
 			sourceTree = "<group>";
 		};
 		2B24F4902E4C3BEB00B3E9EC /* Services */ = {
@@ -454,16 +310,18 @@
 		2B327E312E44783F00CB8F1D /* Modules */ = {
 			isa = PBXGroup;
 			children = (
-				2B6C8B242E57138C007F4022 /* HealthStatus */,
-				2B1DE5CE2E547B3800FED637 /* Harvest */,
-				2B78B1282E4F0FDA001A46C6 /* Task */,
+				2B5384102E66FD89002FE418 /* HealthLog */,
+				2B5384082E66FB73002FE418 /* Task */,
+				2B5384032E66FB72002FE418 /* Harvesting */,
+				2B5383FE2E66FB71002FE418 /* Garden */,
+				2B5383E62E66FAE5002FE418 /* Plant */,
+				2B5383E12E66E404002FE418 /* Infrastructure */,
 				2B78B10D2E4EF91F001A46C6 /* Navigation */,
 				2B1D16042E4885FC000B2AE8 /* Settings */,
 				2B1D15F52E4868EC000B2AE8 /* StoreLocator */,
 				2B327E3B2E44819700CB8F1D /* Profile */,
 				2B327E382E4480EE00CB8F1D /* DiseaseDetection */,
 				2B327E372E4480D700CB8F1D /* Weather */,
-				2B327E342E44809900CB8F1D /* PlantManagement */,
 				2B327E332E44808100CB8F1D /* Dashboard */,
 				2B327E322E4478C500CB8F1D /* Authentication */,
 			);
@@ -489,20 +347,6 @@
 				2BA7FEBC2E471D8100720C5A /* DashboardItem.swift */,
 			);
 			path = Dashboard;
-			sourceTree = "<group>";
-		};
-		2B327E342E44809900CB8F1D /* PlantManagement */ = {
-			isa = PBXGroup;
-			children = (
-				2B0418B72E4DDD8600339B96 /* Tests */,
-				2B0418B62E4DDD6800339B96 /* Previews */,
-				2B0418B42E4DDD3200339B96 /* Views */,
-				2B0418B32E4DDD1600339B96 /* ViewModels */,
-				2B0418B22E4DDCFE00339B96 /* Services */,
-				2B0418B12E4DDCEC00339B96 /* Models */,
-				2B0418AE2E4DDB2300339B96 /* Data */,
-			);
-			path = PlantManagement;
 			sourceTree = "<group>";
 		};
 		2B327E372E4480D700CB8F1D /* Weather */ = {
@@ -546,59 +390,222 @@
 			path = App;
 			sourceTree = "<group>";
 		};
-		2B6C8B242E57138C007F4022 /* HealthStatus */ = {
+		2B5383E12E66E404002FE418 /* Infrastructure */ = {
 			isa = PBXGroup;
 			children = (
-				2B6C8B282E5713C7007F4022 /* Views */,
-				2B6C8B272E5713BB007F4022 /* Adapters */,
-				2B6C8B262E5713B1007F4022 /* Services */,
-				2B6C8B252E5713A5007F4022 /* Models */,
+				2B5383E22E66E40E002FE418 /* CoreData */,
 			);
-			path = HealthStatus;
+			path = Infrastructure;
 			sourceTree = "<group>";
 		};
-		2B6C8B252E5713A5007F4022 /* Models */ = {
+		2B5383E22E66E40E002FE418 /* CoreData */ = {
 			isa = PBXGroup;
 			children = (
-				2B6C8B292E5713DB007F4022 /* PlantHealthModels.swift */,
+				2B5383E32E66E41B002FE418 /* PersistenceController.swift */,
 			);
-			path = Models;
+			path = CoreData;
 			sourceTree = "<group>";
 		};
-		2B6C8B262E5713B1007F4022 /* Services */ = {
+		2B5383E62E66FAE5002FE418 /* Plant */ = {
 			isa = PBXGroup;
 			children = (
-				2B6C8B2F2E571469007F4022 /* HealthCenter.swift */,
-				2B6C8B2D2E571453007F4022 /* HealthEngine.swift */,
+				2B5383EA2E66FB11002FE418 /* Tests */,
+				2B5383E92E66FB08002FE418 /* Repository */,
+				2B5383E82E66FAFF002FE418 /* ViewModels */,
+				2B5383E72E66FAF7002FE418 /* Views */,
 			);
-			path = Services;
+			path = Plant;
 			sourceTree = "<group>";
 		};
-		2B6C8B272E5713BB007F4022 /* Adapters */ = {
+		2B5383E72E66FAF7002FE418 /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				2B6C8B2B2E571438007F4022 /* Adapters.swift */,
-			);
-			path = Adapters;
-			sourceTree = "<group>";
-		};
-		2B6C8B282E5713C7007F4022 /* Views */ = {
-			isa = PBXGroup;
-			children = (
-				2B6C8B372E571636007F4022 /* Components */,
-				2B6C8B352E57149A007F4022 /* HealthCheckFormView.swift */,
-				2B6C8B332E57148E007F4022 /* HealthDetailView.swift */,
-				2B6C8B312E57147B007F4022 /* HealthStatusDashboardView.swift */,
+				2B5384152E66FE1B002FE418 /* PlantDetailView.swift */,
+				2B5384132E66FE03002FE418 /* PlantListView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
 		};
-		2B6C8B372E571636007F4022 /* Components */ = {
+		2B5383E82E66FAFF002FE418 /* ViewModels */ = {
 			isa = PBXGroup;
 			children = (
-				2B6C8B382E571654007F4022 /* PlantHealthRing.swift */,
 			);
-			path = Components;
+			path = ViewModels;
+			sourceTree = "<group>";
+		};
+		2B5383E92E66FB08002FE418 /* Repository */ = {
+			isa = PBXGroup;
+			children = (
+				2B5384112E66FDCE002FE418 /* PlantRepository.swift */,
+			);
+			path = Repository;
+			sourceTree = "<group>";
+		};
+		2B5383EA2E66FB11002FE418 /* Tests */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Tests;
+			sourceTree = "<group>";
+		};
+		2B5383FA2E66FB71002FE418 /* Tests */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Tests;
+			sourceTree = "<group>";
+		};
+		2B5383FB2E66FB71002FE418 /* Repository */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Repository;
+			sourceTree = "<group>";
+		};
+		2B5383FC2E66FB71002FE418 /* ViewModels */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = ViewModels;
+			sourceTree = "<group>";
+		};
+		2B5383FD2E66FB71002FE418 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		2B5383FE2E66FB71002FE418 /* Garden */ = {
+			isa = PBXGroup;
+			children = (
+				2B5383FA2E66FB71002FE418 /* Tests */,
+				2B5383FB2E66FB71002FE418 /* Repository */,
+				2B5383FC2E66FB71002FE418 /* ViewModels */,
+				2B5383FD2E66FB71002FE418 /* Views */,
+			);
+			path = Garden;
+			sourceTree = "<group>";
+		};
+		2B5383FF2E66FB72002FE418 /* Tests */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Tests;
+			sourceTree = "<group>";
+		};
+		2B5384002E66FB72002FE418 /* Repository */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Repository;
+			sourceTree = "<group>";
+		};
+		2B5384012E66FB72002FE418 /* ViewModels */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = ViewModels;
+			sourceTree = "<group>";
+		};
+		2B5384022E66FB72002FE418 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		2B5384032E66FB72002FE418 /* Harvesting */ = {
+			isa = PBXGroup;
+			children = (
+				2B5383FF2E66FB72002FE418 /* Tests */,
+				2B5384002E66FB72002FE418 /* Repository */,
+				2B5384012E66FB72002FE418 /* ViewModels */,
+				2B5384022E66FB72002FE418 /* Views */,
+			);
+			path = Harvesting;
+			sourceTree = "<group>";
+		};
+		2B5384042E66FB73002FE418 /* Tests */ = {
+			isa = PBXGroup;
+			children = (
+				2B499DFA2E680CC5001B2808 /* TaskViewModel.swift */,
+			);
+			path = Tests;
+			sourceTree = "<group>";
+		};
+		2B5384052E66FB73002FE418 /* Repository */ = {
+			isa = PBXGroup;
+			children = (
+				2B499DFC2E680D53001B2808 /* TaskRepository.swift */,
+			);
+			path = Repository;
+			sourceTree = "<group>";
+		};
+		2B5384062E66FB73002FE418 /* ViewModels */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = ViewModels;
+			sourceTree = "<group>";
+		};
+		2B5384072E66FB73002FE418 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				2B499E002E6813B3001B2808 /* AddGlobalTaskSheet.swift */,
+				2B499DFE2E6811F1001B2808 /* AllTasksView.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		2B5384082E66FB73002FE418 /* Task */ = {
+			isa = PBXGroup;
+			children = (
+				2B5384042E66FB73002FE418 /* Tests */,
+				2B5384052E66FB73002FE418 /* Repository */,
+				2B5384062E66FB73002FE418 /* ViewModels */,
+				2B5384072E66FB73002FE418 /* Views */,
+			);
+			path = Task;
+			sourceTree = "<group>";
+		};
+		2B53840C2E66FD89002FE418 /* Tests */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Tests;
+			sourceTree = "<group>";
+		};
+		2B53840D2E66FD89002FE418 /* Repository */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Repository;
+			sourceTree = "<group>";
+		};
+		2B53840E2E66FD89002FE418 /* ViewModels */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = ViewModels;
+			sourceTree = "<group>";
+		};
+		2B53840F2E66FD89002FE418 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		2B5384102E66FD89002FE418 /* HealthLog */ = {
+			isa = PBXGroup;
+			children = (
+				2B53840C2E66FD89002FE418 /* Tests */,
+				2B53840D2E66FD89002FE418 /* Repository */,
+				2B53840E2E66FD89002FE418 /* ViewModels */,
+				2B53840F2E66FD89002FE418 /* Views */,
+			);
+			path = HealthLog;
 			sourceTree = "<group>";
 		};
 		2B78B10D2E4EF91F001A46C6 /* Navigation */ = {
@@ -609,25 +616,6 @@
 				2B78B1102E4EFA07001A46C6 /* CustomTabBar.swift */,
 			);
 			path = Navigation;
-			sourceTree = "<group>";
-		};
-		2B78B1282E4F0FDA001A46C6 /* Task */ = {
-			isa = PBXGroup;
-			children = (
-				2B78B13F2E4F1B2F001A46C6 /* TaskEditorViewModel.swift */,
-				2B78B13D2E4F17F2001A46C6 /* Binding+OptionalDate.swift */,
-				2B78B13B2E4F15E3001A46C6 /* TaskEditorView.swift */,
-				2B78B1392E4F15CE001A46C6 /* TaskListView.swift */,
-				2B78B1372E4F15B6001A46C6 /* TaskRowView.swift */,
-				2B78B1352E4F159B001A46C6 /* TaskTheme.swift */,
-				2B78B1312E4F1565001A46C6 /* TaskListViewModel.swift */,
-				2B78B12F2E4F1550001A46C6 /* TaskScheduler.swift */,
-				2B78B12D2E4F1525001A46C6 /* CoreDataStack+Task.swift */,
-				2B78B12B2E4F14EA001A46C6 /* TaskRepository.swift */,
-				2B78B1292E4F14C9001A46C6 /* TaskItem.swift */,
-				2B78B1252E4F0F9C001A46C6 /* TaskDataModel.xcdatamodeld */,
-			);
-			path = Task;
 			sourceTree = "<group>";
 		};
 		2BB3C9D32E4A23E600717B31 /* Model */ = {
@@ -829,92 +817,61 @@
 				2B1D16122E488747000B2AE8 /* SettingsViewModel.swift in Sources */,
 				2B24F4922E4C3BF900B3E9EC /* AuthService.swift in Sources */,
 				2B2B78902E4AF98D00F56877 /* ForecastServicing.swift in Sources */,
-				2B0418CD2E4DDFAF00339B96 /* MyGardenView.swift in Sources */,
-				2B0418C32E4DDEFA00339B96 /* SpeciesStepView.swift in Sources */,
-				2B78B12C2E4F14EC001A46C6 /* TaskRepository.swift in Sources */,
-				2B78B13A2E4F15D1001A46C6 /* TaskListView.swift in Sources */,
+				2B5384162E66FE1D002FE418 /* PlantDetailView.swift in Sources */,
 				2BA7FEBD2E471D8D00720C5A /* DashboardItem.swift in Sources */,
-				2B6C8B2E2E571458007F4022 /* HealthEngine.swift in Sources */,
 				2B2B78842E4AE7CC00F56877 /* OpenWeatherClient.swift in Sources */,
-				2B6C8B322E57147F007F4022 /* HealthStatusDashboardView.swift in Sources */,
 				2B24F4A52E4C3D6000B3E9EC /* AuthGateView.swift in Sources */,
-				2B6C8B2A2E5713E0007F4022 /* PlantHealthModels.swift in Sources */,
+				2B5384202E67027C002FE418 /* GreenThumbDataModel.xcdatamodeld in Sources */,
+				2B499E012E6813B6001B2808 /* AddGlobalTaskSheet.swift in Sources */,
 				2B1D16012E4872CE000B2AE8 /* DiseaseIdentifierView.swift in Sources */,
 				2B1D15FB2E486B0B000B2AE8 /* Place.swift in Sources */,
-				2B1DE5D42E547B6F00FED637 /* PlantAvatar.swift in Sources */,
 				2BC439262E62F18E006D2F36 /* VerifyResetCodeView.swift in Sources */,
 				2B78B1162E4EFC04001A46C6 /* AppTab.swift in Sources */,
 				2BC439242E62F15F006D2F36 /* ForgotPasswordView.swift in Sources */,
-				2B1DE5D22E547B6000FED637 /* GTProgressBar.swift in Sources */,
-				2B78B1382E4F15BC001A46C6 /* TaskRowView.swift in Sources */,
-				2B78B13E2E4F17F7001A46C6 /* Binding+OptionalDate.swift in Sources */,
 				2BC4392A2E62F1B6006D2F36 /* PasswordChangedSuccessView.swift in Sources */,
-				2B1DE5D62E547B8800FED637 /* HarvestRowView.swift in Sources */,
-				2B78B1302E4F1552001A46C6 /* TaskScheduler.swift in Sources */,
-				2B6C8B2C2E57143E007F4022 /* Adapters.swift in Sources */,
 				2B1D15F92E48695A000B2AE8 /* StoreLocatorView.swift in Sources */,
 				2B24F49E2E4C3C6500B3E9EC /* SignupView.swift in Sources */,
 				2B2B788E2E4AF96A00F56877 /* ForecastModels.swift in Sources */,
 				2B2B78822E4AE7AB00F56877 /* WeatherServicing.swift in Sources */,
-				2B0418B02E4DDB5600339B96 /* PersistenceController.swift in Sources */,
-				2B0418C12E4DDEE500339B96 /* PhotoStepView.swift in Sources */,
 				2B78B1132E4EFA37001A46C6 /* TabHost.swift in Sources */,
 				2BA7FEC12E471DB400720C5A /* DashboardView.swift in Sources */,
 				2B24F4942E4C3C0600B3E9EC /* KeychainService.swift in Sources */,
-				2B78B1322E4F156D001A46C6 /* TaskListViewModel.swift in Sources */,
-				2B78B12A2E4F14CD001A46C6 /* TaskItem.swift in Sources */,
 				2B1D16162E488775000B2AE8 /* SettingsView.swift in Sources */,
-				2B0418C92E4DDF4100339B96 /* AddPlantFlowView.swift in Sources */,
 				2B2B78922E4AF9A100F56877 /* OpenWeatherForecastClient.swift in Sources */,
 				2B327DFE2E44624C00CB8F1D /* ContentView.swift in Sources */,
 				2B2B78882E4AE81500F56877 /* WeatherViewModel.swift in Sources */,
-				2B6C8B342E571490007F4022 /* HealthDetailView.swift in Sources */,
 				2B2B788C2E4AEAD700F56877 /* PlaceSearchView.swift in Sources */,
 				2BA7FEBF2E471D9F00720C5A /* DashboardTile.swift in Sources */,
 				2B24F4A82E4C4D0000B3E9EC /* SecuritySettingsView.swift in Sources */,
 				2B1D160C2E4886F0000B2AE8 /* UserDefaultsSettingsStore.swift in Sources */,
 				2B78B1112E4EFA0A001A46C6 /* CustomTabBar.swift in Sources */,
 				2B24F4A02E4C3C7100B3E9EC /* LockView.swift in Sources */,
-				2B6C8B362E57149C007F4022 /* HealthCheckFormView.swift in Sources */,
-				2B0418BF2E4DDE5C00339B96 /* StepperHeader.swift in Sources */,
-				2B0418BD2E4DDE3800339B96 /* NewPlantState.swift in Sources */,
-				2B78B1272E4F0F9C001A46C6 /* TaskDataModel.xcdatamodeld in Sources */,
-				2B0418CB2E4DDF9500339B96 /* PlantDetailView.swift in Sources */,
 				2B2B78862E4AE7F200F56877 /* LocationProvider.swift in Sources */,
-				2B0418AD2E4DC3E100339B96 /* GreenThumbDataModel.xcdatamodeld in Sources */,
 				2B1D160A2E4886DD000B2AE8 /* SettingsStore.swift in Sources */,
+				2B5384142E66FE05002FE418 /* PlantListView.swift in Sources */,
+				2B5383E42E66E41E002FE418 /* PersistenceController.swift in Sources */,
+				2B499DFD2E680D55001B2808 /* TaskRepository.swift in Sources */,
 				2BC439282E62F1A3006D2F36 /* ResetPasswordView.swift in Sources */,
 				2B1D16182E488788000B2AE8 /* QuietHoursView.swift in Sources */,
-				2B78B12E2E4F1529001A46C6 /* CoreDataStack+Task.swift in Sources */,
 				2B1D15FD2E487274000B2AE8 /* DiseaseIdentifierViewModel.swift in Sources */,
 				2B2B78952E4AFA0500F56877 /* SuggestionEngine.swift in Sources */,
-				2B78B1362E4F15A3001A46C6 /* TaskTheme.swift in Sources */,
+				2B499DFF2E6811F3001B2808 /* AllTasksView.swift in Sources */,
 				2B1D161A2E48879A000B2AE8 /* ManageStorageView.swift in Sources */,
 				2B1D15FF2E48729C000B2AE8 /* ImagePicker.swift in Sources */,
 				2B1D16082E4886C4000B2AE8 /* AppSettings.swift in Sources */,
 				2B327DFC2E44624C00CB8F1D /* Green_ThumbApp.swift in Sources */,
-				2B1DE5DA2E547BA600FED637 /* AddHarvestSheet.swift in Sources */,
 				2BB3C97A2E49EDBA00717B31 /* PlantDiseaseClassifier.mlpackage in Sources */,
 				2B24F4962E4C3C1000B3E9EC /* BiometricAuth.swift in Sources */,
-				2B6C8B392E571658007F4022 /* PlantHealthRing.swift in Sources */,
 				2B2B78802E4AE76900F56877 /* WeatherModels.swift in Sources */,
 				2B1D160E2E48871F000B2AE8 /* NotificationManager.swift in Sources */,
+				2B499DFB2E680CC7001B2808 /* TaskViewModel.swift in Sources */,
 				2B1D16062E4886AE000B2AE8 /* SettingsKeys.swift in Sources */,
-				2B1DE5D82E547B9700FED637 /* WeekStrip.swift in Sources */,
 				2B24F4992E4C3C2E00B3E9EC /* SessionStore.swift in Sources */,
-				2B78B13C2E4F15E7001A46C6 /* TaskEditorView.swift in Sources */,
-				2B1DE5DC2E547BC300FED637 /* HarvestListView.swift in Sources */,
-				2B1DE5D02E547B4B00FED637 /* Plant+HarvestComputed.swift in Sources */,
-				2B6C8B302E57146B007F4022 /* HealthCenter.swift in Sources */,
 				2B24F4A32E4C3C9000B3E9EC /* AuthViewModel.swift in Sources */,
-				2B0418C72E4DDF2600339B96 /* PreviewStepView.swift in Sources */,
 				2B1D15F72E486934000B2AE8 /* StoreLocatorViewModel.swift in Sources */,
-				2B78B1402E4F1BA2001A46C6 /* TaskEditorViewModel.swift in Sources */,
 				2B24F49C2E4C3C5C00B3E9EC /* LoginView.swift in Sources */,
-				2B0418B92E4DDDE000339B96 /* Enums.swift in Sources */,
 				2B1D16102E488738000B2AE8 /* FaceIDManager.swift in Sources */,
-				2B0418BB2E4DDE0700339B96 /* ReminderScheduler.swift in Sources */,
-				2B0418C52E4DDF0D00339B96 /* DetailsStepView.swift in Sources */,
+				2B5384122E66FDD1002FE418 /* PlantRepository.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1277,20 +1234,11 @@
 		2B0418AB2E4DC3E100339B96 /* GreenThumbDataModel.xcdatamodeld */ = {
 			isa = XCVersionGroup;
 			children = (
+				2B5383E52E66E9D6002FE418 /* GreenThumbDataModel_v2.xcdatamodel */,
 				2B0418AC2E4DC3E100339B96 /* GreenThumbDataModel.xcdatamodel */,
 			);
-			currentVersion = 2B0418AC2E4DC3E100339B96 /* GreenThumbDataModel.xcdatamodel */;
+			currentVersion = 2B5383E52E66E9D6002FE418 /* GreenThumbDataModel_v2.xcdatamodel */;
 			path = GreenThumbDataModel.xcdatamodeld;
-			sourceTree = "<group>";
-			versionGroupType = wrapper.xcdatamodel;
-		};
-		2B78B1252E4F0F9C001A46C6 /* TaskDataModel.xcdatamodeld */ = {
-			isa = XCVersionGroup;
-			children = (
-				2B78B1262E4F0F9C001A46C6 /* TaskDataModel.xcdatamodel */,
-			);
-			currentVersion = 2B78B1262E4F0F9C001A46C6 /* TaskDataModel.xcdatamodel */;
-			path = TaskDataModel.xcdatamodeld;
 			sourceTree = "<group>";
 			versionGroupType = wrapper.xcdatamodel;
 		};

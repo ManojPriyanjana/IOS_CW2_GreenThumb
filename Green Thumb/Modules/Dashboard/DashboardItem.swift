@@ -20,7 +20,7 @@ extension DashboardItem {
             title: "My Garden",
             systemImage: "sprinkler.and.droplets",
             color: .teal,
-            destination: AnyView(MyGardenView())   // Connects to your PlantManagement module
+            destination: AnyView(Text("mygarden"))   // Connects to your PlantManagement module
         ),
 
         // Quick access to the Add Plant wizard (optional but handy)
@@ -28,7 +28,7 @@ extension DashboardItem {
             title: "Add Plant",
             systemImage: "plus.circle.fill",
             color: .green,
-            destination: AnyView(AddPlantFlowView())
+            destination: AnyView(Text("add plant flow view"))
         ),
 
         // Disease detection
@@ -66,14 +66,14 @@ extension DashboardItem {
             title: "Harvest",
             systemImage: "scissors",
             color: Color.green,                    // or your theme color
-            destination: AnyView(HarvestListView())
+            destination: AnyView(Text("HarvestListView()"))
         ),
         // Plant Health
         DashboardItem(
             title: "Health",
             systemImage: "heart.text.square",
             color: .green, // brand colour
-            destination: AnyView(HealthStatusDashboardView())
+            destination: AnyView(Text("HealthStatusDashboardView()"))
         ),
         
         
