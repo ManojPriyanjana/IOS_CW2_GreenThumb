@@ -58,6 +58,9 @@
 		2B5384142E66FE05002FE418 /* PlantListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B5384132E66FE03002FE418 /* PlantListView.swift */; };
 		2B5384162E66FE1D002FE418 /* PlantDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B5384152E66FE1B002FE418 /* PlantDetailView.swift */; };
 		2B5384202E67027C002FE418 /* GreenThumbDataModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 2B0418AB2E4DC3E100339B96 /* GreenThumbDataModel.xcdatamodeld */; };
+		2B69D7622E69449D0031D984 /* HealthIssueRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B69D7612E6944980031D984 /* HealthIssueRepository.swift */; };
+		2B69D7642E69451B0031D984 /* AddHealthIssueSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B69D7632E6945190031D984 /* AddHealthIssueSheet.swift */; };
+		2B69D7662E69456B0031D984 /* HealthListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B69D7652E6945680031D984 /* HealthListView.swift */; };
 		2B78B1112E4EFA0A001A46C6 /* CustomTabBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B78B1102E4EFA07001A46C6 /* CustomTabBar.swift */; };
 		2B78B1132E4EFA37001A46C6 /* TabHost.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B78B1122E4EFA24001A46C6 /* TabHost.swift */; };
 		2B78B1162E4EFC04001A46C6 /* AppTab.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B78B1152E4EFBFD001A46C6 /* AppTab.swift */; };
@@ -141,6 +144,9 @@
 		2B5384112E66FDCE002FE418 /* PlantRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlantRepository.swift; sourceTree = "<group>"; };
 		2B5384132E66FE03002FE418 /* PlantListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlantListView.swift; sourceTree = "<group>"; };
 		2B5384152E66FE1B002FE418 /* PlantDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlantDetailView.swift; sourceTree = "<group>"; };
+		2B69D7612E6944980031D984 /* HealthIssueRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HealthIssueRepository.swift; sourceTree = "<group>"; };
+		2B69D7632E6945190031D984 /* AddHealthIssueSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddHealthIssueSheet.swift; sourceTree = "<group>"; };
+		2B69D7652E6945680031D984 /* HealthListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HealthListView.swift; sourceTree = "<group>"; };
 		2B78B1102E4EFA07001A46C6 /* CustomTabBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTabBar.swift; sourceTree = "<group>"; };
 		2B78B1122E4EFA24001A46C6 /* TabHost.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabHost.swift; sourceTree = "<group>"; };
 		2B78B1152E4EFBFD001A46C6 /* AppTab.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppTab.swift; sourceTree = "<group>"; };
@@ -579,6 +585,7 @@
 		2B53840D2E66FD89002FE418 /* Repository */ = {
 			isa = PBXGroup;
 			children = (
+				2B69D7612E6944980031D984 /* HealthIssueRepository.swift */,
 			);
 			path = Repository;
 			sourceTree = "<group>";
@@ -593,6 +600,8 @@
 		2B53840F2E66FD89002FE418 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				2B69D7652E6945680031D984 /* HealthListView.swift */,
+				2B69D7632E6945190031D984 /* AddHealthIssueSheet.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -816,11 +825,14 @@
 				2B2B788A2E4AE83200F56877 /* WeatherView.swift in Sources */,
 				2B1D16122E488747000B2AE8 /* SettingsViewModel.swift in Sources */,
 				2B24F4922E4C3BF900B3E9EC /* AuthService.swift in Sources */,
+				2B69D7622E69449D0031D984 /* HealthIssueRepository.swift in Sources */,
 				2B2B78902E4AF98D00F56877 /* ForecastServicing.swift in Sources */,
 				2B5384162E66FE1D002FE418 /* PlantDetailView.swift in Sources */,
 				2BA7FEBD2E471D8D00720C5A /* DashboardItem.swift in Sources */,
+				2B69D7642E69451B0031D984 /* AddHealthIssueSheet.swift in Sources */,
 				2B2B78842E4AE7CC00F56877 /* OpenWeatherClient.swift in Sources */,
 				2B24F4A52E4C3D6000B3E9EC /* AuthGateView.swift in Sources */,
+				2B69D7662E69456B0031D984 /* HealthListView.swift in Sources */,
 				2B5384202E67027C002FE418 /* GreenThumbDataModel.xcdatamodeld in Sources */,
 				2B499E012E6813B6001B2808 /* AddGlobalTaskSheet.swift in Sources */,
 				2B1D16012E4872CE000B2AE8 /* DiseaseIdentifierView.swift in Sources */,
