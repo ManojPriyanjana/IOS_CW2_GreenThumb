@@ -5,24 +5,34 @@ struct PlantDetailView: View {
     @Environment(\.managedObjectContext) private var ctx
 
     let objectID: NSManagedObjectID
-    @State private var plant: Plant?
+
+    // 👇 Live fetch of the Plant by objectID
+    @FetchRequest private var fetched: FetchedResults<Plant>
+
+    init(objectID: NSManagedObjectID) {
+        self.objectID = objectID
+        _fetched = FetchRequest<Plant>(
+            sortDescriptors: [],
+            predicate: NSPredicate(format: "self == %@", objectID),
+            animation: .default
+        )
+    }
 
     var body: some View {
         Group {
-            if let plant {
-                // Precompute strings (faster type-checking)
+            if let plant = fetched.first {
                 let name      = plant.name ?? "Plant"
                 let category  = plant.category ?? "Unknown"
                 let planted   = plant.plantingDate?.formatted(date: .abbreviated, time: .omitted) ?? "—"
                 let location  = (plant.location?.isEmpty == false) ? plant.location! : "—"
                 let notes     = (plant.notes?.isEmpty == false) ? plant.notes! : "—"
 
-                let taskCount   = (plant.tasks as? Set<CareTask>)?.count ?? 0
+                // 👇 Count auto-updates because fetched plant is live
+                let taskCount   = (plant.tasks as? Set<CareTask>)?.filter { $0.status != "Completed" }.count ?? 0
                 let issueCount  = plant.healthIssues?.count ?? 0
                 let schedCount  = plant.harvestSchedules?.count ?? 0
 
                 List {
-                    // Overview
                     Section("Overview") {
                         Text("Name: \(name)")
                         Text("Category: \(category)")
@@ -31,20 +41,15 @@ struct PlantDetailView: View {
                         Text("Notes: \(notes)")
                     }
 
-                    // Linked data
                     Section("Linked Data") {
-                        // Tasks → use global list for now
                         NavigationLink("Tasks (\(taskCount))") {
-                            AllTasksView()
+                            PlantTasksView(plant: plant)
                         }
 
-                        // inside Section("Linked Data") in PlantDetailView
                         NavigationLink("Health Issues (\(issueCount))") {
-                            HealthListView(plant: plant)   // ⬅ pass the Plant object
+                            HealthListView(plant: plant)
                         }
 
-
-                        // Harvesting (placeholder until module is built)
                         NavigationLink("Harvesting (\(schedCount))") {
                             Text("Harvest screen placeholder")
                                 .font(.headline)
@@ -58,7 +63,7 @@ struct PlantDetailView: View {
                 .toolbar {
                     ToolbarItem(placement: .primaryAction) {
                         Menu {
-                            Button(role: .destructive) { deletePlant() } label: {
+                            Button(role: .destructive) { deletePlant(plant) } label: {
                                 Label("Delete", systemImage: "trash")
                             }
                         } label: {
@@ -67,26 +72,13 @@ struct PlantDetailView: View {
                     }
                 }
             } else {
-                // Loading view
                 ProgressView()
-                    .task { await load() }
             }
         }
     }
 
-    // MARK: - Data
-
-    private func load() async {
-        do {
-            let p = try ctx.existingObject(with: objectID) as? Plant
-            await MainActor.run { self.plant = p }
-        } catch {
-            print("Fetch plant error:", error)
-        }
-    }
-
-    private func deletePlant() {
-        guard let plant else { return }
+    // MARK: - Delete
+    private func deletePlant(_ plant: Plant) {
         ctx.delete(plant)
         do { try ctx.save() } catch { print("Delete error:", error) }
     }

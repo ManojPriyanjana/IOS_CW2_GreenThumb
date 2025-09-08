@@ -53,6 +53,7 @@
 		2B499DFD2E680D55001B2808 /* TaskRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B499DFC2E680D53001B2808 /* TaskRepository.swift */; };
 		2B499DFF2E6811F3001B2808 /* AllTasksView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B499DFE2E6811F1001B2808 /* AllTasksView.swift */; };
 		2B499E012E6813B6001B2808 /* AddGlobalTaskSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B499E002E6813B3001B2808 /* AddGlobalTaskSheet.swift */; };
+		2B4F5D022E6E97FC00AF3136 /* PlantTasksView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B4F5D012E6E97F900AF3136 /* PlantTasksView.swift */; };
 		2B5383E42E66E41E002FE418 /* PersistenceController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B5383E32E66E41B002FE418 /* PersistenceController.swift */; };
 		2B5384122E66FDD1002FE418 /* PlantRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B5384112E66FDCE002FE418 /* PlantRepository.swift */; };
 		2B5384142E66FE05002FE418 /* PlantListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B5384132E66FE03002FE418 /* PlantListView.swift */; };
@@ -139,6 +140,7 @@
 		2B499DFC2E680D53001B2808 /* TaskRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskRepository.swift; sourceTree = "<group>"; };
 		2B499DFE2E6811F1001B2808 /* AllTasksView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllTasksView.swift; sourceTree = "<group>"; };
 		2B499E002E6813B3001B2808 /* AddGlobalTaskSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddGlobalTaskSheet.swift; sourceTree = "<group>"; };
+		2B4F5D012E6E97F900AF3136 /* PlantTasksView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlantTasksView.swift; sourceTree = "<group>"; };
 		2B5383E32E66E41B002FE418 /* PersistenceController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersistenceController.swift; sourceTree = "<group>"; };
 		2B5383E52E66E9D6002FE418 /* GreenThumbDataModel_v2.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = GreenThumbDataModel_v2.xcdatamodel; sourceTree = "<group>"; };
 		2B5384112E66FDCE002FE418 /* PlantRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlantRepository.swift; sourceTree = "<group>"; };
@@ -426,6 +428,7 @@
 		2B5383E72E66FAF7002FE418 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				2B4F5D012E6E97F900AF3136 /* PlantTasksView.swift */,
 				2B5384152E66FE1B002FE418 /* PlantDetailView.swift */,
 				2B5384132E66FE03002FE418 /* PlantListView.swift */,
 			);
@@ -837,6 +840,7 @@
 				2B499E012E6813B6001B2808 /* AddGlobalTaskSheet.swift in Sources */,
 				2B1D16012E4872CE000B2AE8 /* DiseaseIdentifierView.swift in Sources */,
 				2B1D15FB2E486B0B000B2AE8 /* Place.swift in Sources */,
+				2B4F5D022E6E97FC00AF3136 /* PlantTasksView.swift in Sources */,
 				2BC439262E62F18E006D2F36 /* VerifyResetCodeView.swift in Sources */,
 				2B78B1162E4EFC04001A46C6 /* AppTab.swift in Sources */,
 				2BC439242E62F15F006D2F36 /* ForgotPasswordView.swift in Sources */,

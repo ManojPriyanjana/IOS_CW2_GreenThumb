@@ -1,11 +1,16 @@
 import SwiftUI
 import CoreData
 
+/// Add Task sheet. If `fixedPlant` is provided, the Plant picker is hidden and the task is
+/// saved for that specific plant. Otherwise it's a normal "global" add with a Plant picker.
 struct AddGlobalTaskSheet: View {
     @Environment(\.managedObjectContext) private var ctx
     @Environment(\.dismiss) private var dismiss
 
-    // Load plants to show in the picker
+    // If not nil, the sheet is "scoped" to this plant.
+    let fixedPlant: Plant?
+
+    // Load plants only for global mode
     @FetchRequest(sortDescriptors: [NSSortDescriptor(keyPath: \Plant.name, ascending: true)])
     private var plants: FetchedResults<Plant>
 
@@ -24,24 +29,40 @@ struct AddGlobalTaskSheet: View {
     @State private var hasDue = true
     @State private var due = Calendar.current.date(byAdding: .day, value: 1, to: Date()) ?? Date()
 
+    init(fixedPlant: Plant? = nil) {
+        self.fixedPlant = fixedPlant
+        // NOTE: we can't set @State here; we set it in .onAppear below
+    }
+
     var body: some View {
         NavigationStack {
             Form {
-                // MARK: Plant
-                Section("Plant") {
-                    Picker("Plant", selection: $selectedPlant) {
-                        Text("No plant").tag(Optional<Plant>.none)
-                        ForEach(plants) { p in
-                            Text(p.name ?? "Plant").tag(Optional(p))
+                // Plant
+                if fixedPlant == nil {
+                    Section("Plant") {
+                        Picker("Plant", selection: $selectedPlant) {
+                            Text("No plant").tag(Optional<Plant>.none)
+                            ForEach(plants) { p in
+                                Text(p.name ?? "Plant").tag(Optional(p))
+                            }
+                        }
+                    }
+                } else {
+                    // Show read-only info when scoped to a plant
+                    Section("Plant") {
+                        HStack {
+                            Text("Plant")
+                            Spacer()
+                            Text(fixedPlant?.name ?? "Plant")
+                                .foregroundStyle(.secondary)
                         }
                     }
                 }
 
-                // MARK: Details
+                // Details
                 Section("Details") {
                     TextField("Title (e.g., Water 500ml)", text: $title)
 
-                    // Quick type buttons (THIS is where the grid must live)
                     LazyVGrid(columns: [GridItem(.adaptive(minimum: 110), spacing: 8)], spacing: 8) {
                         ForEach(types, id: \.self) { t in
                             SelectablePill(
@@ -53,7 +74,6 @@ struct AddGlobalTaskSheet: View {
                     }
                     .padding(.vertical, 4)
 
-                    // Priority pills
                     HStack(spacing: 8) {
                         PrioritySelectPill(title: "Low",    color: .green,  selected: priority == 0) { priority = 0 }
                         PrioritySelectPill(title: "Medium", color: .orange, selected: priority == 1) { priority = 1 }
@@ -62,7 +82,7 @@ struct AddGlobalTaskSheet: View {
                     .padding(.vertical, 2)
                 }
 
-                // MARK: Due date
+                // Due date
                 Section("Due date") {
                     Toggle("Set due date", isOn: $hasDue)
                     if hasDue {
@@ -80,14 +100,18 @@ struct AddGlobalTaskSheet: View {
                         .disabled(title.trimmingCharacters(in: .whitespaces).isEmpty)
                 }
             }
+            .onAppear {
+                // Preselect and lock if scoped
+                if let fixed = fixedPlant { selectedPlant = fixed }
+            }
         }
     }
 
-    // MARK: - Save
+    // Save
     private func save() {
         do {
             _ = try TaskRepository(ctx: ctx).create(
-                for: selectedPlant,              // may be nil
+                for: fixedPlant ?? selectedPlant,   // use fixedPlant if present
                 title: title,
                 type: type,
                 dueDate: hasDue ? due : nil,
@@ -99,7 +123,7 @@ struct AddGlobalTaskSheet: View {
         }
     }
 
-    // MARK: - Icons
+    //Icons
     private func icon(for type: String) -> String {
         switch type {
         case "watering":    return "drop.fill"
@@ -112,9 +136,7 @@ struct AddGlobalTaskSheet: View {
     }
 }
 
-// MARK: - Small UI helpers
-
-/// A pill that can be toggled (used for quick type selection).
+// Small UI helpers
 private struct SelectablePill: View {
     let selected: Bool
     let label: String
@@ -137,7 +159,6 @@ private struct SelectablePill: View {
     }
 }
 
-/// Priority pill (Low / Medium / High) selection
 private struct PrioritySelectPill: View {
     let title: String
     let color: Color
