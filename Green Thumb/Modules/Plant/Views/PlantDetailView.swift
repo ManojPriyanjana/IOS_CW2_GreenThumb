@@ -51,11 +51,9 @@ struct PlantDetailView: View {
                         }
 
                         NavigationLink("Harvesting (\(schedCount))") {
-                            Text("Harvest screen placeholder")
-                                .font(.headline)
-                                .foregroundStyle(.secondary)
-                                .padding()
+                            PlantHarvestingView(plant: plant)
                         }
+
                     }
                 }
                 .listStyle(.insetGrouped)
