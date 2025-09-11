@@ -1,4 +1,5 @@
 import SwiftUI
+import CoreData
 
 struct DashboardView: View {
     private let items = DashboardItem.all
@@ -15,10 +16,16 @@ struct DashboardView: View {
                     }
                     .buttonStyle(.plain)
 
+                    // Full-width Tasks summary card
+                    NavigationLink(destination: AllTasksView()) {
+                        TaskSummaryCard()
+                    }
+                    .buttonStyle(.plain)
+
                     // Grid tiles
                     LazyVGrid(columns: columns, spacing: 16) {
-                        // Existing tiles (excluding the old Weather tile to avoid duplication)
-                        ForEach(items.filter { $0.title != "Weather" }) { item in
+                        // Existing tiles (excluding Weather & Tasks to avoid duplication)
+                        ForEach(items.filter { $0.title != "Weather" && $0.title != "Tasks" }) { item in
                             NavigationLink(destination: item.destination) {
                                 DashboardTile(item: item)
                             }
@@ -164,5 +171,121 @@ private struct WeatherSummaryCard: View {
         if let err = vm.errorMessage { return "Weather error: \(err)" }
         if vm.isLoading { return "Weather loading" }
         return "Weather"
+    }
+}
+
+// MARK: - Inline Task summary card for Dashboard
+
+private struct TaskSummaryCard: View {
+    @Environment(\.managedObjectContext) private var ctx
+    @FetchRequest private var pending: FetchedResults<CareTask>
+
+    init() {
+        let req: NSFetchRequest<CareTask> = CareTask.fetchRequest()
+        req.sortDescriptors = [
+            NSSortDescriptor(keyPath: \CareTask.dueDate, ascending: true),
+            NSSortDescriptor(keyPath: \CareTask.createdAt, ascending: true)
+        ]
+        req.predicate = NSPredicate(format: "status != %@", "Completed")
+        _pending = FetchRequest(fetchRequest: req, animation: .default)
+    }
+
+    var body: some View {
+        HStack(spacing: 12) {
+            ZStack {
+                RoundedRectangle(cornerRadius: 12, style: .continuous)
+                    .fill(LinearGradient(colors: [Color.blue.opacity(0.25), Color.blue.opacity(0.12)], startPoint: .topLeading, endPoint: .bottomTrailing))
+                    .frame(width: 56, height: 56)
+                Image(systemName: "checklist")
+                    .symbolRenderingMode(.hierarchical)
+                    .foregroundStyle(.blue)
+                    .font(.system(size: 26, weight: .semibold))
+            }
+
+            VStack(alignment: .leading, spacing: 6) {
+                Text("Tasks").font(.headline)
+
+                if pending.isEmpty {
+                    Text("No pending tasks")
+                        .font(.subheadline)
+                        .foregroundStyle(.secondary)
+                } else {
+                    // Summary counts
+                    HStack(spacing: 12) {
+                        Label("\(overdueCount)", systemImage: "exclamationmark.triangle.fill")
+                            .font(.caption)
+                            .foregroundStyle(.orange)
+                        Label("\(todayCount)", systemImage: "calendar")
+                            .font(.caption)
+                            .foregroundStyle(.secondary)
+                        Label("\(upcomingCount)", systemImage: "clock")
+                            .font(.caption)
+                            .foregroundStyle(.secondary)
+                    }
+
+                    if let next = nextDue {
+                        Text("Next: \(next.title ?? "Task") — \(formattedDate(next.dueDate))")
+                            .font(.caption)
+                            .foregroundStyle(.secondary)
+                            .lineLimit(1)
+                    }
+                }
+
+                if let ts = lastUpdated {
+                    Text(ts, style: .time)
+                        .font(.caption2)
+                        .foregroundStyle(.secondary)
+                }
+            }
+
+            Spacer()
+            Image(systemName: "chevron.right").foregroundStyle(.tertiary)
+        }
+        .frame(maxWidth: .infinity, alignment: .leading)
+        .padding(16)
+        .background(.thinMaterial, in: RoundedRectangle(cornerRadius: 16, style: .continuous))
+        .accessibilityLabel(accessibilitySummary)
+    }
+
+    // MARK: - Derived values
+
+    private var lastUpdated: Date? { Date() }
+
+    private var overdueCount: Int { pending.filter { isOverdue($0.dueDate) }.count }
+    private var todayCount: Int { pending.filter { isToday($0.dueDate) }.count }
+    private var upcomingCount: Int { pending.filter { isUpcoming($0.dueDate) }.count }
+
+    private var nextDue: CareTask? {
+        pending
+            .filter { $0.dueDate != nil }
+            .sorted { ($0.dueDate ?? .distantFuture) < ($1.dueDate ?? .distantFuture) }
+            .first
+    }
+
+    private func isOverdue(_ d: Date?) -> Bool {
+        guard let d else { return false }
+        return d < Calendar.current.startOfDay(for: Date())
+    }
+    private func isToday(_ d: Date?) -> Bool {
+        guard let d else { return false }
+        return Calendar.current.isDateInToday(d)
+    }
+    private func isUpcoming(_ d: Date?) -> Bool {
+        guard let d else { return false }
+        return d > endOfDay(Date())
+    }
+
+    private func endOfDay(_ date: Date) -> Date {
+        Calendar.current.date(bySettingHour: 23, minute: 59, second: 59, of: date) ?? date
+    }
+
+    private func formattedDate(_ d: Date?) -> String {
+        guard let d else { return "" }
+        return DateFormatter.localizedString(from: d, dateStyle: .medium, timeStyle: .none)
+    }
+
+    private var accessibilitySummary: String {
+        if pending.isEmpty { return "Tasks, no pending tasks" }
+        return "Tasks, overdue \(overdueCount), today \(todayCount), upcoming \(upcomingCount)"
     }
 }
