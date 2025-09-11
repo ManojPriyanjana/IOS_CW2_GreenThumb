@@ -12,7 +12,8 @@ final class UserDefaultsSettingsStore: SettingsStore {
             quietStart: ud.object(forKey: SettingsKeys.quietStart.rawValue) as? Int ?? AppSettings.default.quietStart,
             quietEnd: ud.object(forKey: SettingsKeys.quietEnd.rawValue) as? Int ?? AppSettings.default.quietEnd,
             highContrast: ud.object(forKey: SettingsKeys.highContrast.rawValue) as? Bool ?? AppSettings.default.highContrast,
-            reduceMotion: ud.object(forKey: SettingsKeys.reduceMotion.rawValue) as? Bool ?? AppSettings.default.reduceMotion
+            reduceMotion: ud.object(forKey: SettingsKeys.reduceMotion.rawValue) as? Bool ?? AppSettings.default.reduceMotion,
+            darkModeEnabled: ud.object(forKey: SettingsKeys.darkModeEnabled.rawValue) as? Bool ?? AppSettings.default.darkModeEnabled
         )
     }
 
@@ -25,5 +26,6 @@ final class UserDefaultsSettingsStore: SettingsStore {
         ud.set(s.quietEnd,          forKey: SettingsKeys.quietEnd.rawValue)
         ud.set(s.highContrast,      forKey: SettingsKeys.highContrast.rawValue)
         ud.set(s.reduceMotion,      forKey: SettingsKeys.reduceMotion.rawValue)
+        ud.set(s.darkModeEnabled,   forKey: SettingsKeys.darkModeEnabled.rawValue)
     }
 }

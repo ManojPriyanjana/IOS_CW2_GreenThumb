@@ -89,6 +89,7 @@ import LocalAuthentication
 struct SettingsView: View {
     // NEW: talk to your auth/session layer directly
     @EnvironmentObject var session: SessionStore
+    @EnvironmentObject var colorCtl: ColorSchemeController
 
     @StateObject private var vm = SettingsViewModel()
     @State private var faceIDAlert = false
@@ -133,6 +134,13 @@ struct SettingsView: View {
                             .font(.callout)
                             .foregroundStyle(.secondary)
                     }
+
+                    Toggle("Dark Mode",
+                           isOn: Binding(get: { vm.settings.darkModeEnabled },
+                                         set: { newVal in
+                                             vm.setDarkModeEnabled(newVal)
+                                             colorCtl.apply(darkModeEnabled: newVal)
+                                         }))
                 }
 
                 // MARK: - Notifications

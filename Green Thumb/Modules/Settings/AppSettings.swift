@@ -9,10 +9,12 @@ struct AppSettings: Equatable {
     var quietEnd: Int
     var highContrast: Bool
     var reduceMotion: Bool
+    var darkModeEnabled: Bool
 
     static let `default` = AppSettings(
         faceID: true, pushNotifications: true, taskReminders: true, diseaseAlerts: true,
-        quietStart: 21*3600, quietEnd: 7*3600, highContrast: false, reduceMotion: false
+        quietStart: 21*3600, quietEnd: 7*3600, highContrast: false, reduceMotion: false,
+        darkModeEnabled: false
     )
 }
 

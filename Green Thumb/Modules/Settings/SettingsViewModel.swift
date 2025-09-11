@@ -38,6 +38,7 @@ final class SettingsViewModel: ObservableObject {
 
     func setHighContrast(_ v: Bool) { settings.highContrast = v; persist() }
     func setReduceMotion(_ v: Bool) { settings.reduceMotion = v; persist() }
+    func setDarkModeEnabled(_ v: Bool) { settings.darkModeEnabled = v; persist() }
 
     private func persist() { store.save(settings) }
 }
