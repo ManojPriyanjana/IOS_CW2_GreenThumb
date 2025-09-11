@@ -1,6 +1,33 @@
 import SwiftUI
 import CoreData
 
+// MARK: - Dashboard Design Tokens & Card Surface (file scope)
+
+private enum DashboardDS {
+    static let cardRadius: CGFloat = 18
+    static let iconRadius: CGFloat = 14
+    static let stroke = Color.black.opacity(0.06)
+    static let shadow = Color.black.opacity(0.06)
+    static let surface = LinearGradient(colors: [Color.white.opacity(0.85), Color.white.opacity(0.65)], startPoint: .topLeading, endPoint: .bottomTrailing)
+    static let brand = Color.green
+    static let accent = Color.orange
+    static let tileBg = LinearGradient(colors: [Color.gray.opacity(0.10), Color.gray.opacity(0.06)], startPoint: .top, endPoint: .bottom)
+}
+
+private struct DashboardCardSurface: ViewModifier {
+    func body(content: Content) -> some View {
+        content
+            .padding(16)
+            .background(DashboardDS.surface, in: RoundedRectangle(cornerRadius: DashboardDS.cardRadius, style: .continuous))
+            .overlay(RoundedRectangle(cornerRadius: DashboardDS.cardRadius, style: .continuous).stroke(DashboardDS.stroke, lineWidth: 1))
+            .shadow(color: DashboardDS.shadow, radius: 10, y: 4)
+    }
+}
+
+private extension View {
+    func gtCard() -> some View { modifier(DashboardCardSurface()) }
+}
+
 struct DashboardView: View {
     private let items = DashboardItem.all
     private let columns = [GridItem(.adaptive(minimum: 140), spacing: 16)]
@@ -13,12 +40,14 @@ struct DashboardView: View {
                     // Full-width Weather summary card
                     NavigationLink(destination: WeatherView(apiKey: weatherAPIKey)) {
                         WeatherSummaryCard(apiKey: weatherAPIKey)
+                            .gtCard()
                     }
                     .buttonStyle(.plain)
 
                     // Full-width Tasks summary card
                     NavigationLink(destination: AllTasksView()) {
                         TaskSummaryCard()
+                            .gtCard()
                     }
                     .buttonStyle(.plain)
 
@@ -69,11 +98,11 @@ private struct WeatherSummaryCard: View {
     }
 
     var body: some View {
-        HStack(alignment: .center, spacing: 12) {
+    HStack(alignment: .center, spacing: 14) {
             ZStack {
-                RoundedRectangle(cornerRadius: 12, style: .continuous)
-                    .fill(LinearGradient(colors: [Color.orange.opacity(0.25), Color.orange.opacity(0.12)], startPoint: .topLeading, endPoint: .bottomTrailing))
-                    .frame(width: 56, height: 56)
+    RoundedRectangle(cornerRadius: DashboardDS.iconRadius, style: .continuous)
+            .fill(LinearGradient(colors: [Color.orange.opacity(0.25), Color.orange.opacity(0.12)], startPoint: .topLeading, endPoint: .bottomTrailing))
+            .frame(width: 56, height: 56)
                 Image(systemName: "cloud.sun.fill")
                     .symbolRenderingMode(.hierarchical)
                     .foregroundStyle(.orange)
@@ -151,8 +180,7 @@ private struct WeatherSummaryCard: View {
             Image(systemName: "chevron.right").foregroundStyle(.tertiary)
         }
         .frame(maxWidth: .infinity, alignment: .leading)
-        .padding(16)
-        .background(.thinMaterial, in: RoundedRectangle(cornerRadius: 16, style: .continuous))
+        .padding(.vertical, 2)
         .onAppear { if vm.weather == nil && !vm.isLoading { vm.refresh() } }
         .accessibilityElement(children: .combine)
         .accessibilityLabel(accessibilitySummary)
@@ -191,11 +219,11 @@ private struct TaskSummaryCard: View {
     }
 
     var body: some View {
-        HStack(spacing: 12) {
+    HStack(spacing: 14) {
             ZStack {
-                RoundedRectangle(cornerRadius: 12, style: .continuous)
-                    .fill(LinearGradient(colors: [Color.blue.opacity(0.25), Color.blue.opacity(0.12)], startPoint: .topLeading, endPoint: .bottomTrailing))
-                    .frame(width: 56, height: 56)
+    RoundedRectangle(cornerRadius: DashboardDS.iconRadius, style: .continuous)
+            .fill(LinearGradient(colors: [Color.blue.opacity(0.25), Color.blue.opacity(0.12)], startPoint: .topLeading, endPoint: .bottomTrailing))
+            .frame(width: 56, height: 56)
                 Image(systemName: "checklist")
                     .symbolRenderingMode(.hierarchical)
                     .foregroundStyle(.blue)
@@ -241,9 +269,8 @@ private struct TaskSummaryCard: View {
             Spacer()
             Image(systemName: "chevron.right").foregroundStyle(.tertiary)
         }
-        .frame(maxWidth: .infinity, alignment: .leading)
-        .padding(16)
-        .background(.thinMaterial, in: RoundedRectangle(cornerRadius: 16, style: .continuous))
+    .frame(maxWidth: .infinity, alignment: .leading)
+    .padding(.vertical, 2)
         .accessibilityLabel(accessibilitySummary)
     }
 

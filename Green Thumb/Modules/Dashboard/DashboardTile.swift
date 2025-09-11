@@ -19,9 +19,12 @@ struct DashboardTile: View {
         }
         .padding()
         .frame(maxWidth: .infinity, minHeight: 150)
-        .background(.thinMaterial)
-        .clipShape(RoundedRectangle(cornerRadius: 22, style: .continuous))
-        .shadow(radius: 2, y: 1)
+        .background(
+            LinearGradient(colors: [Color.white.opacity(0.85), Color.white.opacity(0.65)], startPoint: .topLeading, endPoint: .bottomTrailing),
+            in: RoundedRectangle(cornerRadius: 22, style: .continuous)
+        )
+        .overlay(RoundedRectangle(cornerRadius: 22, style: .continuous).stroke(Color.black.opacity(0.06), lineWidth: 1))
+        .shadow(color: Color.black.opacity(0.06), radius: 10, y: 4)
     }
 }
 
