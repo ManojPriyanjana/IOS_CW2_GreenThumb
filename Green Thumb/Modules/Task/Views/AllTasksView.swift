@@ -1,5 +1,6 @@
 import SwiftUI
 import CoreData
+import EventKit
 
 private enum TaskFilter: String, CaseIterable, Identifiable {
     case all = "All"
@@ -17,6 +18,12 @@ struct AllTasksView: View {
     @State private var query = ""
     @State private var filter: TaskFilter = .all
     @State private var showingAdd = false
+    @State private var showEKMessage = false
+    @State private var ekMessage = ""
+
+    private var isRemindersEnabled: Bool {
+        UserDefaultsSettingsStore().load().syncTasksToReminders
+    }
 
     init() {
         let req: NSFetchRequest<CareTask> = CareTask.fetchRequest()
@@ -59,6 +66,9 @@ struct AllTasksView: View {
             }
         }
         .sheet(isPresented: $showingAdd) { AddGlobalTaskSheet() }
+        .alert("Reminders", isPresented: $showEKMessage) {
+            Button("OK", role: .cancel) {}
+        } message: { Text(ekMessage) }
     }
 
     // MARK: - Filtering
@@ -142,6 +152,14 @@ struct AllTasksView: View {
             Button(role: .destructive) {
                 do { try TaskRepository(ctx: ctx).delete(t) } catch { print(error) }
             } label: { Label("Delete", systemImage: "trash") }
+
+            // Add to Reminders (visible if global setting enabled)
+            if isRemindersEnabled {
+                Button {
+                    addToReminders(t)
+                } label: { Label("Remind", systemImage: "bell.badge") }
+                .tint(.blue)
+            }
         }
     }
 
@@ -161,6 +179,32 @@ struct AllTasksView: View {
         case 2: return .red
         case 1: return .orange
         default: return .green
+        }
+    }
+
+    // MARK: - EventKit
+    private func addToReminders(_ t: CareTask) {
+        let title = t.title ?? "Task"
+        let due = t.dueDate
+        let notes: String? = {
+            var parts: [String] = []
+            if let name = t.plant?.name, !name.isEmpty { parts.append("Plant: \(name)") }
+            if let type = t.type, !type.isEmpty { parts.append("Type: \(type)") }
+            return parts.isEmpty ? nil : parts.joined(separator: "\n")
+        }()
+
+        guard let uri = t.objectID.uriRepresentation().absoluteString as String? else { return }
+
+        EventKitService.shared.createOrUpdateReminder(taskKey: uri, title: title, due: due, notes: notes) { result in
+            DispatchQueue.main.async {
+                switch result {
+                case .success:
+                    ekMessage = "Added to Reminders"
+                case .failure:
+                    ekMessage = "Couldn’t add to Reminders. Check permission in Settings."
+                }
+                showEKMessage = true
+            }
         }
     }
 }

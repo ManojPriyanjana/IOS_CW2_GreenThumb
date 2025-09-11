@@ -82,6 +82,7 @@
 		2BC439262E62F18E006D2F36 /* VerifyResetCodeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BC439252E62F18B006D2F36 /* VerifyResetCodeView.swift */; };
 		2BC439282E62F1A3006D2F36 /* ResetPasswordView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BC439272E62F1A0006D2F36 /* ResetPasswordView.swift */; };
 		2BC4392A2E62F1B6006D2F36 /* PasswordChangedSuccessView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BC439292E62F1B4006D2F36 /* PasswordChangedSuccessView.swift */; };
+		2BEK00012E70000100AAAAAA /* EventKitService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BEK00002E70000100AAAAAA /* EventKitService.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -178,6 +179,7 @@
 		2BC439252E62F18B006D2F36 /* VerifyResetCodeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VerifyResetCodeView.swift; sourceTree = "<group>"; };
 		2BC439272E62F1A0006D2F36 /* ResetPasswordView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResetPasswordView.swift; sourceTree = "<group>"; };
 		2BC439292E62F1B4006D2F36 /* PasswordChangedSuccessView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PasswordChangedSuccessView.swift; sourceTree = "<group>"; };
+		2BEK00002E70000100AAAAAA /* EventKitService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventKitService.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
@@ -420,6 +422,7 @@
 			isa = PBXGroup;
 			children = (
 				2B5383E22E66E40E002FE418 /* CoreData */,
+				2BEK00002E70000100AAAAAA /* EventKitService.swift */,
 			);
 			path = Infrastructure;
 			sourceTree = "<group>";
@@ -852,6 +855,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2BEK00012E70000100AAAAAA /* EventKitService.swift in Sources */,
 				2B2B788A2E4AE83200F56877 /* WeatherView.swift in Sources */,
 				2B1D16122E488747000B2AE8 /* SettingsViewModel.swift in Sources */,
 				2B4F5D6E2E6EC8DA00AF3136 /* HarvestScheduleDetailView.swift in Sources */,

@@ -13,5 +13,9 @@
 	<string></string>
 	<key>NSUserNotificationsUsageDescription</key>
 	<string></string>
+	<key>NSRemindersUsageDescription</key>
+	<string>Allow Green Thumb to create reminders for your plant tasks.</string>
+	<key>NSCalendarsUsageDescription</key>
+	<string>Allow Green Thumb to add events for harvest schedules.</string>
 </dict>
 </plist>

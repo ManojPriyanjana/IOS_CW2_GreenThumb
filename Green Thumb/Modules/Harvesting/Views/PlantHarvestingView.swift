@@ -1,5 +1,6 @@
 import SwiftUI
 import CoreData
+import EventKit
 
 struct PlantHarvestingView: View {
     @Environment(\.managedObjectContext) private var ctx
@@ -41,6 +42,15 @@ struct PlantHarvestingView: View {
                     } label: {
                         ScheduleRowView(schedule: schedule)
                     }
+                    .contextMenu {
+                        if isCalendarEnabled {
+                            Button {
+                                addToCalendar(schedule)
+                            } label: {
+                                Label("Add to Calendar", systemImage: "calendar.badge.plus")
+                            }
+                        }
+                    }
                 }
                 .onDelete { idx in
                     idx.map { schedules[$0] }.forEach { s in
@@ -50,6 +60,9 @@ struct PlantHarvestingView: View {
             }
         }
         .navigationTitle("Harvesting")
+        .alert("Calendar", isPresented: $showEKMessage) {
+            Button("OK", role: .cancel) {}
+        } message: { Text(ekMessage) }
         .toolbar {
             ToolbarItem(placement: .primaryAction) {
                 Button {
@@ -61,6 +74,27 @@ struct PlantHarvestingView: View {
         .sheet(isPresented: $showAdd) {
             NavigationStack {
                 AddEditHarvestScheduleView(plant: plant)
+            }
+        }
+    }
+
+    // MARK: - EventKit helpers
+    @State private var showEKMessage = false
+    @State private var ekMessage = ""
+    private var isCalendarEnabled: Bool { UserDefaultsSettingsStore().load().syncHarvestToCalendar }
+    private func addToCalendar(_ s: HarvestSchedule) {
+        let title = s.plant?.name ?? "Harvest"
+        let notes: String? = nil
+        let start = s.expectedStart
+        let end = s.expectedEnd
+        let key = s.objectID.uriRepresentation().absoluteString
+        EventKitService.shared.createOrUpdateEvent(scheduleKey: key, title: title, start: start, end: end, notes: notes) { result in
+            DispatchQueue.main.async {
+                switch result {
+                case .success: ekMessage = "Added to Calendar"
+                case .failure: ekMessage = "Couldn’t add to Calendar. Check permission in Settings."
+                }
+                showEKMessage = true
             }
         }
     }

@@ -5,6 +5,9 @@ struct AppSettings: Equatable {
     var pushNotifications: Bool
     var taskReminders: Bool
     var diseaseAlerts: Bool
+    // EventKit integration flags
+    var syncTasksToReminders: Bool
+    var syncHarvestToCalendar: Bool
     var quietStart: Int   // seconds since midnight
     var quietEnd: Int
     var highContrast: Bool
@@ -13,6 +16,7 @@ struct AppSettings: Equatable {
 
     static let `default` = AppSettings(
         faceID: true, pushNotifications: true, taskReminders: true, diseaseAlerts: true,
+        syncTasksToReminders: false, syncHarvestToCalendar: false,
         quietStart: 21*3600, quietEnd: 7*3600, highContrast: false, reduceMotion: false,
         darkModeEnabled: false
     )

@@ -85,6 +85,8 @@
 
 import SwiftUI
 import LocalAuthentication
+import EventKit
+import UIKit
 
 struct SettingsView: View {
     // NEW: talk to your auth/session layer directly
@@ -94,6 +96,8 @@ struct SettingsView: View {
     @StateObject private var vm = SettingsViewModel()
     @State private var faceIDAlert = false
     @State private var biometryMessage = ""
+    @State private var showRemindersDenied = false
+    @State private var showCalendarDenied = false
 
     // Show proper label depending on device capability
     private var biometryLabel: String {
@@ -155,6 +159,54 @@ struct SettingsView: View {
                            isOn: Binding(get: { vm.settings.diseaseAlerts },
                                          set: { vm.setDiseaseAlerts($0) }))
 
+              // EventKit integration (safe toggles only)
+                    Toggle("Sync Tasks to Reminders",
+                           isOn: Binding(get: { vm.settings.syncTasksToReminders },
+                                         set: { newVal in
+                                             if newVal {
+                                                 let status = EKEventStore.authorizationStatus(for: .reminder)
+                                                 switch status {
+                                                 case .authorized:
+                                                     vm.setSyncTasksToReminders(true)
+                                                 case .notDetermined:
+                                                     EKEventStore().requestAccess(to: .reminder) { granted, _ in
+                                                         DispatchQueue.main.async {
+                                                             vm.setSyncTasksToReminders(granted)
+                                                             if !granted { showRemindersDenied = true }
+                                                         }
+                                                     }
+                                                 default:
+                                                     vm.setSyncTasksToReminders(false)
+                                                     showRemindersDenied = true
+                                                 }
+                                             } else {
+                                                 vm.setSyncTasksToReminders(false)
+                                             }
+                                         }))
+                    Toggle("Add Harvest to Calendar",
+                           isOn: Binding(get: { vm.settings.syncHarvestToCalendar },
+                                         set: { newVal in
+                                             if newVal {
+                                                 let status = EKEventStore.authorizationStatus(for: .event)
+                                                 switch status {
+                                                 case .authorized:
+                                                     vm.setSyncHarvestToCalendar(true)
+                                                 case .notDetermined:
+                                                     EKEventStore().requestAccess(to: .event) { granted, _ in
+                                                         DispatchQueue.main.async {
+                                                             vm.setSyncHarvestToCalendar(granted)
+                                                             if !granted { showCalendarDenied = true }
+                                                         }
+                                                     }
+                                                 default:
+                                                     vm.setSyncHarvestToCalendar(false)
+                                                     showCalendarDenied = true
+                                                 }
+                                             } else {
+                                                 vm.setSyncHarvestToCalendar(false)
+                                             }
+                                         }))
+
                     NavigationLink {
                         QuietHoursView(start: vm.settings.quietStart,
                                        end: vm.settings.quietEnd) { s, e in
@@ -200,6 +252,19 @@ struct SettingsView: View {
                 Text(biometryMessage)
             }
         }
+        // Permission guidance alerts
+        .alert("Reminders Access Needed", isPresented: $showRemindersDenied) {
+            Button("Open Settings") { openSystemSettings() }
+            Button("Cancel", role: .cancel) {}
+        } message: {
+            Text("Enable Reminders access in iOS Settings → Privacy & Security → Reminders.")
+        }
+        .alert("Calendar Access Needed", isPresented: $showCalendarDenied) {
+            Button("Open Settings") { openSystemSettings() }
+            Button("Cancel", role: .cancel) {}
+        } message: {
+            Text("Enable Calendar access in iOS Settings → Privacy & Security → Calendars.")
+        }
     }
 
     // MARK: - Helpers
@@ -230,4 +295,10 @@ struct SettingsView: View {
         }
         return (false, "Unable to use \(biometryLabel) on this device.")
     }
+}
+
+// MARK: - Settings opener
+private func openSystemSettings() {
+    guard let url = URL(string: UIApplication.openSettingsURLString) else { return }
+    UIApplication.shared.open(url)
 }
