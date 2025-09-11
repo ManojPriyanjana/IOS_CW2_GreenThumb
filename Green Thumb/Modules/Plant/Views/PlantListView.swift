@@ -65,10 +65,34 @@ private struct AddPlantSheet: View {
     @State private var plantingDate = Date()
     @State private var location = ""
     @State private var notes = ""
+    @State private var photo: UIImage? = nil
+    @State private var showPhotoPicker = false
 
     var body: some View {
         NavigationStack {
             Form {
+                Section("Photo") {
+                    HStack(spacing: 12) {
+                        Group {
+                            if let img = photo {
+                                Image(uiImage: img)
+                                    .resizable().scaledToFill()
+                                    .frame(width: 64, height: 64)
+                                    .clipShape(RoundedRectangle(cornerRadius: 10))
+                                    .overlay(RoundedRectangle(cornerRadius: 10).stroke(.quaternary))
+                            } else {
+                                ZStack {
+                                    RoundedRectangle(cornerRadius: 10)
+                                        .fill(Color.secondary.opacity(0.08))
+                                        .frame(width: 64, height: 64)
+                                    Image(systemName: "photo")
+                                        .foregroundStyle(.secondary)
+                                }
+                            }
+                        }
+                        Button(photo == nil ? "Add Photo" : "Change Photo") { showPhotoPicker = true }
+                    }
+                }
                 Section("Basic") {
                     TextField("Name", text: $name)
                     Picker("Category", selection: $category) {
@@ -84,6 +108,9 @@ private struct AddPlantSheet: View {
                 ToolbarItem(placement: .cancellationAction) { Button("Cancel") { dismiss() } }
                 ToolbarItem(placement: .confirmationAction) { Button("Save") { save() }.disabled(name.trimmingCharacters(in: .whitespaces).isEmpty) }
             }
+            .sheet(isPresented: $showPhotoPicker) {
+                ImagePicker(image: $photo)
+            }
         }
     }
 
@@ -95,7 +122,7 @@ private struct AddPlantSheet: View {
                 category: category,
                 plantingDate: plantingDate,
                 location: location.isEmpty ? nil : location,
-                photoData: nil,
+                photoData: photo?.jpegData(compressionQuality: 0.85),
                 notes: notes.isEmpty ? nil : notes
             )
             UIImpactFeedbackGenerator(style: .light).impactOccurred()
