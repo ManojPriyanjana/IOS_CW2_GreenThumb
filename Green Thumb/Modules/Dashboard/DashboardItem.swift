@@ -47,7 +47,7 @@ extension DashboardItem {
             destination: AnyView(Text("Tasks (coming soon)"))
         ),
 
-        // Weather
+        // Weather (full screen)
         DashboardItem(
             title: "Weather",
             systemImage: "cloud.sun.fill",
