@@ -6,7 +6,7 @@ struct PlantDetailView: View {
 
     let objectID: NSManagedObjectID
 
-    // 👇 Live fetch of the Plant by objectID
+    // Live fetch of the Plant by objectID
     @FetchRequest private var fetched: FetchedResults<Plant>
     @State private var showEdit = false
     @State private var showAddTask = false
@@ -31,7 +31,7 @@ struct PlantDetailView: View {
                 let location  = (plant.location?.isEmpty == false) ? plant.location! : "—"
                 let notes     = (plant.notes?.isEmpty == false) ? plant.notes! : "—"
 
-                // 👇 Count auto-updates because fetched plant is live
+                // Count auto-updates because fetched plant is live
                 let taskCount   = (plant.tasks as? Set<CareTask>)?.filter { $0.status != "Completed" }.count ?? 0
                 let issueCount  = plant.healthIssues?.count ?? 0
                 let schedCount  = plant.harvestSchedules?.count ?? 0
@@ -103,14 +103,14 @@ struct PlantDetailView: View {
         }
     }
 
-    // MARK: - Delete
+    // Delete
     private func deletePlant(_ plant: Plant) {
         ctx.delete(plant)
         do { try ctx.save() } catch { print("Delete error:", error) }
     }
 }
 
-// MARK: - Helpers
+// Helpers
 private func extractSoil(from notes: String) -> String? {
     // Looks for a line starting with "Soil: " and returns the remainder
     for line in notes.split(separator: "\n") {
@@ -121,7 +121,7 @@ private func extractSoil(from notes: String) -> String? {
     return nil
 }
 
-// MARK: - Edit plant
+//Edit plant
 
 private struct EditPlantSheet: View {
     @Environment(\.managedObjectContext) private var ctx

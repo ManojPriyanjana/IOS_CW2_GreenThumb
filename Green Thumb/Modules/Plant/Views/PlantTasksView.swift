@@ -21,7 +21,7 @@ struct PlantTasksView: View {
             NSSortDescriptor(keyPath: \CareTask.dueDate,   ascending: true),
             NSSortDescriptor(keyPath: \CareTask.createdAt, ascending: true)
         ]
-        // 🔒 Scope to this plant (and only not completed)
+        // Scope to this plant (and only not completed)
         req.predicate = NSPredicate(format: "status != %@ AND plant == %@", "Completed", plant)
         _pendingForPlant = FetchRequest(fetchRequest: req, animation: .default)
     }
@@ -93,7 +93,7 @@ struct PlantTasksView: View {
         return d > Calendar.current.endOfDay(for: Date())
     }
 
-    // MARK: - Row
+    // Row
 
     @ViewBuilder
     private func row(_ t: CareTask) -> some View {
