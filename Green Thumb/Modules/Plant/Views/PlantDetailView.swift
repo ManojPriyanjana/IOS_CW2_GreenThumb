@@ -9,6 +9,9 @@ struct PlantDetailView: View {
     // 👇 Live fetch of the Plant by objectID
     @FetchRequest private var fetched: FetchedResults<Plant>
     @State private var showEdit = false
+    @State private var showAddTask = false
+    @State private var showAddHealth = false
+    @State private var showAddHarvest = false
 
     init(objectID: NSManagedObjectID) {
         self.objectID = objectID
@@ -49,6 +52,7 @@ struct PlantDetailView: View {
                         Text("Category: \(category)")
                         Text("Planted: \(planted)")
                         Text("Location: \(location)")
+                        if let soil = extractSoil(from: notes) { Text("Soil: \(soil)") }
                         Text("Notes: \(notes)")
                     }
 
@@ -70,11 +74,15 @@ struct PlantDetailView: View {
                 .listStyle(.insetGrouped)
                 .navigationTitle(name)
                 .toolbar {
-                    ToolbarItem(placement: .primaryAction) {
+            ToolbarItem(placement: .primaryAction) {
                         Menu {
                             Button { showEdit = true } label: {
                                 Label("Edit", systemImage: "pencil")
                             }
+                Divider()
+                Button { showAddTask = true } label: { Label("Add Task", systemImage: "checklist") }
+                Button { showAddHealth = true } label: { Label("Add Health Issue", systemImage: "heart.text.square") }
+                Button { showAddHarvest = true } label: { Label("Add Harvest", systemImage: "basket.fill") }
                             Button(role: .destructive) { deletePlant(plant) } label: {
                                 Label("Delete", systemImage: "trash")
                             }
@@ -86,6 +94,9 @@ struct PlantDetailView: View {
                 .sheet(isPresented: $showEdit) {
                     EditPlantSheet(plant: plant)
                 }
+        .sheet(isPresented: $showAddTask) { NavigationStack { AddGlobalTaskSheet(fixedPlant: plant) } }
+        .sheet(isPresented: $showAddHealth) { AddHealthIssueSheet(plant: plant) }
+        .sheet(isPresented: $showAddHarvest) { NavigationStack { AddEditHarvestScheduleView(plant: plant) } }
             } else {
                 ProgressView()
             }
@@ -97,6 +108,17 @@ struct PlantDetailView: View {
         ctx.delete(plant)
         do { try ctx.save() } catch { print("Delete error:", error) }
     }
+}
+
+// MARK: - Helpers
+private func extractSoil(from notes: String) -> String? {
+    // Looks for a line starting with "Soil: " and returns the remainder
+    for line in notes.split(separator: "\n") {
+        if line.lowercased().hasPrefix("soil:") {
+            return line.dropFirst(5).trimmingCharacters(in: .whitespaces)
+        }
+    }
+    return nil
 }
 
 // MARK: - Edit plant
@@ -116,6 +138,10 @@ private struct EditPlantSheet: View {
     @State private var showPhotoPicker = false
 
     private let categories = ["Herbs","Vegetables","Flowers","Custom"]
+    private let soilTypes = ["Loamy","Sandy","Clay","Silty","Peaty","Chalky","Custom"]
+    @State private var soil: String = "Loamy"
+    private let locations = ["Garden Bed","Greenhouse","Balcony","Indoor","Custom"]
+    @State private var locationChoice: String = "Garden Bed"
 
     var body: some View {
         NavigationStack {
@@ -154,7 +180,15 @@ private struct EditPlantSheet: View {
                         ForEach(categories, id: \.self) { Text($0) }
                     }
                     DatePicker("Planting Date", selection: $plantingDate, displayedComponents: .date)
-                    TextField("Location (optional)", text: $location)
+                    Picker("Location", selection: $locationChoice) {
+                        ForEach(locations, id: \.self) { Text($0) }
+                    }
+                    if locationChoice == "Custom" {
+                        TextField("Custom location", text: $location)
+                    }
+                    Picker("Soil Type", selection: $soil) {
+                        ForEach(soilTypes, id: \.self) { Text($0) }
+                    }
                     TextField("Notes (optional)", text: $notes, axis: .vertical)
                 }
             }
@@ -175,8 +209,30 @@ private struct EditPlantSheet: View {
         name = plant.name ?? ""
         category = plant.category ?? categories[1]
         plantingDate = plant.plantingDate ?? Date()
-        location = plant.location ?? ""
-        notes = plant.notes ?? ""
+        // Location mapping
+        let loc = plant.location ?? ""
+        if locations.contains(loc) {
+            locationChoice = loc
+            location = ""
+        } else if !loc.isEmpty {
+            locationChoice = "Custom"
+            location = loc
+        } else {
+            locationChoice = locations.first ?? "Garden Bed"
+            location = ""
+        }
+        // Notes and soil extraction
+        let rawNotes = plant.notes ?? ""
+        if let soilLine = extractSoil(from: rawNotes) {
+            soil = soilLine.isEmpty ? soil : soilLine
+            // strip soil line from notes
+            notes = rawNotes
+                .split(separator: "\n")
+                .filter { !$0.lowercased().hasPrefix("soil:") }
+                .joined(separator: "\n")
+        } else {
+            notes = rawNotes
+        }
         if let data = plant.photoData, let ui = UIImage(data: data) { photo = ui } else { photo = nil }
     }
 
@@ -184,8 +240,12 @@ private struct EditPlantSheet: View {
         plant.name = name
         plant.category = category
         plant.plantingDate = plantingDate
-        plant.location = location.trimmingCharacters(in: .whitespaces).isEmpty ? nil : location
-        plant.notes = notes.trimmingCharacters(in: .whitespaces).isEmpty ? nil : notes
+        let loc = locationChoice == "Custom" ? location.trimmingCharacters(in: .whitespaces) : locationChoice
+        plant.location = loc.isEmpty ? nil : loc
+        var composed = notes.trimmingCharacters(in: .whitespacesAndNewlines)
+        let soilLine = "Soil: \(soil)"
+        if !soil.isEmpty { composed = composed.isEmpty ? soilLine : soilLine + "\n" + composed }
+        plant.notes = composed.isEmpty ? nil : composed
         plant.photoData = photo?.jpegData(compressionQuality: 0.85)
         do { try ctx.save(); dismiss() } catch { print("Save error:", error) }
     }

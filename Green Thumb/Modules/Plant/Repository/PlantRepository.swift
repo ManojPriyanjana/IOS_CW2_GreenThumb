@@ -2,6 +2,7 @@ import CoreData
 
 protocol PlantRepositoryProtocol {
     func create(name: String, category: String, plantingDate: Date, location: String?, photoData: Data?, notes: String?) throws
+    func createAndReturn(name: String, category: String, plantingDate: Date, location: String?, photoData: Data?, notes: String?) throws -> Plant
     func delete(_ plant: Plant) throws
     func save() throws
 }
@@ -20,6 +21,19 @@ final class PlantRepository: PlantRepositoryProtocol {
         p.photoData = photoData
         p.notes = notes
         try save()
+    }
+
+    func createAndReturn(name: String, category: String, plantingDate: Date, location: String?, photoData: Data?, notes: String?) throws -> Plant {
+        let p = Plant(context: ctx)
+        p.id = UUID()
+        p.name = name
+        p.category = category
+        p.plantingDate = plantingDate
+        p.location = location
+        p.photoData = photoData
+        p.notes = notes
+        try save()
+        return p
     }
 
     func delete(_ plant: Plant) throws {

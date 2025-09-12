@@ -13,6 +13,13 @@ struct AddHealthIssueSheet: View {
     @State private var category = "Pests"
     @State private var subtype = ""      // e.g. "Aphids", "Powdery mildew"
     @State private var notes = ""
+    @State private var notify = false
+    enum NotifyFrequency: String, CaseIterable, Identifiable { case once, daily, weekly, monthly; var id: String { rawValue } }
+    @State private var frequency: NotifyFrequency = .once
+    @State private var timeOnly: Date = Calendar.current.date(bySettingHour: 9, minute: 0, second: 0, of: Date()) ?? Date()
+    @State private var onceDate: Date = Date().addingTimeInterval(3600)
+    @State private var weekday: Int = Calendar.current.component(.weekday, from: Date())
+    @State private var monthDay: Int = Calendar.current.component(.day, from: Date())
 
     var body: some View {
         NavigationStack {
@@ -37,6 +44,32 @@ struct AddHealthIssueSheet: View {
                             }
                         }
                 }
+                Section("Notification") {
+                    Toggle("Notify me", isOn: $notify)
+                    if notify {
+                        Picker("Frequency", selection: $frequency) {
+                            Text("Once").tag(NotifyFrequency.once)
+                            Text("Daily").tag(NotifyFrequency.daily)
+                            Text("Weekly").tag(NotifyFrequency.weekly)
+                            Text("Monthly").tag(NotifyFrequency.monthly)
+                        }
+                        if frequency == .once {
+                            DatePicker("Date", selection: $onceDate, displayedComponents: [.date, .hourAndMinute])
+                        } else {
+                            DatePicker("Time", selection: $timeOnly, displayedComponents: .hourAndMinute)
+                        }
+                        if frequency == .weekly {
+                            Picker("Day", selection: $weekday) {
+                                Text("Sun").tag(1); Text("Mon").tag(2); Text("Tue").tag(3);
+                                Text("Wed").tag(4); Text("Thu").tag(5); Text("Fri").tag(6); Text("Sat").tag(7)
+                            }
+                        } else if frequency == .monthly {
+                            Picker("Day", selection: $monthDay) {
+                                ForEach(1...31, id: \.self) { Text("\($0)").tag($0) }
+                            }
+                        }
+                    }
+                }
             }
             .navigationTitle("Add Health Issue")
             .toolbar {
@@ -50,12 +83,35 @@ struct AddHealthIssueSheet: View {
 
     private func save() {
         do {
-            _ = try HealthIssueRepository(ctx: ctx).create(
+            let issue = try HealthIssueRepository(ctx: ctx).create(
                 for: plant,
                 category: category,
                 subtype: subtype,
                 notes: notes
             )
+            if notify, let id = issue.id?.uuidString {
+                NotificationManager.shared.requestAuth { granted in
+                    guard granted else { return }
+                    let title = "Health: \(category)"
+                    let body = (subtype.isEmpty ? "New issue" : subtype) + " for \(plant.name ?? "Plant")"
+                    switch frequency {
+                    case .once:
+                        NotificationManager.shared.scheduleOnce(id: id, title: title, body: body, at: onceDate)
+                    case .daily:
+                        let h = Calendar.current.component(.hour, from: timeOnly)
+                        let m = Calendar.current.component(.minute, from: timeOnly)
+                        NotificationManager.shared.scheduleDaily(id: id, title: title, body: body, hour: h, minute: m)
+                    case .weekly:
+                        let h = Calendar.current.component(.hour, from: timeOnly)
+                        let m = Calendar.current.component(.minute, from: timeOnly)
+                        NotificationManager.shared.scheduleWeekly(id: id, title: title, body: body, weekday: weekday, hour: h, minute: m)
+                    case .monthly:
+                        let h = Calendar.current.component(.hour, from: timeOnly)
+                        let m = Calendar.current.component(.minute, from: timeOnly)
+                        NotificationManager.shared.scheduleMonthly(id: id, title: title, body: body, day: monthDay, hour: h, minute: m)
+                    }
+                }
+            }
             dismiss()
         } catch {
             print("Health save error:", error)

@@ -43,7 +43,7 @@ struct PlantListView: View {
                                            description: Text("Try a different name or plant ID."))
                 } else {
                     List(filtered, id: \.objectID) { plant in
-                        NavigationLink(value: plant.objectID) {
+                        NavigationLink(destination: PlantDetailView(objectID: plant.objectID)) {
                             HStack(spacing: 12) {
                                 if let data = plant.photoData, let ui = UIImage(data: data) {
                                     Image(uiImage: ui).resizable().scaledToFill()
@@ -75,11 +75,28 @@ struct PlantListView: View {
             .sheet(isPresented: $showingAdd, content: {
                 AddPlantSheet()
             })
-            .navigationDestination(for: NSManagedObjectID.self) { objectID in
-                PlantDetailView(objectID: objectID)
-            }
             //--
         }
+    }
+}
+
+// Local pill used only in this file to avoid cross-file dependency
+private struct PrioritySelectPill: View {
+    let title: String
+    let color: Color
+    let selected: Bool
+    let onTap: () -> Void
+
+    var body: some View {
+        Button(action: onTap) {
+            Text(title)
+                .font(.footnote)
+                .padding(.horizontal, 10).padding(.vertical, 6)
+                .background(selected ? color.opacity(0.2) : Color.gray.opacity(0.12))
+                .foregroundStyle(selected ? color : .primary)
+                .clipShape(Capsule())
+        }
+        .buttonStyle(.plain)
     }
 }
 
@@ -93,6 +110,18 @@ private struct AddPlantSheet: View {
     @State private var notes = ""
     @State private var photo: UIImage? = nil
     @State private var showPhotoPicker = false
+
+    // New: Soil type and location list
+    private let soilTypes = ["Loamy","Sandy","Clay","Silty","Peaty","Chalky","Custom"]
+    @State private var soil = "Loamy"
+    private let locations = ["Garden Bed","Greenhouse","Balcony","Indoor","Custom"]
+    @State private var locationChoice = "Garden Bed"
+
+    // Linked-data quick adds
+    @State private var createdPlant: Plant? = nil
+    @State private var showAddTask = false
+    @State private var showAddHealth = false
+    @State private var showAddHarvest = false
 
     var body: some View {
         NavigationStack {
@@ -125,36 +154,82 @@ private struct AddPlantSheet: View {
                         ForEach(["Herbs","Vegetables","Flowers","Custom"], id: \.self) { Text($0) }
                     }
                     DatePicker("Planting Date", selection: $plantingDate, displayedComponents: .date)
-                    TextField("Location (optional)", text: $location)
-                    TextField("Notes (optional)", text: $notes, axis: .vertical)
+                    // Location dropdown with custom
+                    Picker("Location", selection: $locationChoice) {
+                        ForEach(locations, id: \.self) { Text($0) }
+                    }
+                    if locationChoice == "Custom" {
+                        TextField("Custom location", text: $location)
+                    }
+                    // Soil type with custom stored in notes
+                    Picker("Soil Type", selection: $soil) {
+                        ForEach(soilTypes, id: \.self) { Text($0) }
+                    }
+                    if soil == "Custom" {
+                        TextField("Custom soil type", text: $notes)
+                    } else {
+                        TextField("Notes (optional)", text: $notes, axis: .vertical)
+                    }
+                }
+
+                Section("Linked Data") {
+                    Button {
+                        if let plant = ensurePlant() { createdPlant = plant; showAddTask = true }
+                    } label: { Label("Add Task", systemImage: "checklist") }
+
+                    Button {
+                        if let plant = ensurePlant() { createdPlant = plant; showAddHealth = true }
+                    } label: { Label("Add Health Issue", systemImage: "heart.text.square") }
+
+                    Button {
+                        if let plant = ensurePlant() { createdPlant = plant; showAddHarvest = true }
+                    } label: { Label("Add Harvest Schedule", systemImage: "basket.fill") }
                 }
             }
             .navigationTitle("Add Plant")
             .toolbar {
                 ToolbarItem(placement: .cancellationAction) { Button("Cancel") { dismiss() } }
-                ToolbarItem(placement: .confirmationAction) { Button("Save") { save() }.disabled(name.trimmingCharacters(in: .whitespaces).isEmpty) }
+                ToolbarItem(placement: .confirmationAction) { Button("Save") { _ = ensurePlant(); UIImpactFeedbackGenerator(style: .light).impactOccurred(); dismiss() }.disabled(name.trimmingCharacters(in: .whitespaces).isEmpty) }
             }
             .sheet(isPresented: $showPhotoPicker) {
                 ImagePicker(image: $photo)
             }
+            // Present linked-data sheets using the newly created plant
+            .sheet(isPresented: $showAddTask) {
+                if let p = createdPlant { AddGlobalTaskSheet(fixedPlant: p) }
+            }
+            .sheet(isPresented: $showAddHealth) {
+                if let p = createdPlant { AddHealthIssueSheet(plant: p) }
+            }
+            .sheet(isPresented: $showAddHarvest) {
+                if let p = createdPlant { NavigationStack { AddEditHarvestScheduleView(plant: p) } }
+            }
         }
     }
 
-    private func save() {
+    // Create plant if not created yet, returns the plant instance
+    private func ensurePlant() -> Plant? {
+        if let createdPlant { return createdPlant }
         let repo = PlantRepository(ctx: ctx)
         do {
-            try repo.create(
+            // Compose notes with soil when provided
+            let soilNotePrefix = soil == "Custom" ? "Soil: \(notes)" : "Soil: \(soil)"
+            let combinedNotes = [soilNotePrefix, notes].filter { !$0.trimmingCharacters(in: .whitespaces).isEmpty }.joined(separator: "\n")
+
+            let loc = locationChoice == "Custom" ? (location.isEmpty ? nil : location) : locationChoice
+            let plant = try repo.createAndReturn(
                 name: name,
                 category: category,
                 plantingDate: plantingDate,
-                location: location.isEmpty ? nil : location,
+                location: loc,
                 photoData: photo?.jpegData(compressionQuality: 0.85),
-                notes: notes.isEmpty ? nil : notes
+                notes: combinedNotes.isEmpty ? nil : combinedNotes
             )
-            UIImpactFeedbackGenerator(style: .light).impactOccurred()
-            dismiss()
+            createdPlant = plant
+            return plant
         } catch {
             print("Save error:", error)
+            return nil
         }
     }
 }

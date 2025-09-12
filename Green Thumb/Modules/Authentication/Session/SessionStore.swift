@@ -1,7 +1,7 @@
 import Foundation
 import Combine
 import FirebaseAuth
-import LocalAuthentication
+@preconcurrency import LocalAuthentication
 
 @MainActor
 final class SessionStore: ObservableObject {

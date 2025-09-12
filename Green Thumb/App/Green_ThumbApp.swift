@@ -1,5 +1,6 @@
 import SwiftUI
 import Firebase
+import UserNotifications
 
 @MainActor
 final class ColorSchemeController: ObservableObject {
@@ -9,7 +10,10 @@ final class ColorSchemeController: ObservableObject {
 
 @main
 struct Green_ThumbApp: App {
-    init() { FirebaseApp.configure() }
+    init() {
+        FirebaseApp.configure()
+    UNUserNotificationCenter.current().delegate = NotificationManager.shared
+    }
 
     private let persistence = PersistenceController.shared
     @StateObject private var session = SessionStore()
@@ -26,6 +30,9 @@ struct Green_ThumbApp: App {
                 .task {
                     let settings = settingsStore.load()
                     colorCtl.apply(darkModeEnabled: settings.darkModeEnabled)
+                    #if DEBUG
+                    NotificationManager.shared.debugLogState(reason: "app-start")
+                    #endif
                 }
         }
     }

@@ -20,6 +20,8 @@ struct AllTasksView: View {
     @State private var showingAdd = false
     @State private var showEKMessage = false
     @State private var ekMessage = ""
+    @State private var showNotifMessage = false
+    @State private var notifMessage = ""
 
     private var isRemindersEnabled: Bool {
         UserDefaultsSettingsStore().load().syncTasksToReminders
@@ -61,6 +63,12 @@ struct AllTasksView: View {
                 .frame(maxWidth: 320)
             }
             ToolbarItem(placement: .primaryAction) {
+                Button {
+                    testLocalNotification()
+                } label: { Image(systemName: "bell.badge") }
+                .accessibilityLabel("Test notification")
+            }
+            ToolbarItem(placement: .primaryAction) {
                 Button { showingAdd = true } label: { Image(systemName: "plus") }
                     .accessibilityLabel("Add task")
             }
@@ -69,6 +77,9 @@ struct AllTasksView: View {
         .alert("Reminders", isPresented: $showEKMessage) {
             Button("OK", role: .cancel) {}
         } message: { Text(ekMessage) }
+        .alert("Notifications", isPresented: $showNotifMessage) {
+            Button("OK", role: .cancel) {}
+        } message: { Text(notifMessage) }
     }
 
     // MARK: - Filtering
@@ -204,6 +215,32 @@ struct AllTasksView: View {
                     ekMessage = "Couldn’t add to Reminders. Check permission in Settings."
                 }
                 showEKMessage = true
+            }
+        }
+    }
+}
+
+// MARK: - Local Notification Test
+extension AllTasksView {
+    private func testLocalNotification() {
+        NotificationManager.shared.requestAuth { granted in
+            guard granted else {
+                notifMessage = "Notifications are off. Enable in Settings to test."
+                showNotifMessage = true
+                return
+            }
+            let id = "test.local." + UUID().uuidString
+            let fire = Date().addingTimeInterval(10)
+            NotificationManager.shared.schedule(id: id,
+                                                title: "Green Thumb Test",
+                                                body: "Local notification works",
+                                                at: fire) { error in
+                if let error {
+                    notifMessage = "Failed to schedule: \(error.localizedDescription)"
+                } else {
+                    notifMessage = "Scheduled in ~10 seconds. Background the app to see it."
+                }
+                showNotifMessage = true
             }
         }
     }

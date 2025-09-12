@@ -38,6 +38,7 @@ final class HarvestRepository {
 
     // Create / Update / Delete Schedule
 
+    @discardableResult
     static func addSchedule(
         for plant: Plant,
         expectedStart: Date,
@@ -46,7 +47,7 @@ final class HarvestRepository {
         reminderID: String?,
         notes: String?,
         in ctx: NSManagedObjectContext
-    ) throws {
+    ) throws -> HarvestSchedule {
         let schedule = HarvestSchedule(context: ctx)
         schedule.id = UUID()
         schedule.expectedStart = expectedStart
@@ -57,6 +58,7 @@ final class HarvestRepository {
         schedule.status = HarvestStatus.planned.rawValue
         schedule.plant = plant
         try ctx.save()
+        return schedule
     }
 
     static func updateSchedule(

@@ -1,6 +1,6 @@
 // Modules/Authentication/ViewModels/AuthViewModel.swift
 import Foundation
-import LocalAuthentication
+@preconcurrency import LocalAuthentication
 
 @MainActor
 final class AuthViewModel: ObservableObject {

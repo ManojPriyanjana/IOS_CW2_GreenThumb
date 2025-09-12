@@ -1,5 +1,5 @@
 import Foundation
-import LocalAuthentication
+@preconcurrency import LocalAuthentication
 import Security
 
 enum KeychainError: Error { case unexpectedStatus(OSStatus), itemNotFound }

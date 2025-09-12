@@ -13,14 +13,26 @@ final class EventKitService {
 
     // Explicit requesters to be called when wiring features
     func requestRemindersAccess(completion: @escaping (Bool) -> Void) {
-        store.requestAccess(to: .reminder) { granted, _ in
-            DispatchQueue.main.async { completion(granted) }
+        if #available(iOS 17.0, *) {
+            store.requestFullAccessToReminders { granted, _ in
+                DispatchQueue.main.async { completion(granted) }
+            }
+        } else {
+            store.requestAccess(to: .reminder) { granted, _ in
+                DispatchQueue.main.async { completion(granted) }
+            }
         }
     }
 
     func requestCalendarAccess(completion: @escaping (Bool) -> Void) {
-        store.requestAccess(to: .event) { granted, _ in
-            DispatchQueue.main.async { completion(granted) }
+        if #available(iOS 17.0, *) {
+            store.requestFullAccessToEvents { granted, _ in
+                DispatchQueue.main.async { completion(granted) }
+            }
+        } else {
+            store.requestAccess(to: .event) { granted, _ in
+                DispatchQueue.main.async { completion(granted) }
+            }
         }
     }
 

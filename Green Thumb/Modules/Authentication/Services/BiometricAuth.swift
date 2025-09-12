@@ -1,5 +1,5 @@
 import Foundation
-import LocalAuthentication
+@preconcurrency import LocalAuthentication
 
 enum BiometricKind { case none, touchID, faceID }
 

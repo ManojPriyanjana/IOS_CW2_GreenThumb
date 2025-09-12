@@ -1,4 +1,4 @@
-import LocalAuthentication
+@preconcurrency import LocalAuthentication
 
 final class FaceIDManager {
     static let shared = FaceIDManager(); private init() {}

@@ -15,7 +15,7 @@ struct AddGlobalTaskSheet: View {
     private var plants: FetchedResults<Plant>
 
     // Form state
-    @State private var selectedPlant: Plant? = nil            // may be nil (general task)
+    @State private var selectedPlantID: NSManagedObjectID? = nil // stable selection for Picker
     @State private var title = ""
 
     // Quick types
@@ -28,6 +28,21 @@ struct AddGlobalTaskSheet: View {
     // Due date
     @State private var hasDue = true
     @State private var due = Calendar.current.date(byAdding: .day, value: 1, to: Date()) ?? Date()
+    // Local notification
+    @State private var notify = false
+    private var selectedPlant: Plant? { // resolve from fetched list to avoid context faults
+        guard let id = selectedPlantID else { return nil }
+        return plants.first(where: { $0.objectID == id })
+    }
+    private var hasPlantSelection: Bool { fixedPlant != nil || selectedPlantID != nil }
+    @State private var showSaveError = false
+    @State private var saveErrorMessage = ""
+    enum NotifyFrequency: String, CaseIterable, Identifiable { case once, daily, weekly, monthly; var id: String { rawValue } }
+    @State private var frequency: NotifyFrequency = .once
+    @State private var timeOnly: Date = Calendar.current.date(bySettingHour: 9, minute: 0, second: 0, of: Date()) ?? Date()
+    @State private var onceDate: Date = Date().addingTimeInterval(3600)
+    @State private var weekday: Int = Calendar.current.component(.weekday, from: Date()) // 1=Sun..7=Sat
+    @State private var monthDay: Int = Calendar.current.component(.day, from: Date())
 
     init(fixedPlant: Plant? = nil) {
         self.fixedPlant = fixedPlant
@@ -40,11 +55,16 @@ struct AddGlobalTaskSheet: View {
                 // Plant
                 if fixedPlant == nil {
                     Section("Plant") {
-                        Picker("Plant", selection: $selectedPlant) {
-                            Text("No plant").tag(Optional<Plant>.none)
+                        Picker("Plant", selection: $selectedPlantID) {
+                            Text("No plant").tag(Optional<NSManagedObjectID>.none)
                             ForEach(plants) { p in
-                                Text(p.name ?? "Plant").tag(Optional(p))
+                                Text(p.name ?? "Plant").tag(Optional(p.objectID))
                             }
+                        }
+                        if !hasPlantSelection {
+                            Text("Select a plant to save this task.")
+                                .font(.caption)
+                                .foregroundStyle(.secondary)
                         }
                     }
                 } else {
@@ -63,7 +83,10 @@ struct AddGlobalTaskSheet: View {
                 Section("Details") {
                     TextField("Title (e.g., Water 500ml)", text: $title)
 
-                    LazyVGrid(columns: [GridItem(.adaptive(minimum: 110), spacing: 8)], spacing: 8) {
+                    LazyVGrid(columns: [
+                        GridItem(.flexible(minimum: 110), spacing: 8),
+                        GridItem(.flexible(minimum: 110), spacing: 8)
+                    ], spacing: 8) {
                         ForEach(types, id: \.self) { t in
                             SelectablePill(
                                 selected: type == t,
@@ -73,6 +96,7 @@ struct AddGlobalTaskSheet: View {
                         }
                     }
                     .padding(.vertical, 4)
+                    .animation(.none, value: type)
 
                     HStack(spacing: 8) {
                         PrioritySelectPill(title: "Low",    color: .green,  selected: priority == 0) { priority = 0 }
@@ -89,6 +113,36 @@ struct AddGlobalTaskSheet: View {
                         DatePicker("Due", selection: $due, displayedComponents: [.date, .hourAndMinute])
                     }
                 }
+                Section("Notification") {
+                    Toggle("Notify me", isOn: $notify)
+                    Group {
+                        if notify {
+                        Picker("Frequency", selection: $frequency) {
+                            Text("Once").tag(NotifyFrequency.once)
+                            Text("Daily").tag(NotifyFrequency.daily)
+                            Text("Weekly").tag(NotifyFrequency.weekly)
+                            Text("Monthly").tag(NotifyFrequency.monthly)
+                        }
+                        if frequency == .once {
+                            DatePicker("Date", selection: $onceDate, displayedComponents: [.date, .hourAndMinute])
+                        } else {
+                            DatePicker("Time", selection: $timeOnly, displayedComponents: .hourAndMinute)
+                        }
+                        if frequency == .weekly {
+                            Picker("Day", selection: $weekday) {
+                                Text("Sun").tag(1); Text("Mon").tag(2); Text("Tue").tag(3);
+                                Text("Wed").tag(4); Text("Thu").tag(5); Text("Fri").tag(6); Text("Sat").tag(7)
+                            }
+                        } else if frequency == .monthly {
+                            Picker("Day", selection: $monthDay) {
+                                ForEach(1...31, id: \.self) { Text("\($0)").tag($0) }
+                            }
+                        }
+                        }
+                    }
+                    .animation(.none, value: notify)
+                    .animation(.none, value: frequency)
+                }
             }
             .navigationTitle("Add Task")
             .toolbar {
@@ -97,29 +151,65 @@ struct AddGlobalTaskSheet: View {
                 }
                 ToolbarItem(placement: .confirmationAction) {
                     Button("Save") { save() }
-                        .disabled(title.trimmingCharacters(in: .whitespaces).isEmpty)
+                        .disabled(title.trimmingCharacters(in: .whitespaces).isEmpty || !hasPlantSelection)
                 }
             }
+            .alert("Unable to save task", isPresented: $showSaveError) {
+                Button("OK", role: .cancel) { }
+            } message: { Text(saveErrorMessage) }
             .onAppear {
                 // Preselect and lock if scoped
-                if let fixed = fixedPlant { selectedPlant = fixed }
+                if let fixed = fixedPlant { selectedPlantID = fixed.objectID }
+                // Default once date to due date if set, else soon
+                onceDate = hasDue ? due : Date().addingTimeInterval(3600)
             }
         }
     }
 
     // Save
     private func save() {
+        // Guard against missing plant if required
+    if fixedPlant == nil && selectedPlantID == nil {
+            saveErrorMessage = "Please select a plant before saving."
+            showSaveError = true
+            return
+        }
         do {
-            _ = try TaskRepository(ctx: ctx).create(
-                for: fixedPlant ?? selectedPlant,   // use fixedPlant if present
+            let t = try TaskRepository(ctx: ctx).create(
+        for: fixedPlant ?? selectedPlant,   // use fixedPlant if present
                 title: title,
                 type: type,
                 dueDate: hasDue ? due : nil,
                 priority: Int16(priority)
             )
+        if notify, let id = t.id?.uuidString {
+                NotificationManager.shared.requestAuth { granted in
+                    guard granted else { return }
+            let titleText = title.isEmpty ? "Task" : title
+            let plantName = fixedPlant?.name ?? selectedPlant?.name ?? "Plant"
+            let bodyText = "\(type.capitalized) for \(plantName)"
+                    switch frequency {
+                    case .once:
+                        NotificationManager.shared.scheduleOnce(id: id, title: titleText, body: bodyText, at: onceDate)
+                    case .daily:
+                        let h = Calendar.current.component(.hour, from: timeOnly)
+                        let m = Calendar.current.component(.minute, from: timeOnly)
+                        NotificationManager.shared.scheduleDaily(id: id, title: titleText, body: bodyText, hour: h, minute: m)
+                    case .weekly:
+                        let h = Calendar.current.component(.hour, from: timeOnly)
+                        let m = Calendar.current.component(.minute, from: timeOnly)
+                        NotificationManager.shared.scheduleWeekly(id: id, title: titleText, body: bodyText, weekday: weekday, hour: h, minute: m)
+                    case .monthly:
+                        let h = Calendar.current.component(.hour, from: timeOnly)
+                        let m = Calendar.current.component(.minute, from: timeOnly)
+                        NotificationManager.shared.scheduleMonthly(id: id, title: titleText, body: bodyText, day: monthDay, hour: h, minute: m)
+                    }
+                }
+            }
             dismiss()
         } catch {
-            print("Task save error:", error)
+            saveErrorMessage = error.localizedDescription
+            showSaveError = true
         }
     }
 

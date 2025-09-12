@@ -84,7 +84,7 @@
 
 
 import SwiftUI
-import LocalAuthentication
+@preconcurrency import LocalAuthentication
 import EventKit
 import UIKit
 
@@ -169,10 +169,19 @@ struct SettingsView: View {
                                                  case .authorized:
                                                      vm.setSyncTasksToReminders(true)
                                                  case .notDetermined:
-                                                     EKEventStore().requestAccess(to: .reminder) { granted, _ in
-                                                         DispatchQueue.main.async {
-                                                             vm.setSyncTasksToReminders(granted)
-                                                             if !granted { showRemindersDenied = true }
+                                                     if #available(iOS 17.0, *) {
+                                                         EKEventStore().requestFullAccessToReminders { granted, _ in
+                                                             DispatchQueue.main.async {
+                                                                 vm.setSyncTasksToReminders(granted)
+                                                                 if !granted { showRemindersDenied = true }
+                                                             }
+                                                         }
+                                                     } else {
+                                                         EKEventStore().requestAccess(to: .reminder) { granted, _ in
+                                                             DispatchQueue.main.async {
+                                                                 vm.setSyncTasksToReminders(granted)
+                                                                 if !granted { showRemindersDenied = true }
+                                                             }
                                                          }
                                                      }
                                                  default:
@@ -192,10 +201,19 @@ struct SettingsView: View {
                                                  case .authorized:
                                                      vm.setSyncHarvestToCalendar(true)
                                                  case .notDetermined:
-                                                     EKEventStore().requestAccess(to: .event) { granted, _ in
-                                                         DispatchQueue.main.async {
-                                                             vm.setSyncHarvestToCalendar(granted)
-                                                             if !granted { showCalendarDenied = true }
+                                                     if #available(iOS 17.0, *) {
+                                                         EKEventStore().requestFullAccessToEvents { granted, _ in
+                                                             DispatchQueue.main.async {
+                                                                 vm.setSyncHarvestToCalendar(granted)
+                                                                 if !granted { showCalendarDenied = true }
+                                                             }
+                                                         }
+                                                     } else {
+                                                         EKEventStore().requestAccess(to: .event) { granted, _ in
+                                                             DispatchQueue.main.async {
+                                                                 vm.setSyncHarvestToCalendar(granted)
+                                                                 if !granted { showCalendarDenied = true }
+                                                             }
                                                          }
                                                      }
                                                  default:
