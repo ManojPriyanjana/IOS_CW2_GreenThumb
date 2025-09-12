@@ -8,7 +8,27 @@ struct PlantListView: View {
         animation: .default
     ) private var plants: FetchedResults<Plant>
 
+    // Search
+    @State private var query = ""
     @State private var showingAdd = false
+
+    // Filtered results including search by name or UUID (plant id)
+    private var filtered: [Plant] {
+        let q = query.trimmingCharacters(in: .whitespacesAndNewlines)
+        guard !q.isEmpty else { return Array(plants) }
+        let lower = q.lowercased()
+        // remove hyphens to allow short id lookups like prefix of UUID
+        let compact = lower.replacingOccurrences(of: "-", with: "")
+        return plants.filter { p in
+            let name = (p.name ?? "").lowercased()
+            if name.contains(lower) { return true }
+            if let uuid = p.id?.uuidString.lowercased() {
+                let uuidCompact = uuid.replacingOccurrences(of: "-", with: "")
+                return uuid.contains(lower) || uuidCompact.contains(compact)
+            }
+            return false
+        }
+    }
 
     var body: some View {
         NavigationStack {
@@ -17,8 +37,12 @@ struct PlantListView: View {
                     ContentUnavailableView("No plants yet",
                                            systemImage: "leaf",
                                            description: Text("Tap Add to register your first plant."))
+                } else if filtered.isEmpty {
+                    ContentUnavailableView("No results",
+                                           systemImage: "magnifyingglass",
+                                           description: Text("Try a different name or plant ID."))
                 } else {
-                    List(plants) { plant in
+                    List(filtered, id: \.objectID) { plant in
                         NavigationLink(value: plant.objectID) {
                             HStack(spacing: 12) {
                                 if let data = plant.photoData, let ui = UIImage(data: data) {
@@ -38,6 +62,8 @@ struct PlantListView: View {
             }
             //--
             .navigationTitle("My Plants")
+            .searchable(text: $query, placement: .navigationBarDrawer(displayMode: .automatic), prompt: "Search by name or ID")
+            .autocorrectionDisabled(true)
             .toolbar(content: {
                 ToolbarItem(placement: .primaryAction) {
                     Button(action: { showingAdd = true }) {
