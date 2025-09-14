@@ -41,7 +41,7 @@ struct DashboardView: View {
                     plantsCount: plants.count
                 )
                 DiseaseScannerCTA()
-                PlantsGrid(plants: Array(plants))
+                FavoritePlantsSection(allPlants: Array(plants))
             }
             .padding(.horizontal, 16)
             .padding(.vertical, 12)
@@ -432,6 +432,120 @@ private struct PlantsGrid: View {
     }
 }
 
+// MARK: - Favorite Plants Section
+
+private struct FavoritePlantsSection: View {
+    let allPlants: [Plant]
+    @State private var favoriteIDs: Set<String> = []
+    @State private var showEditor = false
+    private let store = LocalPlantFavoritesStore()
+
+    private var favorites: [Plant] {
+        allPlants.filter { favoriteIDs.contains($0.objectID.uriRepresentation().absoluteString) }
+    }
+
+    var body: some View {
+        VStack(alignment: .leading, spacing: 10) {
+            HStack {
+                Text("Favorite plants").font(.headline)
+                Spacer()
+                Button("Manage") { showEditor = true }
+                    .font(.subheadline)
+            }
+
+            if favorites.isEmpty {
+                VStack(spacing: 8) {
+                    ContentUnavailableView("No favorites yet", image: "leaf", description: Text("Pick plants to feature here."))
+                    Button {
+                        showEditor = true
+                    } label: {
+                        Label("Add favorites", systemImage: "star")
+                    }
+                    .buttonStyle(.borderedProminent)
+                }
+                .frame(maxWidth: .infinity)
+                .padding(.vertical, 8)
+            } else {
+                LazyVGrid(columns: [GridItem(.flexible()), GridItem(.flexible())], spacing: 10) {
+                    ForEach(favorites, id: \.objectID) { p in
+                        NavigationLink(destination: PlantDetailView(objectID: p.objectID)) {
+                            PlantTile(plant: p)
+                        }
+                        .buttonStyle(.plain)
+                    }
+                }
+            }
+        }
+        .padding(14)
+        .background(RoundedRectangle(cornerRadius: 14).fill(Color(.secondarySystemBackground)))
+        .overlay(
+            RoundedRectangle(cornerRadius: 14)
+                .stroke(Color.green.opacity(0.12), lineWidth: 1)
+        )
+        .onAppear { favoriteIDs = store.load() }
+        .sheet(isPresented: $showEditor) {
+            FavoritePlantsEditor(allPlants: allPlants, selectedIDs: $favoriteIDs)
+        }
+        .onChange(of: favoriteIDs) { _, newValue in
+            store.save(newValue)
+        }
+    }
+}
+
+private struct FavoritePlantsEditor: View {
+    let allPlants: [Plant]
+    @Binding var selectedIDs: Set<String>
+    @Environment(\.dismiss) private var dismiss
+
+    private func isSelected(_ p: Plant) -> Bool {
+        selectedIDs.contains(p.objectID.uriRepresentation().absoluteString)
+    }
+
+    private func toggle(_ p: Plant) {
+        let id = p.objectID.uriRepresentation().absoluteString
+        if selectedIDs.contains(id) { selectedIDs.remove(id) } else { selectedIDs.insert(id) }
+    }
+
+    var body: some View {
+        NavigationStack {
+            List {
+                ForEach(allPlants, id: \.objectID) { p in
+                    HStack(spacing: 12) {
+                        if let data = p.photoData, let ui = UIImage(data: data) {
+                            Image(uiImage: ui).resizable().scaledToFill().frame(width: 48, height: 36).clipped().cornerRadius(6)
+                        } else {
+                            ZStack { RoundedRectangle(cornerRadius: 6).fill(Color(.tertiarySystemFill)); Image(systemName: "leaf").foregroundStyle(.green) }
+                                .frame(width: 48, height: 36)
+                        }
+                        VStack(alignment: .leading, spacing: 2) {
+                            Text(p.name ?? "Plant")
+                            Text(p.category ?? "Category").font(.caption).foregroundStyle(.secondary)
+                        }
+                        Spacer()
+                        if isSelected(p) {
+                            Image(systemName: "checkmark.circle.fill").foregroundStyle(.green)
+                        }
+                    }
+                    .contentShape(Rectangle())
+                    .onTapGesture { toggle(p) }
+                }
+            }
+            .navigationTitle("Favorite plants")
+            .toolbar {
+                ToolbarItem(placement: .cancellationAction) {
+                    Button("Done") { dismiss() }
+                }
+                ToolbarItem(placement: .primaryAction) {
+                    Menu("Actions") {
+                        Button("Select all") { selectedIDs = Set(allPlants.map { $0.objectID.uriRepresentation().absoluteString }) }
+                        Button("Clear all", role: .destructive) { selectedIDs.removeAll() }
+                    }
+                }
+            }
+        }
+    }
+}
+
 private struct PlantTile: View {
     let plant: Plant
     var body: some View {
@@ -458,6 +572,34 @@ private struct PlantTile: View {
         }
         .padding(10)
         .background(RoundedRectangle(cornerRadius: 12).fill(Color(.tertiarySystemBackground)))
+    }
+}
+
+// Lightweight local favorites store to avoid target membership issues
+fileprivate struct LocalPlantFavoritesStore {
+    private let key = "plantFavorites.v1"
+    private let defaults = UserDefaults.standard
+
+    func load() -> Set<String> {
+        Set(defaults.stringArray(forKey: key) ?? [])
+    }
+    func save(_ set: Set<String>) {
+        defaults.set(Array(set), forKey: key)
+    }
+    func contains(_ plant: Plant) -> Bool {
+        contains(idURI(for: plant))
+    }
+    func contains(_ idURI: String) -> Bool { load().contains(idURI) }
+    func add(_ plant: Plant) { add(idURI(for: plant)) }
+    func add(_ idURI: String) {
+        var s = load(); s.insert(idURI); save(s)
+    }
+    func remove(_ plant: Plant) { remove(idURI(for: plant)) }
+    func remove(_ idURI: String) {
+        var s = load(); s.remove(idURI); save(s)
+    }
+    func idURI(for plant: Plant) -> String {
+        plant.objectID.uriRepresentation().absoluteString
     }
 }
 
