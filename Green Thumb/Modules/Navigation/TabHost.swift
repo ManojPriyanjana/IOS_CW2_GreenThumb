@@ -19,9 +19,7 @@ struct TabHost: View {
                         PlantListView()
 
                 case .stores:
-                    Text("Nearby Stores")
-                        .font(.title)
-                        .padding()
+                    NavigationStack { StoreLocatorView(initialQuery: nil) }
 
                 case .profile:
                     Text("Profile")

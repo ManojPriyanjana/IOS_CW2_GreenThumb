@@ -2,6 +2,9 @@ import SwiftUI
 import MapKit
 
 struct StoreLocatorView: View {
+    // If set, the view will prefill and auto-search this query on appear
+    let initialQuery: String?
+
     @StateObject private var vm = StoreLocatorViewModel()
     @State private var searchText: String = "plant nursery"
 
@@ -81,7 +84,15 @@ struct StoreLocatorView: View {
             .padding()
         }
         .navigationTitle("Nearby Stores")
-        .onAppear { vm.requestLocation() }
+        .onAppear {
+            vm.requestLocation()
+            if let q = initialQuery, !q.isEmpty {
+                // Normalize to lowercased for matching existing filters
+                let normalized = q.lowercased()
+                searchText = normalized
+                vm.searchNearby(normalized)
+            }
+        }
         .alert("Location Permission Needed", isPresented: $vm.authorizationDenied) {
             Button("OK", role: .cancel) { }
         } message: {

@@ -36,6 +36,7 @@ public struct WeatherView: View {
         ))
     }
 
+
     // Preview/testing init
     public init(mock: Bool) {
         let service  = MockWeatherService()

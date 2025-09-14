@@ -60,7 +60,7 @@ extension DashboardItem {
             title: "Store Locator",
             systemImage: "mappin.and.ellipse",
             color: .purple,
-            destination: AnyView(StoreLocatorView())
+            destination: AnyView(StoreLocatorView(initialQuery: nil))
         ),
         DashboardItem(
             title: "Harvest",

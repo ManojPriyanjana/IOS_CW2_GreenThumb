@@ -103,7 +103,7 @@ struct LoginView: View {
             .navigationTitle("Login Page")
             .navigationBarTitleDisplayMode(.inline)
         }
-        .sheet(isPresented: $showSignup) { SignupView() }
-        .fullScreenCover(isPresented: $viewModel.isAuthenticated) { DashboardView() }
+    .sheet(isPresented: $showSignup) { SignupView() }
+    .fullScreenCover(isPresented: $viewModel.isAuthenticated) { TabHost() }
     }
 }

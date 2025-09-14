@@ -9,8 +9,8 @@
 		<key>NSAppClipRequestLocationConfirmation</key>
 		<false/>
 	</dict>
-	<key>NSLocationWhenInUseUsageDescriptionNSLocationWhenInUseUsageDescriptionNSLocationWhenInUseUsageDescription</key>
-	<string></string>
+	<key>NSLocationWhenInUseUsageDescription</key>
+	<string>Allow Green Thumb to access your location to show local weather and nearby stores.</string>
 	<key>NSUserNotificationsUsageDescription</key>
 	<string></string>
 	<key>NSRemindersUsageDescription</key>

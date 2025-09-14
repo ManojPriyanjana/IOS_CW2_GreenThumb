@@ -18,20 +18,20 @@ final class TaskRepositoryTests: XCTestCase {
     }
 
     func testWateringTaskDueIn7Days() throws {
-        let plant = Plant(context: ctx)
-        plant.id = UUID()
-        plant.name = "Tomato"
-        plant.category = "Vegetables"
-        plant.plantingDate = Date()
+    let plant = Plant(context: ctx)
+    plant.id = UUID()
+    plant.name = "Tomato"
+    plant.category = "Vegetables"
+    plant.plantingDate = Date()
 
-        let task = Task(context: ctx)
-        task.id = UUID()
-        task.title = "Water"
-        task.type = "watering"
-        task.status = "Pending"
-        task.createdAt = Date()
-        task.dueDate = Calendar.current.date(byAdding: .day, value: 7, to: plant.plantingDate!)
-        task.plant = plant
+    let task = CareTask(context: ctx)
+    task.id = UUID()
+    task.title = "Water"
+    task.type = "watering"
+    task.status = "Pending"
+    task.createdAt = Date()
+    task.dueDate = Calendar.current.date(byAdding: .day, value: 7, to: plant.plantingDate!)
+    task.plant = plant
 
         try ctx.save()
 

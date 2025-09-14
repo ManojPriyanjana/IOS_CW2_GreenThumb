@@ -6,8 +6,9 @@ import CoreLocation
 struct WeatherDashboardCard: View {
     @StateObject private var vm: WeatherViewModel
     private let onTap: () -> Void
+    private let isButton: Bool
 
-    init(onTap: @escaping () -> Void) {
+    init(onTap: @escaping () -> Void, isButton: Bool = true) {
         let service  = OpenWeatherClient(apiKey: WeatherConfig.apiKey)
         let forecast = OpenWeatherForecastClient(apiKey: WeatherConfig.apiKey)
         let location = LocationProvider()
@@ -17,19 +18,28 @@ struct WeatherDashboardCard: View {
             location: location
         ))
         self.onTap = onTap
+        self.isButton = isButton
     }
 
     var body: some View {
-        Button(action: onTap) {
-            content
-                .frame(maxWidth: .infinity, alignment: .leading)
-                .padding(16)
-                .background(.thinMaterial, in: RoundedRectangle(cornerRadius: 16, style: .continuous))
+        Group {
+            if isButton {
+                Button(action: onTap) { card }
+                    .buttonStyle(.plain)
+            } else {
+                card
+            }
         }
-        .buttonStyle(.plain)
         .onAppear { if vm.weather == nil && !vm.isLoading { vm.refresh() } }
         .accessibilityElement(children: .combine)
         .accessibilityLabel(accessibilitySummary)
+    }
+
+    private var card: some View {
+        content
+            .frame(maxWidth: .infinity, alignment: .leading)
+            .padding(16)
+            .background(.thinMaterial, in: RoundedRectangle(cornerRadius: 16, style: .continuous))
     }
 
     @ViewBuilder
