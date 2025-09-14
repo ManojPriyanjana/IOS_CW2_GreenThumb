@@ -37,6 +37,27 @@ struct AllTasksView: View {
         _pending = FetchRequest(fetchRequest: req, animation: .default)
     }
 
+    // Convenience init to open with a preselected filter from outside
+    // accepted values (case-insensitive): "overdue", "today", "upcoming", anything else -> all
+    init(initialFilter: String?) {
+        let req: NSFetchRequest<CareTask> = CareTask.fetchRequest()
+        req.sortDescriptors = [
+            NSSortDescriptor(keyPath: \CareTask.dueDate,   ascending: true),
+            NSSortDescriptor(keyPath: \CareTask.createdAt, ascending: true)
+        ]
+        req.predicate = NSPredicate(format: "status != %@", "Completed")
+        _pending = FetchRequest(fetchRequest: req, animation: .default)
+
+        if let raw = initialFilter?.lowercased() {
+            switch raw {
+            case "overdue": _filter = State(initialValue: .overdue)
+            case "today": _filter = State(initialValue: .today)
+            case "upcoming": _filter = State(initialValue: .upcoming)
+            default: _filter = State(initialValue: .all)
+            }
+        }
+    }
+
     var body: some View {
         Group {
             if filtered.isEmpty {

@@ -28,69 +28,51 @@ struct DashboardView: View {
     ) private var plants: FetchedResults<Plant>
 
     var body: some View {
-        NavigationStack {
-            ScrollView {
-                VStack(spacing: 16) {
-                    HeaderBar()
-                    NavigationLink(destination: WeatherView(apiKey: "15845b53595b293a72d288d11d16cb39")) {
-                        DashboardWeatherSummaryCard()
-                    }
-                    ARCard()
-                    NearbyCard()
-                    QuickSummaryGrid(pendingTasks: Array(pendingTasks), issues: Array(healthIssues))
-                    DiseaseScannerCTA()
-                    PlantsGrid(plants: Array(plants))
+        ScrollView {
+            VStack(spacing: 16) {
+                NavigationLink(destination: WeatherView(apiKey: "15845b53595b293a72d288d11d16cb39")) {
+                    DashboardWeatherSummaryCard()
                 }
-                .padding(.horizontal, 16)
-                .padding(.vertical, 12)
-            }
-            .navigationTitle("")
-            .navigationBarHidden(true)
-            .background(
-                LinearGradient(
-                    colors: [Color.green.opacity(0.05), Color.green.opacity(0.02)],
-                    startPoint: .topLeading, endPoint: .bottomTrailing
+                ARCard()
+                NearbyCard()
+                QuickSummaryGrid(
+                    pendingTasks: Array(pendingTasks),
+                    issues: Array(healthIssues),
+                    plantsCount: plants.count
                 )
+                DiseaseScannerCTA()
+                PlantsGrid(plants: Array(plants))
+            }
+            .padding(.horizontal, 16)
+            .padding(.vertical, 12)
+        }
+        .background(
+            LinearGradient(
+                colors: [Color.green.opacity(0.05), Color.green.opacity(0.02)],
+                startPoint: .topLeading, endPoint: .bottomTrailing
             )
+        )
+        .navigationTitle("Dashboard")
+        .toolbarTitleDisplayMode(.large)
+        .toolbar {
+            ToolbarItem(placement: .primaryAction) {
+                HStack(spacing: 14) {
+                    Button { /* TODO: search action */ } label: {
+                        Image(systemName: "magnifyingglass")
+                    }
+                    Button { /* TODO: notifications action */ } label: {
+                        Image(systemName: "bell")
+                    }
+                    Button { /* TODO: profile action */ } label: {
+                        Image(systemName: "person.crop.circle")
+                    }
+                }
+            }
         }
     }
 }
 
 // MARK: - Sections
-
-private struct HeaderBar: View {
-    var body: some View {
-        HStack {
-            HStack(spacing: 8) {
-                Image(systemName: "leaf.fill")
-                    .font(.title2)
-                    .foregroundStyle(.green)
-                Text("GreenThumb")
-                    .font(.title3).bold()
-            }
-            Spacer()
-            HStack(spacing: 10) {
-                CircleIcon(system: "magnifyingglass")
-                CircleIcon(system: "bell")
-                CircleIcon(system: "person.crop.circle")
-            }
-        }
-    }
-}
-
-private struct CircleIcon: View {
-    let system: String
-    var body: some View {
-        Button {} label: {
-            Image(systemName: system)
-                .font(.subheadline)
-                .frame(width: 34, height: 34)
-                .background(.thinMaterial)
-                .clipShape(Circle())
-        }
-        .buttonStyle(.plain)
-    }
-}
 
 private struct ARCard: View {
     @State private var showComingSoon = false
@@ -300,6 +282,7 @@ private struct NearbyRow: View {
 private struct QuickSummaryGrid: View {
     let pendingTasks: [CareTask]
     let issues: [HealthIssue]
+    let plantsCount: Int
 
     var overdueCount: Int { pendingTasks.filter { ($0.dueDate ?? .distantFuture) < Calendar.current.startOfDay(for: Date()) }.count }
     var todayCount: Int { pendingTasks.filter { Calendar.current.isDateInToday($0.dueDate ?? .distantPast) }.count }
@@ -307,24 +290,38 @@ private struct QuickSummaryGrid: View {
     var openIssues: Int { issues.filter { ($0.status ?? "Open") != "Resolved" }.count }
 
     var body: some View {
-        VStack(alignment: .leading, spacing: 10) {
-            Text("Your day")
+        VStack(alignment: .leading, spacing: 12) {
+            Text("Overview")
                 .font(.headline)
+                .foregroundStyle(.white)
             LazyVGrid(columns: [GridItem(.flexible()), GridItem(.flexible()), GridItem(.flexible())], spacing: 10) {
-                SummaryTile(title: "Overdue", value: overdueCount, icon: "exclamationmark.triangle.fill", tint: .red)
-                SummaryTile(title: "Today", value: todayCount, icon: "sun.max.fill", tint: .orange)
-                SummaryTile(title: "Upcoming", value: upcomingCount, icon: "clock.fill", tint: .blue)
-                SummaryTile(title: "Health", value: openIssues, icon: "heart.text.square.fill", tint: .pink)
-                SummaryTile(title: "Tasks", value: pendingTasks.count, icon: "checklist", tint: .green)
-                SummaryTile(title: "Plants", value: 0, icon: "leaf", tint: .mint)
+                NavigationLink(destination: AllTasksView(initialFilter: "overdue")) {
+                    SummaryTile(title: "Overdue tasks", value: overdueCount, icon: "exclamationmark.triangle.fill", tint: .red, emphasis: true)
+                }.buttonStyle(.plain)
+                NavigationLink(destination: AllTasksView(initialFilter: "today")) {
+                    SummaryTile(title: "Today tasks", value: todayCount, icon: "sun.max.fill", tint: .orange, emphasis: true)
+                }.buttonStyle(.plain)
+                NavigationLink(destination: AllTasksView(initialFilter: "upcoming")) {
+                    SummaryTile(title: "Upcoming tasks", value: upcomingCount, icon: "clock.fill", tint: .blue, emphasis: true)
+                }.buttonStyle(.plain)
+                NavigationLink(destination: HealthIssuesOverviewView()) {
+                    SummaryTile(title: "Health issues", value: openIssues, icon: "heart.text.square.fill", tint: .pink, emphasis: true)
+                }.buttonStyle(.plain)
+                NavigationLink(destination: AllTasksView(initialFilter: nil)) {
+                    SummaryTile(title: "All tasks", value: pendingTasks.count, icon: "checklist", tint: .green, emphasis: true)
+                }.buttonStyle(.plain)
+                NavigationLink(destination: PlantListView()) {
+                    SummaryTile(title: "Plants", value: plantsCount, icon: "leaf", tint: .mint, emphasis: true)
+                }.buttonStyle(.plain)
             }
         }
-        .padding(14)
-        .background(RoundedRectangle(cornerRadius: 14).fill(Color(.secondarySystemBackground)))
-        .overlay(
-            RoundedRectangle(cornerRadius: 14)
-                .stroke(Color.green.opacity(0.12), lineWidth: 1)
+        .padding(16)
+        .background(
+            LinearGradient(colors: [Color.green.opacity(0.85), Color.teal.opacity(0.8)],
+                           startPoint: .topLeading, endPoint: .bottomTrailing)
+                .clipShape(RoundedRectangle(cornerRadius: 14, style: .continuous))
         )
+        .shadow(color: Color.black.opacity(0.08), radius: 12, x: 0, y: 6)
     }
 }
 
@@ -333,27 +330,44 @@ private struct SummaryTile: View {
     let value: Int
     let icon: String
     let tint: Color
+    var emphasis: Bool = false
     var body: some View {
         VStack(alignment: .leading, spacing: 6) {
             Image(systemName: icon)
-                .foregroundStyle(tint)
+                .foregroundStyle(emphasis ? .white : tint)
             Text("\(value)")
                 .font(.title3).bold()
+                .foregroundStyle(emphasis ? .white : .primary)
             Text(title)
                 .font(.caption)
-                .foregroundStyle(.secondary)
+                .foregroundStyle(emphasis ? .white.opacity(0.9) : .secondary)
         }
         .frame(maxWidth: .infinity, alignment: .leading)
         .padding(12)
+    .frame(minHeight: 96)
         .background(
-            RoundedRectangle(cornerRadius: 12)
-                .fill(Color(.systemBackground))
+            Group {
+                if emphasis {
+                    RoundedRectangle(cornerRadius: 12)
+                        .fill(Color.white.opacity(0.15))
+                } else {
+                    RoundedRectangle(cornerRadius: 12)
+                        .fill(Color(.systemBackground))
+                }
+            }
         )
         .overlay(
-            RoundedRectangle(cornerRadius: 12)
-                .stroke(Color.green.opacity(0.12), lineWidth: 1)
+            Group {
+                if emphasis {
+                    RoundedRectangle(cornerRadius: 12)
+                        .stroke(Color.white.opacity(0.22), lineWidth: 1)
+                } else {
+                    RoundedRectangle(cornerRadius: 12)
+                        .stroke(Color.green.opacity(0.12), lineWidth: 1)
+                }
+            }
         )
-        .shadow(color: Color.black.opacity(0.05), radius: 6, x: 0, y: 3)
+        .shadow(color: Color.black.opacity(emphasis ? 0.0 : 0.05), radius: 6, x: 0, y: 3)
     }
 }
 
@@ -444,6 +458,85 @@ private struct PlantTile: View {
         }
         .padding(10)
         .background(RoundedRectangle(cornerRadius: 12).fill(Color(.tertiarySystemBackground)))
+    }
+}
+
+// Inline aggregated Health Issues list to avoid cross-target scope issues
+private struct HealthIssuesOverviewView: View {
+    @Environment(\.managedObjectContext) private var ctx
+    @FetchRequest(
+        sortDescriptors: [
+            NSSortDescriptor(keyPath: \HealthIssue.status,    ascending: true),
+            NSSortDescriptor(keyPath: \HealthIssue.createdAt, ascending: false)
+        ],
+        animation: .default
+    ) private var issues: FetchedResults<HealthIssue>
+
+    @State private var query = ""
+    @State private var showOpenOnly = true
+
+    var body: some View {
+        List(filtered) { i in row(i) }
+            .listStyle(.insetGrouped)
+            .navigationTitle("Health Issues")
+            .toolbar {
+                ToolbarItem(placement: .primaryAction) {
+                    Toggle(isOn: $showOpenOnly) { Text("Open only") }
+                }
+            }
+            .searchable(text: $query)
+    }
+
+    private var filtered: [HealthIssue] {
+        let base = showOpenOnly ? issues.filter { ($0.status ?? "") != "Resolved" } : Array(issues)
+        guard !query.isEmpty else { return base }
+        return base.filter {
+            ($0.category ?? "").localizedCaseInsensitiveContains(query) ||
+            ($0.subtype ?? "").localizedCaseInsensitiveContains(query) ||
+            ($0.notes ?? "").localizedCaseInsensitiveContains(query) ||
+            ($0.status ?? "").localizedCaseInsensitiveContains(query)
+        }
+    }
+
+    @ViewBuilder
+    private func row(_ i: HealthIssue) -> some View {
+        let isResolved = (i.status ?? "") == "Resolved"
+        VStack(alignment: .leading, spacing: 6) {
+            HStack(spacing: 6) {
+                Image(systemName: icon(for: i.category))
+                    .foregroundStyle(isResolved ? Color.secondary : Color.red)
+                Text(i.subtype?.isEmpty == false ? i.subtype! : (i.category ?? "Issue"))
+                    .font(.headline)
+                Spacer()
+                Text(i.status ?? "Open")
+                    .font(.caption)
+                    .padding(.horizontal, 6).padding(.vertical, 3)
+                    .background(isResolved ? Color.green.opacity(0.15) : Color.orange.opacity(0.15))
+                    .clipShape(RoundedRectangle(cornerRadius: 6))
+            }
+            if let notes = i.notes, !notes.isEmpty {
+                Text(notes).font(.subheadline).foregroundStyle(.secondary).lineLimit(3)
+            }
+            HStack(spacing: 8) {
+                if let created = i.createdAt {
+                    Text("Reported: \(created.formatted(date: .abbreviated, time: .omitted))")
+                        .font(.caption).foregroundStyle(.secondary)
+                }
+                if let resolved = i.resolvedAt {
+                    Text("• Resolved: \(resolved.formatted(date: .abbreviated, time: .omitted))")
+                        .font(.caption).foregroundStyle(.secondary)
+                }
+            }
+        }
+    }
+}
+
+private func icon(for category: String?) -> String {
+    switch (category ?? "").lowercased() {
+    case "pest": return "ant"
+    case "fungus": return "aqi.high"
+    case "deficiency": return "drop.triangle"
+    default: return "exclamationmark.triangle"
     }
 }
 
