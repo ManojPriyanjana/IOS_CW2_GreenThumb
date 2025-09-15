@@ -17,7 +17,7 @@ struct LoginView: View {
                         .padding(.top, 24)
 
                     Text("GreenThumb")
-                        .font(.system(size: 34, weight: .bold))
+                        .font(.largeTitle.bold())
                     Text("Login")
                         .font(.title2)
 

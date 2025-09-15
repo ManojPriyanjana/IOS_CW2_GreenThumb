@@ -197,7 +197,7 @@ fileprivate struct WeatherCard: View {
                 }
                 Spacer()
                 Text("\(temperatureC)°C")
-                    .font(.system(size: 44, weight: .semibold, design: .rounded))
+                    .font(.largeTitle.weight(.semibold))
                     .foregroundStyle(GTTheme.accent)
                     .shadow(radius: 0.5, y: 0.5)
             }

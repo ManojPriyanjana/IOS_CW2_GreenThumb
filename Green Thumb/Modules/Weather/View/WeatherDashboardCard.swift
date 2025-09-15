@@ -52,7 +52,7 @@ struct WeatherDashboardCard: View {
                 Image(systemName: "cloud.sun.fill")
                     .symbolRenderingMode(.hierarchical)
                     .foregroundStyle(.orange)
-                    .font(.system(size: 28, weight: .semibold))
+                    .font(.title3.weight(.semibold))
             }
 
             VStack(alignment: .leading, spacing: 2) {

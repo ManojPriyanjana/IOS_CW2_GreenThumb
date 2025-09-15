@@ -33,7 +33,7 @@ struct DiseaseIdentifierView: View {
                     } else {
                         VStack(spacing: 8) {
                             Image(systemName: "photo.on.rectangle")
-                                .font(.system(size: 40))
+                                .font(.title)
                             Text("No image selected")
                                 .foregroundStyle(.secondary)
                         }

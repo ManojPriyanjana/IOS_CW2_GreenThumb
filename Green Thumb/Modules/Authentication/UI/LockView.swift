@@ -13,7 +13,7 @@ struct LockView: View {
 
     var body: some View {
         VStack(spacing: 20) {
-            Image(systemName: "lock.fill").font(.system(size: 40))
+            Image(systemName: "lock.fill").font(.title)
             Text("Welcome back").font(.title2).bold()
 
             Button(title) {

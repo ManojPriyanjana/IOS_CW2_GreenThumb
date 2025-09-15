@@ -55,7 +55,7 @@ public struct WeatherShopStyleView: View {
     private var headerBar: some View {
         HStack {
             Text("Weather")
-                .font(.system(size: 34, weight: .bold))
+                .font(.largeTitle.bold())
                 .foregroundStyle(GTTheme.deepGreen)
             Spacer()
             Button { showSearch = true } label {
@@ -94,12 +94,12 @@ public struct WeatherShopStyleView: View {
                             .frame(width: 92, height: 92)
                             .shadow(color: .black.opacity(0.08), radius: GTTheme.softShadow, y: 6)
                         Image(systemName: "sun.max.fill")
-                            .font(.system(size: 40))
+                            .font(.title)
                             .foregroundStyle(.black.opacity(0.85))
                     }
                     Spacer()
                     Text("\(tempC)°C")
-                        .font(.system(size: 56, weight: .black, design: .rounded))
+                        .font(.largeTitle.weight(.black))
                         .shadow(color: .black.opacity(0.15), radius: 3, y: 2)
                 }
 

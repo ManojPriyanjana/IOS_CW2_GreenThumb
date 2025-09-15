@@ -6,7 +6,7 @@ struct DashboardTile: View {
     var body: some View {
         VStack(spacing: 12) {
             Image(systemName: item.systemImage)
-                .font(.system(size: 36, weight: .bold))
+                .font(.title.bold())
                 .foregroundStyle(.white)
                 .padding(18)
                 .background(item.color.gradient)

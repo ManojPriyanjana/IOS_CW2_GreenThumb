@@ -5,7 +5,7 @@ struct PasswordChangedSuccessView: View {
 
     var body: some View {
         VStack(spacing: 16) {
-            Image(systemName: "checkmark.seal.fill").font(.system(size: 48))
+            Image(systemName: "checkmark.seal.fill").font(.largeTitle)
             Text("Password Changed!").font(.title2).bold()
             Text("Your password has been reset successfully.")
                 .font(.footnote).foregroundStyle(.secondary)
