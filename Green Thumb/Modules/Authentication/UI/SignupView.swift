@@ -58,6 +58,7 @@ private extension Color {
 struct SignupView: View {
     @EnvironmentObject var session: SessionStore
     @StateObject private var vm = AuthViewModel()
+    @EnvironmentObject private var colorCtl: ColorSchemeController
 
     @Environment(\.dismiss) private var dismiss
     
@@ -169,8 +170,16 @@ struct SignupView: View {
                 .autocorrectionDisabled()
         }
         .padding()
-        .background(Color.white)
-        .overlay(RoundedRectangle(cornerRadius: 12).stroke(Color.dividers))
+    .background(colorCtl.highContrastEnabled ? Color(.systemBackground) : Color.white)
+    .overlay(
+        RoundedRectangle(cornerRadius: 12)
+            .stroke(
+                colorCtl.highContrastEnabled
+                ? Color(.separator).opacity(0.5)
+                : Color.dividers,
+                lineWidth: 1
+            )
+    )
     }
 
     @ViewBuilder
@@ -190,8 +199,16 @@ struct SignupView: View {
             }
         }
         .padding()
-        .background(Color.white)
-        .overlay(RoundedRectangle(cornerRadius: 12).stroke(Color.dividers))
+    .background(colorCtl.highContrastEnabled ? Color(.systemBackground) : Color.white)
+    .overlay(
+        RoundedRectangle(cornerRadius: 12)
+            .stroke(
+                colorCtl.highContrastEnabled
+                ? Color(.separator).opacity(0.5)
+                : Color.dividers,
+                lineWidth: 1
+            )
+    )
     }
 
     private func socialButton(_ systemName: String) -> some View {

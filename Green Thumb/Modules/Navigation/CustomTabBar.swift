@@ -15,6 +15,7 @@ private struct TopRoundedBackground: Shape {
 
 struct CustomTabBar: View {
     @Binding var selected: AppTab
+    @EnvironmentObject private var colorCtl: ColorSchemeController
 
     private let cornerRadius: CGFloat = 24
     private let iconSize: CGFloat = 20
@@ -36,7 +37,11 @@ struct CustomTabBar: View {
                         }
                         .frame(maxWidth: .infinity)
                         .padding(.vertical, 8)
-                        .foregroundStyle(selected == tab ? Color.green : Color.gray)
+                        .foregroundStyle(
+                            selected == tab
+                            ? (colorCtl.highContrastEnabled ? Color.primary : Color.green)
+                            : (colorCtl.highContrastEnabled ? Color.secondary : Color.gray)
+                        )
                         .accessibilityLabel(tab.title)
                     }
                 }
@@ -48,10 +53,15 @@ struct CustomTabBar: View {
             .background(
                 TopRoundedBackground(cornerRadius: cornerRadius)
                     .fill(Color(UIColor.systemBackground))
-                    .shadow(color: .black.opacity(0.08), radius: 12, x: 0, y: -2)
+                    .shadow(color: .black.opacity(colorCtl.highContrastEnabled ? 0.04 : 0.08), radius: 12, x: 0, y: -2)
                     .overlay(
                         TopRoundedBackground(cornerRadius: cornerRadius)
-                            .stroke(Color.green.opacity(0.18), lineWidth: 1)
+                            .stroke(
+                                colorCtl.highContrastEnabled
+                                ? Color(.separator).opacity(0.5)
+                                : Color.green.opacity(0.18),
+                                lineWidth: 1
+                            )
                     )
                     .ignoresSafeArea(edges: .bottom) // cover bottom edge fully
             )

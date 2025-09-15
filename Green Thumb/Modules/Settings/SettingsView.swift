@@ -253,7 +253,10 @@ struct SettingsView: View {
                     }
                     Toggle("High Contrast Mode",
                            isOn: Binding(get: { vm.settings.highContrast },
-                                         set: { vm.setHighContrast($0) }))
+                                         set: { newVal in
+                                             vm.setHighContrast(newVal)
+                                             colorCtl.applyHighContrast(newVal)
+                                         }))
                     Toggle("Reduce Motion",
                            isOn: Binding(get: { vm.settings.reduceMotion },
                                          set: { vm.setReduceMotion($0) }))

@@ -28,6 +28,8 @@ struct DashboardView: View {
         animation: .default
     ) private var plants: FetchedResults<Plant>
 
+    @EnvironmentObject private var colorCtl: ColorSchemeController
+
     var body: some View {
         ScrollView {
             VStack(spacing: 16) {
@@ -79,6 +81,7 @@ struct DashboardView: View {
 // MARK: - Sections
 
 private struct ARCard: View {
+    @EnvironmentObject private var colorCtl: ColorSchemeController
     @State private var showComingSoon = false
     var body: some View {
         Button {
@@ -98,10 +101,18 @@ private struct ARCard: View {
                     .foregroundStyle(.primary)
             }
             .padding(14)
-            .background(RoundedRectangle(cornerRadius: 14).fill(Color(.secondarySystemBackground)))
+            .background(
+                RoundedRectangle(cornerRadius: 14)
+                    .fill(colorCtl.highContrastEnabled ? Color(.systemBackground) : Color(.secondarySystemBackground))
+            )
             .overlay(
                 RoundedRectangle(cornerRadius: 14)
-                    .stroke(Color.green.opacity(0.12), lineWidth: 1)
+                    .stroke(
+                        colorCtl.highContrastEnabled
+                        ? Color(.separator).opacity(0.45)
+                        : Color.green.opacity(0.12),
+                        lineWidth: 1
+                    )
             )
         }
         .buttonStyle(.plain)
@@ -115,6 +126,7 @@ private struct ARCard: View {
 
 // Live weather summary for the Dashboard using the shared WeatherViewModel
 private struct DashboardWeatherSummaryCard: View {
+    @EnvironmentObject private var colorCtl: ColorSchemeController
     @StateObject private var vm: WeatherViewModel
 
     init() {
@@ -138,7 +150,7 @@ private struct DashboardWeatherSummaryCard: View {
                 Image(systemName: "cloud.sun.fill")
                     .symbolRenderingMode(.hierarchical)
                     .foregroundStyle(.orange)
-                    .font(.title3.weight(.semibold))
+                    .font(.system(size: 28, weight: .semibold))
             }
 
             VStack(alignment: .leading, spacing: 2) {
@@ -191,15 +203,20 @@ private struct DashboardWeatherSummaryCard: View {
         }
         .frame(maxWidth: .infinity, alignment: .leading)
         .padding(16)
-        .background(
-            RoundedRectangle(cornerRadius: 16, style: .continuous)
-                .fill(Color(.secondarySystemBackground))
-        )
+    .background(
+        RoundedRectangle(cornerRadius: 16, style: .continuous)
+        .fill(colorCtl.highContrastEnabled ? Color(.systemBackground) : Color(.secondarySystemBackground))
+    )
         .overlay(
             RoundedRectangle(cornerRadius: 16, style: .continuous)
-                .stroke(Color.black.opacity(0.06), lineWidth: 1)
+        .stroke(
+            colorCtl.highContrastEnabled
+            ? Color(.separator).opacity(0.45)
+            : Color.black.opacity(0.06),
+            lineWidth: 1
         )
-        .shadow(color: Color.black.opacity(0.06), radius: 8, x: 0, y: 4)
+        )
+    .shadow(color: Color.black.opacity(colorCtl.highContrastEnabled ? 0.03 : 0.06), radius: 8, x: 0, y: 4)
         .onAppear { if vm.weather == nil && !vm.isLoading { vm.refresh() } }
         .accessibilityElement(children: .combine)
         .accessibilityLabel(accessibilitySummary)
@@ -219,6 +236,7 @@ private struct DashboardWeatherSummaryCard: View {
 }
 
 private struct NearbyCard: View {
+    @EnvironmentObject private var colorCtl: ColorSchemeController
     var body: some View {
         VStack(alignment: .leading, spacing: 8) {
             HStack {
@@ -254,7 +272,10 @@ private struct NearbyCard: View {
         .background(RoundedRectangle(cornerRadius: 14).fill(Color(.secondarySystemBackground)))
         .overlay(
             RoundedRectangle(cornerRadius: 14)
-                .stroke(Color.green.opacity(0.12), lineWidth: 1)
+                .stroke(
+                    colorCtl.highContrastEnabled ? Color(.separator).opacity(0.45) : Color.green.opacity(0.12),
+                    lineWidth: 1
+                )
         )
     }
 }
@@ -263,6 +284,7 @@ private struct NearbyRow: View {
     let title: String
     let icon: String
     let color: Color
+    @EnvironmentObject private var colorCtl: ColorSchemeController
     var body: some View {
         HStack(spacing: 8) {
             Image(systemName: icon)
@@ -278,7 +300,10 @@ private struct NearbyRow: View {
         )
         .overlay(
             RoundedRectangle(cornerRadius: 12)
-                .stroke(Color.green.opacity(0.12), lineWidth: 1)
+                .stroke(
+                    colorCtl.highContrastEnabled ? Color(.separator).opacity(0.45) : Color.green.opacity(0.12),
+                    lineWidth: 1
+                )
         )
     }
 }
@@ -297,7 +322,7 @@ private struct QuickSummaryGrid: View {
         VStack(alignment: .leading, spacing: 12) {
             Text("Overview")
                 .font(.headline)
-                .foregroundStyle(.white)
+                .foregroundStyle(Color.white)
             LazyVGrid(columns: [GridItem(.flexible()), GridItem(.flexible()), GridItem(.flexible())], spacing: 10) {
                 NavigationLink(destination: AllTasksView(initialFilter: "overdue")) {
                     SummaryTile(title: "Overdue tasks", value: overdueCount, icon: "exclamationmark.triangle.fill", tint: .red, emphasis: true)
@@ -335,23 +360,29 @@ private struct SummaryTile: View {
     let icon: String
     let tint: Color
     var emphasis: Bool = false
+    @EnvironmentObject private var colorCtl: ColorSchemeController
     var body: some View {
         VStack(alignment: .leading, spacing: 6) {
             Image(systemName: icon)
-                .foregroundStyle(emphasis ? .white : tint)
+                .foregroundStyle(
+                    colorCtl.highContrastEnabled ? tint : (emphasis ? Color.white : tint)
+                )
             Text("\(value)")
                 .font(.title3).bold()
-                .foregroundStyle(emphasis ? .white : .primary)
+                .foregroundStyle(colorCtl.highContrastEnabled ? .primary : (emphasis ? Color.white : .primary))
             Text(title)
                 .font(.caption)
-                .foregroundStyle(emphasis ? .white.opacity(0.9) : .secondary)
+                .foregroundStyle(colorCtl.highContrastEnabled ? .secondary : (emphasis ? Color.white.opacity(0.9) : .secondary))
         }
         .frame(maxWidth: .infinity, alignment: .leading)
         .padding(12)
     .frame(minHeight: 96)
         .background(
             Group {
-                if emphasis {
+                if colorCtl.highContrastEnabled {
+                    RoundedRectangle(cornerRadius: 12)
+                        .fill(Color(.systemBackground))
+                } else if emphasis {
                     RoundedRectangle(cornerRadius: 12)
                         .fill(Color.white.opacity(0.15))
                 } else {
@@ -362,7 +393,10 @@ private struct SummaryTile: View {
         )
         .overlay(
             Group {
-                if emphasis {
+                if colorCtl.highContrastEnabled {
+                    RoundedRectangle(cornerRadius: 12)
+                        .stroke(Color(.separator).opacity(0.45), lineWidth: 1)
+                } else if emphasis {
                     RoundedRectangle(cornerRadius: 12)
                         .stroke(Color.white.opacity(0.22), lineWidth: 1)
                 } else {
@@ -371,7 +405,7 @@ private struct SummaryTile: View {
                 }
             }
         )
-        .shadow(color: Color.black.opacity(emphasis ? 0.0 : 0.05), radius: 6, x: 0, y: 3)
+        .shadow(color: Color.black.opacity(colorCtl.highContrastEnabled ? 0.03 : (emphasis ? 0.0 : 0.05)), radius: 6, x: 0, y: 3)
     }
 }
 
@@ -383,15 +417,15 @@ private struct DiseaseScannerCTA: View {
             HStack(spacing: 12) {
                 Image(systemName: "camera.macro")
                     .font(.title2)
-                    .foregroundStyle(.white)
+                    .foregroundStyle(Color.white)
                 VStack(alignment: .leading, spacing: 4) {
-                    Text("Scan for diseases").font(.headline).foregroundStyle(.white)
-                    Text("Use AI to detect plant issues early").font(.caption).foregroundStyle(.white.opacity(0.9))
+                    Text("Scan for diseases").font(.headline).foregroundStyle(Color.white)
+                    Text("Use AI to detect plant issues early").font(.caption).foregroundStyle(Color.white.opacity(0.9))
                 }
                 Spacer()
                 Image(systemName: "chevron.right")
                     .font(.subheadline)
-                    .foregroundStyle(.white.opacity(0.9))
+                    .foregroundStyle(Color.white.opacity(0.9))
             }
             .padding(14)
             .background(
@@ -405,6 +439,7 @@ private struct DiseaseScannerCTA: View {
 
 private struct PlantsGrid: View {
     let plants: [Plant]
+    @EnvironmentObject private var colorCtl: ColorSchemeController
     var display: [Plant] { Array(plants.prefix(6)) }
 
     var body: some View {
@@ -431,7 +466,10 @@ private struct PlantsGrid: View {
         .background(RoundedRectangle(cornerRadius: 14).fill(Color(.secondarySystemBackground)))
         .overlay(
             RoundedRectangle(cornerRadius: 14)
-                .stroke(Color.green.opacity(0.12), lineWidth: 1)
+                .stroke(
+                    colorCtl.highContrastEnabled ? Color(.separator).opacity(0.45) : Color.green.opacity(0.12),
+                    lineWidth: 1
+                )
         )
     }
 }
@@ -443,6 +481,7 @@ private struct FavoritePlantsSection: View {
     @State private var favoriteIDs: Set<String> = []
     @State private var showEditor = false
     private let store = LocalPlantFavoritesStore()
+    @EnvironmentObject private var colorCtl: ColorSchemeController
 
     private var favorites: [Plant] {
         allPlants.filter { favoriteIDs.contains($0.objectID.uriRepresentation().absoluteString) }
@@ -496,7 +535,10 @@ private struct FavoritePlantsSection: View {
         .background(RoundedRectangle(cornerRadius: 14).fill(Color(.secondarySystemBackground)))
         .overlay(
             RoundedRectangle(cornerRadius: 14)
-                .stroke(Color.green.opacity(0.12), lineWidth: 1)
+                .stroke(
+                    colorCtl.highContrastEnabled ? Color(.separator).opacity(0.45) : Color.green.opacity(0.12),
+                    lineWidth: 1
+                )
         )
         .onAppear { favoriteIDs = store.load() }
         .sheet(isPresented: $showEditor) {

@@ -5,7 +5,10 @@ import UserNotifications
 @MainActor
 final class ColorSchemeController: ObservableObject {
     @Published var override: ColorScheme? = nil
+    @Published var highContrastEnabled: Bool = false
+
     func apply(darkModeEnabled: Bool) { override = darkModeEnabled ? .dark : nil }
+    func applyHighContrast(_ enabled: Bool) { highContrastEnabled = enabled }
 }
 
 @main
@@ -27,13 +30,14 @@ struct Green_ThumbApp: App {
                 .environment(\.managedObjectContext, persistence.context)
                 .environmentObject(colorCtl)
                 .preferredColorScheme(colorCtl.override)
-                .task {
-                    let settings = settingsStore.load()
-                    colorCtl.apply(darkModeEnabled: settings.darkModeEnabled)
-                    #if DEBUG
-                    NotificationManager.shared.debugLogState(reason: "app-start")
-                    #endif
-                }
+            .task {
+                let settings = settingsStore.load()
+                colorCtl.apply(darkModeEnabled: settings.darkModeEnabled)
+                colorCtl.applyHighContrast(settings.highContrast)
+                #if DEBUG
+                NotificationManager.shared.debugLogState(reason: "app-start")
+                #endif
+            }
         }
     }
 }
