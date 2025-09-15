@@ -14,10 +14,16 @@ struct PersistenceController {
     static let preview: PersistenceController = {
         let result = PersistenceController(inMemory: true)
         let viewContext = result.container.viewContext
-        for _ in 0..<10 {
-            let newItem = Item(context: viewContext)
-            newItem.timestamp = Date()
-        }
+        
+        // Create sample Plant data for previews
+        let samplePlant = Plant(context: viewContext)
+        samplePlant.id = UUID()
+        samplePlant.name = "Sample Tomato"
+        samplePlant.category = "Vegetables"
+        samplePlant.plantingDate = Date()
+        samplePlant.location = "Garden Bed 1"
+        samplePlant.notes = "Sample plant for preview"
+        
         do {
             try viewContext.save()
         } catch {
@@ -32,7 +38,7 @@ struct PersistenceController {
     let container: NSPersistentContainer
 
     init(inMemory: Bool = false) {
-        container = NSPersistentContainer(name: "Green_Thumb")
+        container = NSPersistentContainer(name: "GreenThumbDataModel")
         if inMemory {
             container.persistentStoreDescriptions.first!.url = URL(fileURLWithPath: "/dev/null")
         }

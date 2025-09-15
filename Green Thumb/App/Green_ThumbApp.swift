@@ -27,7 +27,7 @@ struct Green_ThumbApp: App {
         WindowGroup {
             AuthGateView()
                 .environmentObject(session)
-                .environment(\.managedObjectContext, persistence.context)
+                .environment(\.managedObjectContext, persistence.container.viewContext)
                 .environmentObject(colorCtl)
                 .preferredColorScheme(colorCtl.override)
             .task {
