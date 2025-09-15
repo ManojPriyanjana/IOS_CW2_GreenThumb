@@ -11,6 +11,8 @@
 	</dict>
 	<key>NSLocationWhenInUseUsageDescription</key>
 	<string>Allow Green Thumb to access your location to show local weather and nearby stores.</string>
+	<key>NSCameraUsageDescription</key>
+	<string>Allow Green Thumb to use the camera to identify plants and analyze their health in AR.</string>
 	<key>NSUserNotificationsUsageDescription</key>
 	<string></string>
 	<key>NSRemindersUsageDescription</key>

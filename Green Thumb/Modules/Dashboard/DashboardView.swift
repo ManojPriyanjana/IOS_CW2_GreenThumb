@@ -82,16 +82,15 @@ struct DashboardView: View {
 
 private struct ARCard: View {
     @EnvironmentObject private var colorCtl: ColorSchemeController
-    @State private var showComingSoon = false
     var body: some View {
-        Button {
-            showComingSoon = true
+        NavigationLink {
+            ARIdentifierView()
         } label: {
             HStack {
                 VStack(alignment: .leading, spacing: 6) {
                     Text("AR Plant Identifier")
                         .font(.headline)
-                    Text("Coming soon")
+                    Text("Open camera-based identifier")
                         .font(.caption)
                         .foregroundStyle(.secondary)
                 }
@@ -116,11 +115,6 @@ private struct ARCard: View {
             )
         }
         .buttonStyle(.plain)
-        .alert("Coming Soon", isPresented: $showComingSoon) {
-            Button("OK", role: .cancel) {}
-        } message: {
-            Text("AR Plant Identifier isn’t available yet. Stay tuned!")
-        }
     }
 }
 

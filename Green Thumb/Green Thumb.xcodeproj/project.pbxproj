@@ -72,6 +72,14 @@
 		2B57A6D12E77F40100832F72 /* ProfileStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B57A6D02E77F3FF00832F72 /* ProfileStore.swift */; };
 		2B57A6D32E77F41700832F72 /* ProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B57A6D22E77F41500832F72 /* ProfileView.swift */; };
 		2B57A6D52E77F45700832F72 /* EditProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B57A6D42E77F45500832F72 /* EditProfileView.swift */; };
+		2B57A6EA2E783AC100832F72 /* ARIdentifierViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B57A6E82E783AC100832F72 /* ARIdentifierViewModel.swift */; };
+		2B57A6EB2E783AC100832F72 /* ARIdentifierView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B57A6E72E783AC100832F72 /* ARIdentifierView.swift */; };
+		2B57A6EE2E783FD300832F72 /* ARPlantPlacementView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B57A6EC2E783FD300832F72 /* ARPlantPlacementView.swift */; };
+		2B57A6EF2E783FD300832F72 /* PlantModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B57A6ED2E783FD300832F72 /* PlantModel.swift */; };
+		2B57A6F52E78408500832F72 /* Monstera_Deliciosa_Potted_Mid-Century_plant.usdz in Resources */ = {isa = PBXBuildFile; fileRef = 2B57A6F32E78408500832F72 /* Monstera_Deliciosa_Potted_Mid-Century_plant.usdz */; };
+		2B57A6F62E78408500832F72 /* Banana_tree.usdz in Resources */ = {isa = PBXBuildFile; fileRef = 2B57A6F12E78408500832F72 /* Banana_tree.usdz */; };
+		2B57A6F72E78408500832F72 /* Mango_Tree.usdz in Resources */ = {isa = PBXBuildFile; fileRef = 2B57A6F22E78408500832F72 /* Mango_Tree.usdz */; };
+		2B57A6F82E78408500832F72 /* Red_rose.usdz in Resources */ = {isa = PBXBuildFile; fileRef = 2B57A6F42E78408500832F72 /* Red_rose.usdz */; };
 		2B69D7622E69449D0031D984 /* HealthIssueRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B69D7612E6944980031D984 /* HealthIssueRepository.swift */; };
 		2B69D7642E69451B0031D984 /* AddHealthIssueSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B69D7632E6945190031D984 /* AddHealthIssueSheet.swift */; };
 		2B69D7662E69456B0031D984 /* HealthListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B69D7652E6945680031D984 /* HealthListView.swift */; };
@@ -173,6 +181,14 @@
 		2B57A6D02E77F3FF00832F72 /* ProfileStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileStore.swift; sourceTree = "<group>"; };
 		2B57A6D22E77F41500832F72 /* ProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileView.swift; sourceTree = "<group>"; };
 		2B57A6D42E77F45500832F72 /* EditProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditProfileView.swift; sourceTree = "<group>"; };
+		2B57A6E72E783AC100832F72 /* ARIdentifierView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ARIdentifierView.swift; sourceTree = "<group>"; };
+		2B57A6E82E783AC100832F72 /* ARIdentifierViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ARIdentifierViewModel.swift; sourceTree = "<group>"; };
+		2B57A6EC2E783FD300832F72 /* ARPlantPlacementView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ARPlantPlacementView.swift; sourceTree = "<group>"; };
+		2B57A6ED2E783FD300832F72 /* PlantModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlantModel.swift; sourceTree = "<group>"; };
+		2B57A6F12E78408500832F72 /* Banana_tree.usdz */ = {isa = PBXFileReference; lastKnownFileType = file; path = Banana_tree.usdz; sourceTree = "<group>"; };
+		2B57A6F22E78408500832F72 /* Mango_Tree.usdz */ = {isa = PBXFileReference; lastKnownFileType = file; path = Mango_Tree.usdz; sourceTree = "<group>"; };
+		2B57A6F32E78408500832F72 /* Monstera_Deliciosa_Potted_Mid-Century_plant.usdz */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Monstera_Deliciosa_Potted_Mid-Century_plant.usdz"; sourceTree = "<group>"; };
+		2B57A6F42E78408500832F72 /* Red_rose.usdz */ = {isa = PBXFileReference; lastKnownFileType = file; path = Red_rose.usdz; sourceTree = "<group>"; };
 		2B69D7612E6944980031D984 /* HealthIssueRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HealthIssueRepository.swift; sourceTree = "<group>"; };
 		2B69D7632E6945190031D984 /* AddHealthIssueSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddHealthIssueSheet.swift; sourceTree = "<group>"; };
 		2B69D7652E6945680031D984 /* HealthListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HealthListView.swift; sourceTree = "<group>"; };
@@ -346,6 +362,7 @@
 		2B327E312E44783F00CB8F1D /* Modules */ = {
 			isa = PBXGroup;
 			children = (
+				2B57A6E92E783AC100832F72 /* ARIdentifier */,
 				2B5384102E66FD89002FE418 /* HealthLog */,
 				2B5384082E66FB73002FE418 /* Task */,
 				2B5384032E66FB72002FE418 /* Harvesting */,
@@ -686,6 +703,29 @@
 			path = UI;
 			sourceTree = "<group>";
 		};
+		2B57A6E92E783AC100832F72 /* ARIdentifier */ = {
+			isa = PBXGroup;
+			children = (
+				2B57A6F02E78406100832F72 /* Models */,
+				2B57A6EC2E783FD300832F72 /* ARPlantPlacementView.swift */,
+				2B57A6ED2E783FD300832F72 /* PlantModel.swift */,
+				2B57A6E72E783AC100832F72 /* ARIdentifierView.swift */,
+				2B57A6E82E783AC100832F72 /* ARIdentifierViewModel.swift */,
+			);
+			path = ARIdentifier;
+			sourceTree = "<group>";
+		};
+		2B57A6F02E78406100832F72 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				2B57A6F12E78408500832F72 /* Banana_tree.usdz */,
+				2B57A6F22E78408500832F72 /* Mango_Tree.usdz */,
+				2B57A6F32E78408500832F72 /* Monstera_Deliciosa_Potted_Mid-Century_plant.usdz */,
+				2B57A6F42E78408500832F72 /* Red_rose.usdz */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
 		2B78B10D2E4EF91F001A46C6 /* Navigation */ = {
 			isa = PBXGroup;
 			children = (
@@ -867,6 +907,10 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2B57A6F52E78408500832F72 /* Monstera_Deliciosa_Potted_Mid-Century_plant.usdz in Resources */,
+				2B57A6F62E78408500832F72 /* Banana_tree.usdz in Resources */,
+				2B57A6F72E78408500832F72 /* Mango_Tree.usdz in Resources */,
+				2B57A6F82E78408500832F72 /* Red_rose.usdz in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -906,12 +950,16 @@
 				2B24F4A52E4C3D6000B3E9EC /* AuthGateView.swift in Sources */,
 				2B69D7662E69456B0031D984 /* HealthListView.swift in Sources */,
 				2B5384202E67027C002FE418 /* GreenThumbDataModel.xcdatamodeld in Sources */,
+				2B57A6EA2E783AC100832F72 /* ARIdentifierViewModel.swift in Sources */,
+				2B57A6EB2E783AC100832F72 /* ARIdentifierView.swift in Sources */,
 				2B499E012E6813B6001B2808 /* AddGlobalTaskSheet.swift in Sources */,
 				2B1D16012E4872CE000B2AE8 /* DiseaseIdentifierView.swift in Sources */,
 				2B4F5D642E6EC87400AF3136 /* AddEditHarvestScheduleViewModel.swift in Sources */,
 				2B1D15FB2E486B0B000B2AE8 /* Place.swift in Sources */,
 				2B4F5D022E6E97FC00AF3136 /* PlantTasksView.swift in Sources */,
 				2BC439262E62F18E006D2F36 /* VerifyResetCodeView.swift in Sources */,
+				2B57A6EE2E783FD300832F72 /* ARPlantPlacementView.swift in Sources */,
+				2B57A6EF2E783FD300832F72 /* PlantModel.swift in Sources */,
 				2B78B1162E4EFC04001A46C6 /* AppTab.swift in Sources */,
 				2B57A6D12E77F40100832F72 /* ProfileStore.swift in Sources */,
 				2B57A6D52E77F45700832F72 /* EditProfileView.swift in Sources */,
