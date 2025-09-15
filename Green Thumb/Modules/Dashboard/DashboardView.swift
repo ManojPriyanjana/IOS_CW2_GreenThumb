@@ -444,6 +444,11 @@ private struct FavoritePlantsSection: View {
         allPlants.filter { favoriteIDs.contains($0.objectID.uriRepresentation().absoluteString) }
     }
 
+    private func idURI(for p: Plant) -> String { p.objectID.uriRepresentation().absoluteString }
+    private func removeFavorite(_ p: Plant) {
+        favoriteIDs.remove(idURI(for: p))
+    }
+
     var body: some View {
         VStack(alignment: .leading, spacing: 10) {
             HStack {
@@ -455,7 +460,7 @@ private struct FavoritePlantsSection: View {
 
             if favorites.isEmpty {
                 VStack(spacing: 8) {
-                    ContentUnavailableView("No favorites yet", image: "leaf", description: Text("Pick plants to feature here."))
+                    ContentUnavailableView("No favorites yet", systemImage: "leaf", description: Text("Pick plants to feature here."))
                     Button {
                         showEditor = true
                     } label: {
@@ -472,6 +477,13 @@ private struct FavoritePlantsSection: View {
                             PlantTile(plant: p)
                         }
                         .buttonStyle(.plain)
+                        .contextMenu {
+                            Button(role: .destructive) {
+                                removeFavorite(p)
+                            } label: {
+                                Label("Remove from favorites", systemImage: "star.slash")
+                            }
+                        }
                     }
                 }
             }

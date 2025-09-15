@@ -21,11 +21,6 @@ struct TabHost: View {
                 case .stores:
                     NavigationStack { StoreLocatorView(initialQuery: nil) }
 
-                case .profile:
-                    Text("Profile")
-//                        .font(.title)
-//                        .padding()
-                          
                 case.tasks:
                     NavigationStack { AllTasksView() }
 
