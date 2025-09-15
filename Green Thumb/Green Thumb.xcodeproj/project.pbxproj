@@ -68,6 +68,10 @@
 		2B5384142E66FE05002FE418 /* PlantListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B5384132E66FE03002FE418 /* PlantListView.swift */; };
 		2B5384162E66FE1D002FE418 /* PlantDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B5384152E66FE1B002FE418 /* PlantDetailView.swift */; };
 		2B5384202E67027C002FE418 /* GreenThumbDataModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 2B0418AB2E4DC3E100339B96 /* GreenThumbDataModel.xcdatamodeld */; };
+		2B57A6CF2E77F3F000832F72 /* UserProfile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B57A6CE2E77F3EE00832F72 /* UserProfile.swift */; };
+		2B57A6D12E77F40100832F72 /* ProfileStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B57A6D02E77F3FF00832F72 /* ProfileStore.swift */; };
+		2B57A6D32E77F41700832F72 /* ProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B57A6D22E77F41500832F72 /* ProfileView.swift */; };
+		2B57A6D52E77F45700832F72 /* EditProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B57A6D42E77F45500832F72 /* EditProfileView.swift */; };
 		2B69D7622E69449D0031D984 /* HealthIssueRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B69D7612E6944980031D984 /* HealthIssueRepository.swift */; };
 		2B69D7642E69451B0031D984 /* AddHealthIssueSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B69D7632E6945190031D984 /* AddHealthIssueSheet.swift */; };
 		2B69D7662E69456B0031D984 /* HealthListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B69D7652E6945680031D984 /* HealthListView.swift */; };
@@ -165,6 +169,10 @@
 		2B5384112E66FDCE002FE418 /* PlantRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlantRepository.swift; sourceTree = "<group>"; };
 		2B5384132E66FE03002FE418 /* PlantListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlantListView.swift; sourceTree = "<group>"; };
 		2B5384152E66FE1B002FE418 /* PlantDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlantDetailView.swift; sourceTree = "<group>"; };
+		2B57A6CE2E77F3EE00832F72 /* UserProfile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProfile.swift; sourceTree = "<group>"; };
+		2B57A6D02E77F3FF00832F72 /* ProfileStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileStore.swift; sourceTree = "<group>"; };
+		2B57A6D22E77F41500832F72 /* ProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileView.swift; sourceTree = "<group>"; };
+		2B57A6D42E77F45500832F72 /* EditProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditProfileView.swift; sourceTree = "<group>"; };
 		2B69D7612E6944980031D984 /* HealthIssueRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HealthIssueRepository.swift; sourceTree = "<group>"; };
 		2B69D7632E6945190031D984 /* AddHealthIssueSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddHealthIssueSheet.swift; sourceTree = "<group>"; };
 		2B69D7652E6945680031D984 /* HealthListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HealthListView.swift; sourceTree = "<group>"; };
@@ -404,6 +412,9 @@
 		2B327E3B2E44819700CB8F1D /* Profile */ = {
 			isa = PBXGroup;
 			children = (
+				2B57A6CD2E77F3DF00832F72 /* UI */,
+				2B57A6CC2E77F3D900832F72 /* Date */,
+				2B57A6CB2E77F3D000832F72 /* Model */,
 			);
 			path = Profile;
 			sourceTree = "<group>";
@@ -650,6 +661,31 @@
 			path = HealthLog;
 			sourceTree = "<group>";
 		};
+		2B57A6CB2E77F3D000832F72 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				2B57A6CE2E77F3EE00832F72 /* UserProfile.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		2B57A6CC2E77F3D900832F72 /* Date */ = {
+			isa = PBXGroup;
+			children = (
+				2B57A6D02E77F3FF00832F72 /* ProfileStore.swift */,
+			);
+			path = Date;
+			sourceTree = "<group>";
+		};
+		2B57A6CD2E77F3DF00832F72 /* UI */ = {
+			isa = PBXGroup;
+			children = (
+				2B57A6D42E77F45500832F72 /* EditProfileView.swift */,
+				2B57A6D22E77F41500832F72 /* ProfileView.swift */,
+			);
+			path = UI;
+			sourceTree = "<group>";
+		};
 		2B78B10D2E4EF91F001A46C6 /* Navigation */ = {
 			isa = PBXGroup;
 			children = (
@@ -877,6 +913,8 @@
 				2B4F5D022E6E97FC00AF3136 /* PlantTasksView.swift in Sources */,
 				2BC439262E62F18E006D2F36 /* VerifyResetCodeView.swift in Sources */,
 				2B78B1162E4EFC04001A46C6 /* AppTab.swift in Sources */,
+				2B57A6D12E77F40100832F72 /* ProfileStore.swift in Sources */,
+				2B57A6D52E77F45700832F72 /* EditProfileView.swift in Sources */,
 				2BC439242E62F15F006D2F36 /* ForgotPasswordView.swift in Sources */,
 				2B4F5D6A2E6EC8B000AF3136 /* ScheduleRowView.swift in Sources */,
 				2BC4392A2E62F1B6006D2F36 /* PasswordChangedSuccessView.swift in Sources */,
@@ -901,6 +939,7 @@
 				2B1D160A2E4886DD000B2AE8 /* SettingsStore.swift in Sources */,
 				2B5384142E66FE05002FE418 /* PlantListView.swift in Sources */,
 				2B5383E42E66E41E002FE418 /* PersistenceController.swift in Sources */,
+				2B57A6CF2E77F3F000832F72 /* UserProfile.swift in Sources */,
 				2B4F5D622E6EC84400AF3136 /* HarvestRepository.swift in Sources */,
 				2B499DFD2E680D55001B2808 /* TaskRepository.swift in Sources */,
 				2B4F5D682E6EC89E00AF3136 /* PlantHarvestingView.swift in Sources */,
@@ -927,6 +966,7 @@
 				2B1D15F72E486934000B2AE8 /* StoreLocatorViewModel.swift in Sources */,
 				2B24F49C2E4C3C5C00B3E9EC /* LoginView.swift in Sources */,
 				2B1D16102E488738000B2AE8 /* FaceIDManager.swift in Sources */,
+				2B57A6D32E77F41700832F72 /* ProfileView.swift in Sources */,
 				2B5384122E66FDD1002FE418 /* PlantRepository.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

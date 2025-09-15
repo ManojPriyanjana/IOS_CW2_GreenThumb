@@ -4,6 +4,7 @@ import CoreData
 // Main Dashboard screen – mirrors the HTML layout in native SwiftUI without embedding a tab bar.
 struct DashboardView: View {
     @Environment(\.managedObjectContext) private var ctx
+    @State private var showProfile = false
 
     // Core Data fetches – lightweight, safe defaults
     @FetchRequest(
@@ -63,11 +64,14 @@ struct DashboardView: View {
                     Button { /* TODO: notifications action */ } label: {
                         Image(systemName: "bell")
                     }
-                    Button { /* TODO: profile action */ } label: {
+                    Button { showProfile = true } label: {
                         Image(systemName: "person.crop.circle")
                     }
                 }
             }
+        }
+        .sheet(isPresented: $showProfile) {
+            NavigationStack { ProfileView() }
         }
     }
 }

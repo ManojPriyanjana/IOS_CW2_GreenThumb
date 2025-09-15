@@ -103,7 +103,7 @@ struct AllTasksView: View {
         } message: { Text(notifMessage) }
     }
 
-    // MARK: - Filtering
+    // Filtering
 
     private var filtered: [CareTask] {
         let base = Array(pending).filter {
@@ -137,7 +137,7 @@ struct AllTasksView: View {
         return d > Calendar.current.endOfDay(for: Date())
     }
 
-    // MARK: - Row
+    // Row
 
     @ViewBuilder
     private func row(_ t: CareTask) -> some View {
@@ -214,7 +214,7 @@ struct AllTasksView: View {
         }
     }
 
-    // MARK: - EventKit
+    // EventKit
     private func addToReminders(_ t: CareTask) {
         let title = t.title ?? "Task"
         let due = t.dueDate
@@ -241,7 +241,7 @@ struct AllTasksView: View {
     }
 }
 
-// MARK: - Local Notification Test
+//Local Notification Test
 extension AllTasksView {
     private func testLocalNotification() {
         NotificationManager.shared.requestAuth { granted in

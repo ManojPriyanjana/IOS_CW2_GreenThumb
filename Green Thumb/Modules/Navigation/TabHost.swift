@@ -40,7 +40,7 @@ struct TabHost: View {
     }
 }
 
-// MARK: - Global App Top Bar (inline to ensure target membership)
+//  Global App Top Bar (inline to ensure target membership)
 private struct AppTopBar: View {
     var body: some View {
         VStack(spacing: 0) {
