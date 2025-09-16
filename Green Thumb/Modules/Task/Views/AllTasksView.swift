@@ -20,6 +20,9 @@ struct AllTasksView: View {
     @State private var showingAdd = false
     @State private var showEKMessage = false
     @State private var ekMessage = ""
+    // Calendar alert
+    @State private var showCalMessage = false
+    @State private var calMessage = ""
     @State private var showNotifMessage = false
     @State private var notifMessage = ""
 
@@ -98,6 +101,9 @@ struct AllTasksView: View {
         .alert("Reminders", isPresented: $showEKMessage) {
             Button("OK", role: .cancel) {}
         } message: { Text(ekMessage) }
+        .alert("Calendar", isPresented: $showCalMessage) {
+            Button("OK", role: .cancel) {}
+        } message: { Text(calMessage) }
         .alert("Notifications", isPresented: $showNotifMessage) {
             Button("OK", role: .cancel) {}
         } message: { Text(notifMessage) }
@@ -192,6 +198,16 @@ struct AllTasksView: View {
                 } label: { Label("Remind", systemImage: "bell.badge") }
                 .tint(.blue)
             }
+
+            // Add to Calendar (always available, permission handled)
+            Button {
+                addTaskToCalendar(t)
+            } label: { Label("Calendar", systemImage: "calendar.badge.plus") }
+            .tint(.indigo)
+        }
+        // Optional context menu for extra actions
+        .contextMenu {
+            Button { addTaskToCalendar(t) } label: { Label("Add to Calendar", systemImage: "calendar.badge.plus") }
         }
     }
 
@@ -236,6 +252,35 @@ struct AllTasksView: View {
                     ekMessage = "Couldn’t add to Reminders. Check permission in Settings."
                 }
                 showEKMessage = true
+            }
+        }
+    }
+
+    private func addTaskToCalendar(_ t: CareTask) {
+        let title = t.title ?? "Task"
+        let start = t.dueDate ?? Date()
+        let end = start.addingTimeInterval(60 * 60)
+        let notes: String? = {
+            var parts: [String] = []
+            if let name = t.plant?.name, !name.isEmpty { parts.append("Plant: \(name)") }
+            if let type = t.type, !type.isEmpty { parts.append("Type: \(type)") }
+            return parts.isEmpty ? nil : parts.joined(separator: "\n")
+        }()
+
+        let key = t.objectID.uriRepresentation().absoluteString
+        EventKitService.shared.createOrUpdateEvent(scheduleKey: key,
+                                                   title: title,
+                                                   start: start,
+                                                   end: end,
+                                                   notes: notes) { result in
+            DispatchQueue.main.async {
+                switch result {
+                case .success:
+                    calMessage = "Added to Calendar"
+                case .failure:
+                    calMessage = "Couldn’t add to Calendar. Check permission in Settings."
+                }
+                showCalMessage = true
             }
         }
     }

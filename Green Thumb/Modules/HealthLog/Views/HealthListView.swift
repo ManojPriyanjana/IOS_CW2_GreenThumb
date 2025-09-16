@@ -12,6 +12,8 @@ struct HealthListView: View {
 
     @State private var showingAdd = false
     @State private var query = ""
+    @State private var showCalMessage = false
+    @State private var calMessage = ""
 
     init(plant: Plant) {
         self.plant = plant
@@ -49,6 +51,9 @@ struct HealthListView: View {
         .sheet(isPresented: $showingAdd) {
             AddHealthIssueSheet(plant: plant)
         }
+        .alert("Calendar", isPresented: $showCalMessage) {
+            Button("OK", role: .cancel) {}
+        } message: { Text(calMessage) }
     }
 
     private var filtered: [HealthIssue] {
@@ -117,6 +122,13 @@ struct HealthListView: View {
                 do { try HealthIssueRepository(ctx: ctx).delete(i) } catch { print(error) }
             } label: { Label("Delete", systemImage: "trash") }
         }
+        .contextMenu {
+            Button {
+                addIssueToCalendar(i)
+            } label: {
+                Label("Add to Calendar", systemImage: "calendar.badge.plus")
+            }
+        }
     }
 
     private func icon(for category: String?) -> String {
@@ -127,6 +139,37 @@ struct HealthListView: View {
         case "watering":  return "drop"
         case "physical":  return "wrench.adjustable"
         default:          return "exclamationmark.triangle"
+        }
+    }
+}
+
+// MARK: - EventKit helpers
+private extension HealthListView {
+    func addIssueToCalendar(_ issue: HealthIssue) {
+        let title = (issue.subtype?.isEmpty == false ? issue.subtype! : (issue.category ?? "Health Issue"))
+        let start = issue.createdAt ?? Date()
+        let end = start.addingTimeInterval(60 * 30)
+        let notes: String? = {
+            var lines: [String] = []
+            if let plantName = plant.name, !plantName.isEmpty { lines.append("Plant: \(plantName)") }
+            if let status = issue.status { lines.append("Status: \(status)") }
+            if let n = issue.notes, !n.isEmpty { lines.append(n) }
+            return lines.isEmpty ? nil : lines.joined(separator: "\n")
+        }()
+
+        let key = issue.objectID.uriRepresentation().absoluteString
+        EventKitService.shared.createOrUpdateEvent(scheduleKey: key,
+                                                   title: title,
+                                                   start: start,
+                                                   end: end,
+                                                   notes: notes) { result in
+            DispatchQueue.main.async {
+                switch result {
+                case .success: calMessage = "Added to Calendar"
+                case .failure: calMessage = "Couldn’t add to Calendar. Check permission in Settings."
+                }
+                showCalMessage = true
+            }
         }
     }
 }

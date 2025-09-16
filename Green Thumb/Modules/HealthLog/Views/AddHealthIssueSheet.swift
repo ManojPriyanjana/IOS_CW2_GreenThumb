@@ -20,6 +20,11 @@ struct AddHealthIssueSheet: View {
     @State private var onceDate: Date = Date().addingTimeInterval(3600)
     @State private var weekday: Int = Calendar.current.component(.weekday, from: Date())
     @State private var monthDay: Int = Calendar.current.component(.day, from: Date())
+    @State private var addToReminders = false
+    
+    // EventKit state
+    @State private var showEKMessage = false
+    @State private var ekMessage = ""
 
     var body: some View {
         NavigationStack {
@@ -68,6 +73,8 @@ struct AddHealthIssueSheet: View {
                                 ForEach(1...31, id: \.self) { Text("\($0)").tag($0) }
                             }
                         }
+                        
+                        Toggle("Add to Reminders app", isOn: $addToReminders)
                     }
                 }
             }
@@ -77,6 +84,11 @@ struct AddHealthIssueSheet: View {
                 ToolbarItem(placement: .confirmationAction) {
                     Button("Save") { save() }
                 }
+            }
+            .alert("EventKit Status", isPresented: $showEKMessage) {
+                Button("OK") { }
+            } message: {
+                Text(ekMessage)
             }
         }
     }
@@ -112,9 +124,61 @@ struct AddHealthIssueSheet: View {
                     }
                 }
             }
+            
+            // Add to EventKit Reminders if requested
+            if addToReminders {
+                addHealthIssueToReminders(issue)
+            }
+
+            // Auto-sync to Calendar if enabled
+            if UserDefaultsSettingsStore().load().syncHealthToCalendar {
+                let titleText = (subtype.isEmpty ? category : subtype)
+                let start = issue.createdAt ?? Date()
+                let end = start.addingTimeInterval(60 * 30)
+                var lines: [String] = ["Plant: \(plant.name ?? "Plant")",
+                                       "Status: \(issue.status ?? "Open")"]
+                if !notes.isEmpty { lines.append(notes) }
+                let notesText = lines.joined(separator: "\n")
+                let key = issue.objectID.uriRepresentation().absoluteString
+                EventKitService.shared.createOrUpdateEvent(scheduleKey: key,
+                                                           title: titleText,
+                                                           start: start,
+                                                           end: end,
+                                                           notes: notesText) { _ in }
+            }
+            
             dismiss()
         } catch {
             print("Health save error:", error)
+        }
+    }
+    
+    private func addHealthIssueToReminders(_ issue: HealthIssue) {
+        let title = "Health Issue: \(category)"
+        let subtitle = subtype.isEmpty ? "" : " - \(subtype)"
+        let plantName = plant.name ?? "Plant"
+        let reminderTitle = title + subtitle + " (\(plantName))"
+        
+        let notes = [
+            "Plant: \(plantName)",
+            "Category: \(category)",
+            subtype.isEmpty ? nil : "Subtype: \(subtype)",
+            notes.isEmpty ? nil : "Notes: \(notes)"
+        ].compactMap { $0 }.joined(separator: "\n")
+        
+        let dueDate = frequency == .once ? onceDate : nil
+        let key = issue.objectID.uriRepresentation().absoluteString
+        
+        EventKitService.shared.createOrUpdateReminder(taskKey: key, title: reminderTitle, due: dueDate, notes: notes) { result in
+            DispatchQueue.main.async {
+                switch result {
+                case .success:
+                    ekMessage = "Added to Reminders"
+                case .failure:
+                    ekMessage = "Couldn't add to Reminders. Check permission in Settings."
+                }
+                showEKMessage = true
+            }
         }
     }
 }

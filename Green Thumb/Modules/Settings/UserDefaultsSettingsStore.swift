@@ -11,6 +11,8 @@ final class UserDefaultsSettingsStore: SettingsStore {
             diseaseAlerts: ud.object(forKey: SettingsKeys.diseaseAlerts.rawValue) as? Bool ?? AppSettings.default.diseaseAlerts,
             syncTasksToReminders: ud.object(forKey: SettingsKeys.syncTasksToReminders.rawValue) as? Bool ?? AppSettings.default.syncTasksToReminders,
             syncHarvestToCalendar: ud.object(forKey: SettingsKeys.syncHarvestToCalendar.rawValue) as? Bool ?? AppSettings.default.syncHarvestToCalendar,
+            syncTasksToCalendar: ud.object(forKey: SettingsKeys.syncTasksToCalendar.rawValue) as? Bool ?? AppSettings.default.syncTasksToCalendar,
+            syncHealthToCalendar: ud.object(forKey: SettingsKeys.syncHealthToCalendar.rawValue) as? Bool ?? AppSettings.default.syncHealthToCalendar,
             quietStart: ud.object(forKey: SettingsKeys.quietStart.rawValue) as? Int ?? AppSettings.default.quietStart,
             quietEnd: ud.object(forKey: SettingsKeys.quietEnd.rawValue) as? Int ?? AppSettings.default.quietEnd,
             highContrast: ud.object(forKey: SettingsKeys.highContrast.rawValue) as? Bool ?? AppSettings.default.highContrast,
@@ -24,8 +26,10 @@ final class UserDefaultsSettingsStore: SettingsStore {
         ud.set(s.pushNotifications, forKey: SettingsKeys.pushNotifications.rawValue)
         ud.set(s.taskReminders,     forKey: SettingsKeys.taskReminders.rawValue)
         ud.set(s.diseaseAlerts,     forKey: SettingsKeys.diseaseAlerts.rawValue)
-    ud.set(s.syncTasksToReminders, forKey: SettingsKeys.syncTasksToReminders.rawValue)
-    ud.set(s.syncHarvestToCalendar, forKey: SettingsKeys.syncHarvestToCalendar.rawValue)
+    ud.set(s.syncTasksToReminders,   forKey: SettingsKeys.syncTasksToReminders.rawValue)
+    ud.set(s.syncHarvestToCalendar,  forKey: SettingsKeys.syncHarvestToCalendar.rawValue)
+    ud.set(s.syncTasksToCalendar,    forKey: SettingsKeys.syncTasksToCalendar.rawValue)
+    ud.set(s.syncHealthToCalendar,   forKey: SettingsKeys.syncHealthToCalendar.rawValue)
         ud.set(s.quietStart,        forKey: SettingsKeys.quietStart.rawValue)
         ud.set(s.quietEnd,          forKey: SettingsKeys.quietEnd.rawValue)
         ud.set(s.highContrast,      forKey: SettingsKeys.highContrast.rawValue)

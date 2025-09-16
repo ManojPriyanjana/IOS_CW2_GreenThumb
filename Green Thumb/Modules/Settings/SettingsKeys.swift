@@ -6,4 +6,5 @@ enum SettingsKeys: String {
     case highContrast, reduceMotion
     case darkModeEnabled
     case syncTasksToReminders, syncHarvestToCalendar
+    case syncTasksToCalendar, syncHealthToCalendar
 }

@@ -33,6 +33,8 @@ final class SettingsViewModel: ObservableObject {
     func setDiseaseAlerts(_ v: Bool) { settings.diseaseAlerts = v; persist() }
     func setSyncTasksToReminders(_ v: Bool) { settings.syncTasksToReminders = v; persist() }
     func setSyncHarvestToCalendar(_ v: Bool) { settings.syncHarvestToCalendar = v; persist() }
+    func setSyncTasksToCalendar(_ v: Bool) { settings.syncTasksToCalendar = v; persist() }
+    func setSyncHealthToCalendar(_ v: Bool) { settings.syncHealthToCalendar = v; persist() }
 
     func updateQuietHours(start: Int, end: Int) {
         settings.quietStart = start; settings.quietEnd = end; persist()

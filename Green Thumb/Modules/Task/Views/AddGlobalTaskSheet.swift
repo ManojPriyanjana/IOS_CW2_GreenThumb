@@ -206,6 +206,24 @@ struct AddGlobalTaskSheet: View {
                     }
                 }
             }
+
+            // Auto-sync to Calendar if enabled
+            if UserDefaultsSettingsStore().load().syncTasksToCalendar {
+                let titleText = title.isEmpty ? "Task" : title
+                let start = hasDue ? due : Date()
+                let end = start.addingTimeInterval(60 * 60)
+                var parts: [String] = []
+                let plantName = fixedPlant?.name ?? selectedPlant?.name
+                if let p = plantName, !p.isEmpty { parts.append("Plant: \(p)") }
+                parts.append("Type: \(type.capitalized)")
+                let notes = parts.joined(separator: "\n")
+                let key = t.objectID.uriRepresentation().absoluteString
+                EventKitService.shared.createOrUpdateEvent(scheduleKey: key,
+                                                           title: titleText,
+                                                           start: start,
+                                                           end: end,
+                                                           notes: notes) { _ in }
+            }
             dismiss()
         } catch {
             saveErrorMessage = error.localizedDescription

@@ -225,6 +225,72 @@ struct SettingsView: View {
                                              }
                                          }))
 
+                    Toggle("Add Tasks to Calendar",
+                           isOn: Binding(get: { vm.settings.syncTasksToCalendar },
+                                         set: { newVal in
+                                             if newVal {
+                                                 let status = EKEventStore.authorizationStatus(for: .event)
+                                                 switch status {
+                                                 case .authorized:
+                                                     vm.setSyncTasksToCalendar(true)
+                                                 case .notDetermined:
+                                                     if #available(iOS 17.0, *) {
+                                                         EKEventStore().requestFullAccessToEvents { granted, _ in
+                                                             DispatchQueue.main.async {
+                                                                 vm.setSyncTasksToCalendar(granted)
+                                                                 if !granted { showCalendarDenied = true }
+                                                             }
+                                                         }
+                                                     } else {
+                                                         EKEventStore().requestAccess(to: .event) { granted, _ in
+                                                             DispatchQueue.main.async {
+                                                                 vm.setSyncTasksToCalendar(granted)
+                                                                 if !granted { showCalendarDenied = true }
+                                                             }
+                                                         }
+                                                     }
+                                                 default:
+                                                     vm.setSyncTasksToCalendar(false)
+                                                     showCalendarDenied = true
+                                                 }
+                                             } else {
+                                                 vm.setSyncTasksToCalendar(false)
+                                             }
+                                         }))
+
+                    Toggle("Add Health Issues to Calendar",
+                           isOn: Binding(get: { vm.settings.syncHealthToCalendar },
+                                         set: { newVal in
+                                             if newVal {
+                                                 let status = EKEventStore.authorizationStatus(for: .event)
+                                                 switch status {
+                                                 case .authorized:
+                                                     vm.setSyncHealthToCalendar(true)
+                                                 case .notDetermined:
+                                                     if #available(iOS 17.0, *) {
+                                                         EKEventStore().requestFullAccessToEvents { granted, _ in
+                                                             DispatchQueue.main.async {
+                                                                 vm.setSyncHealthToCalendar(granted)
+                                                                 if !granted { showCalendarDenied = true }
+                                                             }
+                                                         }
+                                                     } else {
+                                                         EKEventStore().requestAccess(to: .event) { granted, _ in
+                                                             DispatchQueue.main.async {
+                                                                 vm.setSyncHealthToCalendar(granted)
+                                                                 if !granted { showCalendarDenied = true }
+                                                             }
+                                                         }
+                                                     }
+                                                 default:
+                                                     vm.setSyncHealthToCalendar(false)
+                                                     showCalendarDenied = true
+                                                 }
+                                             } else {
+                                                 vm.setSyncHealthToCalendar(false)
+                                             }
+                                         }))
+
                     NavigationLink {
                         QuietHoursView(start: vm.settings.quietStart,
                                        end: vm.settings.quietEnd) { s, e in

@@ -158,7 +158,14 @@ final class EventKitService {
         e.notes = notes
         if let start { e.startDate = start } else { e.startDate = Date() }
         if let end { e.endDate = end } else { e.endDate = e.startDate.addingTimeInterval(3600) }
-        e.calendar = store.defaultCalendarForNewEvents
+
+        // Pick a writable events calendar (default or first writable)
+        if let cal = store.defaultCalendarForNewEvents ?? store.calendars(for: .event).first(where: { $0.allowsContentModifications }) {
+            e.calendar = cal
+        } else {
+            completion(.failure(EKServiceError.noCalendar))
+            return
+        }
 
         do {
             try store.save(e, span: .thisEvent, commit: true)
