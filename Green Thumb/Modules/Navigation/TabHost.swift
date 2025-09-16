@@ -3,6 +3,7 @@ import SwiftUI
 /// Root container that shows the current tab's content + the bottom bar.
 struct TabHost: View {
     @State private var selected: AppTab = .dashboard
+    @State private var tabBarHidden = false
 
     var body: some View {
         ZStack(alignment: .bottom) {
@@ -32,11 +33,19 @@ struct TabHost: View {
             .background(Color(UIColor.systemGroupedBackground))
 
             // BOTTOM BAR
-            CustomTabBar(selected: $selected)
+            if !tabBarHidden {
+                CustomTabBar(selected: $selected)
+                    .transition(.move(edge: .bottom).combined(with: .opacity))
+            }
         }
         // Correct API
         .ignoresSafeArea(edges: .bottom)
         .ignoresSafeArea(.keyboard, edges: .bottom) // optional: keep bar when keyboard shows
+        .onPreferenceChange(TabBarVisibilityPreferenceKey.self) { value in
+            withAnimation(.easeInOut(duration: 0.2)) {
+                tabBarHidden = value
+            }
+        }
     }
 }
 
@@ -72,6 +81,21 @@ private struct AppTopBar: View {
                            startPoint: .topLeading, endPoint: .topTrailing)
                 .ignoresSafeArea(edges: .top)
         )
+    }
+}
+
+// MARK: - Tab bar visibility preference
+private struct TabBarVisibilityPreferenceKey: PreferenceKey {
+    static var defaultValue: Bool = false
+    static func reduce(value: inout Bool, nextValue: () -> Bool) {
+        value = value || nextValue()
+    }
+}
+
+extension View {
+    /// Hides the custom tab bar provided by `TabHost` while this view is visible.
+    func tabBarHidden(_ hidden: Bool) -> some View {
+        preference(key: TabBarVisibilityPreferenceKey.self, value: hidden)
     }
 }
 

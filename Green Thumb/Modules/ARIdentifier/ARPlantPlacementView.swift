@@ -47,7 +47,8 @@ struct ARPlantPlacementView: View {
             UnsupportedView()
 #endif
         }
-        .navigationTitle("Place Plants")
+    .navigationTitle("Place Plants")
+    .tabBarHidden(true)
         .onAppear { if selected == nil { selected = models.first } }
     }
 }
@@ -126,7 +127,14 @@ private struct ARContainerView: UIViewRepresentable {
                     print("[AR] Loaded entity is not a ModelEntity")
                     return
                 }
-                model.scale = SIMD3(repeating: selected.scale)
+                // Set a medium, consistent initial footprint ~25cm on the largest axis
+                let bounds = model.visualBounds(relativeTo: nil)
+                let size = bounds.extents
+                let target: Float = 0.25 // 25cm card-like
+                let maxDim = max(size.x, max(size.y, size.z))
+                let base = maxDim > 0 ? target / maxDim : selected.scale
+                let clamped = max(0.2, min(base, 2.0))
+                model.scale = SIMD3(repeating: clamped)
                 let anchor = AnchorEntity(world: transform)
                 anchor.addChild(model)
                 view?.scene.addAnchor(anchor)
