@@ -23,12 +23,14 @@ struct ARPlantPlacementView: View {
                     // Subtle hint until a model is placed
                     if !hasPlaced {
                         VStack {
-                            Text("Move your device to detect a surface\nTap to place the plant")
+                            Text("Move iPhone to detect a surface\nThen tap to place your plant")
+                                .font(.callout)
                                 .multilineTextAlignment(.center)
-                                .padding(10)
-                                .background(.ultraThinMaterial)
-                                .clipShape(RoundedRectangle(cornerRadius: 10))
+                                .padding(.vertical, 12)
+                                .padding(.horizontal, 16)
+                                .background(.thinMaterial, in: RoundedRectangle(cornerRadius: 12, style: .continuous))
                                 .padding(.top, 20)
+                                .accessibilityLabel("Move device to find a surface. Tap to place the plant.")
                             Spacer()
                         }
                         .transition(.opacity)
@@ -37,7 +39,9 @@ struct ARPlantPlacementView: View {
                 // Keep the picker above any TabBar using a safe area inset
                 .safeAreaInset(edge: .bottom) {
                     ModelPicker(models: models, selected: $selected)
-                        .background(.ultraThinMaterial)
+                        .background(.regularMaterial)
+                        .clipShape(RoundedRectangle(cornerRadius: 16, style: .continuous))
+                        .padding(.horizontal, 8)
                         .padding(.bottom, 8)
                 }
             } else {
@@ -48,6 +52,7 @@ struct ARPlantPlacementView: View {
 #endif
         }
     .navigationTitle("Place Plants")
+    .navigationBarTitleDisplayMode(.inline)
     .tabBarHidden(true)
         .onAppear { if selected == nil { selected = models.first } }
     }
@@ -165,13 +170,21 @@ private struct ModelPicker: View {
                         selected = m
                     } label: {
                         Text(m.displayName)
-                            .padding(.horizontal, 12)
-                            .padding(.vertical, 8)
+                            .font(.subheadline)
+                            .padding(.horizontal, 14)
+                            .frame(height: 44)
                             .background(
-                                Capsule().fill(selected == m ? Color.accentColor.opacity(0.2) : Color(.secondarySystemBackground))
+                                Capsule(style: .continuous)
+                                    .fill(selected == m ? Color.accentColor.opacity(0.18) : Color(.secondarySystemBackground))
                             )
-                            .overlay(Capsule().stroke(selected == m ? Color.accentColor : Color(.separator).opacity(0.4), lineWidth: 1))
+                            .overlay(
+                                Capsule(style: .continuous)
+                                    .stroke(selected == m ? Color.accentColor : Color(.separator).opacity(0.4), lineWidth: 1)
+                            )
+                            .contentShape(Rectangle())
                     }
+                    .buttonStyle(.plain)
+                    .accessibilityLabel(Text(m.displayName + (selected == m ? ", selected" : "")))
                 }
             }
             .padding(12)
