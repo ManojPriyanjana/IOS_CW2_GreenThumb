@@ -10,16 +10,35 @@ import RealityKit
 struct ARPlantPlacementView: View {
     let models: [PlantModel]
     @State private var selected: PlantModel?
+    @State private var hasPlaced = false
 
     var body: some View {
         Group {
 #if canImport(ARKit)
             if ARWorldTrackingConfiguration.isSupported {
                 ZStack(alignment: .bottom) {
-                    ARContainerView(selected: $selected)
+                    ARContainerView(selected: $selected, placed: $hasPlaced)
                         .ignoresSafeArea()
+
+                    // Subtle hint until a model is placed
+                    if !hasPlaced {
+                        VStack {
+                            Text("Move your device to detect a surface\nTap to place the plant")
+                                .multilineTextAlignment(.center)
+                                .padding(10)
+                                .background(.ultraThinMaterial)
+                                .clipShape(RoundedRectangle(cornerRadius: 10))
+                                .padding(.top, 20)
+                            Spacer()
+                        }
+                        .transition(.opacity)
+                    }
+                }
+                // Keep the picker above any TabBar using a safe area inset
+                .safeAreaInset(edge: .bottom) {
                     ModelPicker(models: models, selected: $selected)
                         .background(.ultraThinMaterial)
+                        .padding(.bottom, 8)
                 }
             } else {
                 UnsupportedView()
@@ -29,6 +48,7 @@ struct ARPlantPlacementView: View {
 #endif
         }
         .navigationTitle("Place Plants")
+        .onAppear { if selected == nil { selected = models.first } }
     }
 }
 
@@ -49,6 +69,7 @@ private struct UnsupportedView: View {
 // AR container bridging into SwiftUI
 private struct ARContainerView: UIViewRepresentable {
     @Binding var selected: PlantModel?
+    var placed: Binding<Bool>
 
     func makeUIView(context: Context) -> ARView {
         let view = ARView(frame: .zero)
@@ -61,7 +82,15 @@ private struct ARContainerView: UIViewRepresentable {
         let tap = UITapGestureRecognizer(target: context.coordinator, action: #selector(Coordinator.handleTap(_:)))
         view.addGestureRecognizer(tap)
 
+        // Coaching overlay to help find planes
+        let coaching = ARCoachingOverlayView()
+        coaching.autoresizingMask = [.flexibleWidth, .flexibleHeight]
+        coaching.session = view.session
+        coaching.goal = .horizontalPlane
+        view.addSubview(coaching)
+
         context.coordinator.view = view
+        context.coordinator.placed = placed
         return view
     }
 
@@ -74,6 +103,7 @@ private struct ARContainerView: UIViewRepresentable {
     final class Coordinator: NSObject {
         weak var view: ARView?
         var selected: PlantModel?
+        var placed: Binding<Bool>?
 
         @objc func handleTap(_ sender: UITapGestureRecognizer) {
             guard let view = view else { return }
@@ -83,7 +113,7 @@ private struct ARContainerView: UIViewRepresentable {
             }
         }
 
-    private func place(at transform: simd_float4x4) {
+        private func place(at transform: simd_float4x4) {
             guard let selected else { return }
             guard let url = Bundle.main.url(forResource: selected.usdzName.replacingOccurrences(of: ".usdz", with: ""), withExtension: "usdz") else {
                 print("[AR] Missing model: \(selected.usdzName)")
@@ -101,6 +131,7 @@ private struct ARContainerView: UIViewRepresentable {
                 anchor.addChild(model)
                 view?.scene.addAnchor(anchor)
                 enableGestures(on: model)
+                placed?.wrappedValue = true
             } catch {
                 print("[AR] Failed to load: \(error)")
             }
