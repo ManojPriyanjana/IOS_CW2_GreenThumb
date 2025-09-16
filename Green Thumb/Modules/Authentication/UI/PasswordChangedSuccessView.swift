@@ -20,3 +20,4 @@ struct PasswordChangedSuccessView: View {
         .padding()
     }
 }
+

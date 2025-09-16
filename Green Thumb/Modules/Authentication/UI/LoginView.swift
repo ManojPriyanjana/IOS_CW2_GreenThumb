@@ -8,6 +8,13 @@ struct LoginView: View {
     var body: some View {
         NavigationStack {
             VStack(spacing: 16) {
+                
+                Image("app_logo")   // <- use the name you added in Assets.xcassets
+                        .resizable()
+                        .scaledToFit()
+                        .frame(width: 120, height: 120) // adjust size as needed
+                        .padding(.top, 40)
+                
                 Text("Green Thumb").font(.largeTitle).bold()
 
                 TextField("Email", text: $vm.email)
@@ -56,3 +63,9 @@ struct LoginView: View {
         }
     }
 }
+
+#Preview {
+    LoginView()
+        .environmentObject(SessionStore()) // provide the env object for previews
+}
+
