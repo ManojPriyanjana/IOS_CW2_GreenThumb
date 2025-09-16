@@ -12,6 +12,12 @@ struct VerifyResetCodeView: View {
 
     var body: some View {
         VStack(spacing: 16) {
+            Image("Setting Setting")   // <- use the name you added in Assets.xcassets
+                    .resizable()
+                    .scaledToFit()
+                    .frame(width: 200, height: 200) // adjust size as needed
+                    .padding(.top, 40)
+            
             Text("Verification").font(.title2).bold()
             Text("Paste the code or the full link you received by email.")
                 .font(.footnote).foregroundStyle(.secondary)
@@ -66,4 +72,11 @@ struct VerifyResetCodeView: View {
         guard let comps = URLComponents(string: text) else { return nil }
         return comps.queryItems?.first(where: { $0.name == "oobCode" })?.value
     }
+}
+
+
+#Preview("VerifyResetCodeView") {
+    VerifyResetCodeView()
+        .environmentObject(SessionStore())          // if your view needs it
+        .environmentObject(ColorSchemeController()) // if your app uses it
 }

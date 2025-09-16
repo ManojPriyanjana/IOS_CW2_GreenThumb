@@ -11,6 +11,14 @@ struct ForgotPasswordView: View {
 
     var body: some View {
         VStack(spacing: 16) {
+            
+            Image("fogetPassword")   // <- use the name you added in Assets.xcassets
+                    .resizable()
+                    .scaledToFit()
+                    .frame(width: 250, height: 250) // adjust size as needed
+                    .padding(.top, 40)
+            
+            
             Text("Forgot Password?")
                 .font(.title2).bold()
 
@@ -50,4 +58,10 @@ struct ForgotPasswordView: View {
     }
 }
 
-
+#Preview("ForgotPasswordView") {
+    NavigationStack {
+        ForgotPasswordView()
+            .environmentObject(SessionStore())          // only if needed
+            .environmentObject(ColorSchemeController())  // only if used
+    }
+}

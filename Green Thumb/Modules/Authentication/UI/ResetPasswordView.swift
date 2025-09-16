@@ -4,6 +4,7 @@ import FirebaseAuth
 
 struct ResetPasswordView: View {
     let oobCode: String
+    @Environment(\.dismiss) private var dismiss
 
     @State private var password = ""
     @State private var confirm = ""
@@ -13,6 +14,13 @@ struct ResetPasswordView: View {
 
     var body: some View {
         VStack(spacing: 16) {
+            
+            Image("Password Reset")   // <- use the name you added in Assets.xcassets
+                    .resizable()
+                    .scaledToFit()
+                    .frame(width: 200, height: 200) // adjust size as needed
+                    .padding(.top, 40)
+            
             Text("Set New Password").font(.title2).bold()
 
             SecureField("New Password", text: $password)
@@ -51,4 +59,10 @@ struct ResetPasswordView: View {
         } catch { self.error = error.localizedDescription }
         isResetting = false
     }
+}
+
+#Preview("Reset Password") {
+    ResetPasswordView(oobCode: "PREVIEW-OOB-CODE")
+        .environmentObject(SessionStore())          // if your view needs it
+        .environmentObject(ColorSchemeController())  // if your app uses it
 }
