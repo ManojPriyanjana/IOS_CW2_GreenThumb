@@ -33,4 +33,13 @@ struct LockView: View {
         }
         .padding()
     }
+    
+    
 }
+
+#Preview("LockView") {
+    LockView()
+        .environmentObject(SessionStore())  
+}
+
+

@@ -9,10 +9,10 @@ struct LoginView: View {
         NavigationStack {
             VStack(spacing: 16) {
                 
-                Image("app_logo")   // <- use the name you added in Assets.xcassets
+                Image("login_logo")   // <- use the name you added in Assets.xcassets
                         .resizable()
                         .scaledToFit()
-                        .frame(width: 120, height: 120) // adjust size as needed
+                        .frame(width: 300, height: 300) // adjust size as needed
                         .padding(.top, 40)
                 
                 Text("Green Thumb").font(.largeTitle).bold()
