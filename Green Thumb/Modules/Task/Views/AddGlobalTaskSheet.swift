@@ -85,21 +85,18 @@ struct AddGlobalTaskSheet: View {
                 Section("Details") {
                     TextField("Title (e.g., Water 500ml)", text: $title)
 
-                    LazyVGrid(columns: [
-                        GridItem(.flexible(minimum: 110), spacing: 12, alignment: .leading),
-                        GridItem(.flexible(minimum: 110), spacing: 12, alignment: .leading)
-                    ], spacing: 12) {
-                        ForEach(types, id: \.self) { t in
-                            SelectablePill(
-                                selected: type == t,
-                                label: t.capitalized,
-                                systemImage: icon(for: t)
-                            ) { type = t }
+                    // Replaced grid of pills with a horizontal row of round icon options
+                    ScrollView(.horizontal, showsIndicators: false) {
+                        HStack(spacing: 16) {
+                            ForEach(types, id: \.self) { t in
+                                RoundIconOption(
+                                    selected: type == t,
+                                    label: t.capitalized,
+                                    systemImage: icon(for: t)
+                                ) { type = t }
+                            }
                         }
-                        // Balance the grid so last row aligns, even with an odd count
-                        if types.count % 2 != 0 {
-                            PlaceholderCell()
-                        }
+                        .padding(.horizontal, 2)
                     }
                     .padding(.vertical, 4)
                     .animation(.none, value: type)
@@ -241,6 +238,38 @@ struct AddGlobalTaskSheet: View {
         case "health":      return "heart.text.square"
         default:            return "checklist"
         }
+    }
+}
+
+// New: circular icon option used for task type selection
+private struct RoundIconOption: View {
+    let selected: Bool
+    let label: String
+    let systemImage: String
+    let onTap: () -> Void
+
+    var body: some View {
+        Button(action: onTap) {
+            VStack(spacing: 6) {
+                ZStack {
+                    Circle()
+                        .fill(selected ? Color.green.opacity(0.2) : Color.gray.opacity(0.12))
+                        .frame(width: 48, height: 48)
+                    Image(systemName: systemImage)
+                        .font(.system(size: 18, weight: .semibold))
+                        .foregroundStyle(selected ? Color.green : .primary)
+                }
+                Text(label)
+                    .font(.caption2)
+                    .foregroundStyle(selected ? Color.green : .secondary)
+                    .lineLimit(1)
+                    .frame(width: 60)
+            }
+        }
+        .buttonStyle(.plain)
+        .accessibilityElement(children: .combine)
+        .accessibilityLabel(Text(label))
+        .accessibilityAddTraits(selected ? .isSelected : [])
     }
 }
 
