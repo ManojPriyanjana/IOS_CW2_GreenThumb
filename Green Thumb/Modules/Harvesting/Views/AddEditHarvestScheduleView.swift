@@ -22,7 +22,7 @@ struct AddEditHarvestScheduleView: View {
     @State private var weekday: Int = Calendar.current.component(.weekday, from: Date())
     @State private var monthDay: Int = Calendar.current.component(.day, from: Date())
 
-    // MARK: - Inits
+    //  Inits
     init(plant: Plant) {
         self.plant = plant
         self.schedule = nil
@@ -49,7 +49,7 @@ struct AddEditHarvestScheduleView: View {
         _notes         = State(initialValue: schedule.notes ?? "")
     }
 
-    // MARK: - UI
+    //  UI
     var body: some View {
         Form {
             Section("Target window") {
@@ -121,7 +121,7 @@ struct AddEditHarvestScheduleView: View {
         }
     }
 
-    // MARK: - Save
+    // Save
     private func save() {
         do {
             if let schedule {

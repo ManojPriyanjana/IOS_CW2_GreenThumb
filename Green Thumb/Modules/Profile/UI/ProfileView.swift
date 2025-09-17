@@ -72,7 +72,7 @@ public struct ProfileView: View {
         }
     }
 
-    // MARK: - Sections
+    //  Sections
     private var topCard: some View {
         SectionCard {
             HStack(alignment: .center, spacing: 16) {
@@ -209,7 +209,7 @@ public struct ProfileView: View {
         .padding(.top, 6)
     }
 
-    // MARK: - Building blocks
+    //  Building blocks
     private var avatar: some View {
         Group {
             if let img = store.profile.avatarImage {

@@ -66,7 +66,7 @@ struct HealthListView: View {
         }
     }
 
-    // MARK: - Row
+    //  Row
 
     @ViewBuilder
     private func row(_ i: HealthIssue) -> some View {
@@ -143,7 +143,7 @@ struct HealthListView: View {
     }
 }
 
-// MARK: - EventKit helpers
+// EventKit helpers
 private extension HealthListView {
     func addIssueToCalendar(_ issue: HealthIssue) {
         let title = (issue.subtype?.isEmpty == false ? issue.subtype! : (issue.category ?? "Health Issue"))

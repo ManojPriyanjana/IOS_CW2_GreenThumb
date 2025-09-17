@@ -235,7 +235,7 @@ private struct ModelPicker: View {
 }
 #endif
 
-// MARK: - Small Scale Control UI
+// Small Scale Control UI
 private struct ScaleControl: View {
     @Binding var userScale: Float
     var onReset: () -> Void

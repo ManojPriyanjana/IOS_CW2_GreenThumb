@@ -84,7 +84,7 @@ private struct AppTopBar: View {
     }
 }
 
-// MARK: - Tab bar visibility preference
+// Tab bar visibility preference
 private struct TabBarVisibilityPreferenceKey: PreferenceKey {
     static var defaultValue: Bool = false
     static func reduce(value: inout Bool, nextValue: () -> Bool) {

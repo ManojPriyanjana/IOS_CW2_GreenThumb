@@ -67,7 +67,7 @@ struct PlantTasksView: View {
         } message: { Text(calMessage) }
     }
 
-    // MARK: - Filtering
+    // Filtering
 
     private var filtered: [CareTask] {
         let base = Array(pendingForPlant).filter {
@@ -160,7 +160,7 @@ struct PlantTasksView: View {
     }
 }
 
-// MARK: - EventKit (Calendar)
+// EventKit (Calendar)
 extension PlantTasksView {
     private func addTaskToCalendar(_ t: CareTask) {
         let title = t.title ?? "Task"

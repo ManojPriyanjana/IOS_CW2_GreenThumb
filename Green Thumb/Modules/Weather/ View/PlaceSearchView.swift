@@ -56,7 +56,7 @@ struct PlaceSearchView: View {
     }
 }
 
-// MARK: - Autocomplete VM
+// Autocomplete VM
 
 private final class CompleterViewModel: NSObject, ObservableObject, MKLocalSearchCompleterDelegate {
     @Published var results: [MKLocalSearchCompletion] = []

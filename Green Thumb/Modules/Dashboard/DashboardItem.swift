@@ -12,7 +12,7 @@ struct DashboardItem: Identifiable, Hashable, Equatable {
 }
 
 extension DashboardItem {
-    // MARK: - Tiles shown on the dashboard
+    // Tiles shown on the dashboard
     static var all: [DashboardItem] = [
 
         // Plant Management entry

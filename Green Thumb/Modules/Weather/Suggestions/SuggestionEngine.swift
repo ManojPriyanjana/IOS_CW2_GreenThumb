@@ -1,6 +1,6 @@
 import Foundation
 
-// MARK: - Types
+//  Types
 
 public struct Suggestion: Identifiable, Equatable {
     public enum Kind { case water, heat, cold, disease, wind, rain }
@@ -15,7 +15,7 @@ public protocol SuggestionEngine {
     func make(weather: Weather, forecast: [ForecastDay]) -> [Suggestion]
 }
 
-// MARK: - Rules (easier thresholds + friendly fallback)
+// Rules (easier thresholds + friendly fallback)
 
 public struct RuleBasedSuggestionEngine: SuggestionEngine {
     public init() {}

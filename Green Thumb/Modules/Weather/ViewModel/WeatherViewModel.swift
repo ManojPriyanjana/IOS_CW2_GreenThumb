@@ -33,7 +33,7 @@ public final class WeatherViewModel: ObservableObject {
         self.suggester = suggester
     }
 
-    // MARK: - Current device location
+    //  Current device location
     public func refresh() {
         isUsingCurrentLocation = true
         selectedPlaceName = nil
@@ -43,7 +43,7 @@ public final class WeatherViewModel: ObservableObject {
         }
     }
 
-    // MARK: - Searched coordinate
+    //  Searched coordinate
     public func refresh(for coordinate: CLLocationCoordinate2D, placeName: String? = nil) {
         isUsingCurrentLocation = false
         selectedPlaceName = placeName
@@ -52,7 +52,7 @@ public final class WeatherViewModel: ObservableObject {
         }
     }
 
-    // MARK: - Internals
+    // Internals
     private func fetchAll(at coord: CLLocationCoordinate2D) async throws -> Weather {
         let w = try await service.currentWeather(lat: coord.latitude, lon: coord.longitude)
         let f = try await forecastService.fiveDay(lat: coord.latitude, lon: coord.longitude)

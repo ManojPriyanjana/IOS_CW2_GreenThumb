@@ -111,7 +111,7 @@ struct SettingsView: View {
     var body: some View {
         NavigationStack {
             List {
-                // MARK: - General
+                // General
                 Section("General") {
                     // Face ID / Touch ID toggle now bound to SessionStore
                     Toggle(biometryLabel, isOn: Binding(
@@ -147,7 +147,7 @@ struct SettingsView: View {
                                          }))
                 }
 
-                // MARK: - Notifications
+                // Notifications
                 Section("Notifications") {
                     Toggle("Push Notifications",
                            isOn: Binding(get: { vm.settings.pushNotifications },
@@ -306,12 +306,12 @@ struct SettingsView: View {
                     }
                 }
 
-                // MARK: - Data & backup
+                //  Data & backup
                 Section("Data and backup") {
                     NavigationLink("Manage Storage") { ManageStorageView() }
                 }
 
-                // MARK: - Accessibility
+                // Accessibility
                 Section("Accessibility") {
                     NavigationLink("Larger Text") {
                         Text("We respect Dynamic Type.\nAdjust in iOS Settings → Accessibility → Display & Text Size.")
@@ -354,7 +354,7 @@ struct SettingsView: View {
         }
     }
 
-    // MARK: - Helpers
+    // Helpers
 
     private func format(_ secs: Int) -> String {
         String(format: "%02d:%02d", secs/3600, (secs%3600)/60)
@@ -384,7 +384,7 @@ struct SettingsView: View {
     }
 }
 
-// MARK: - Settings opener
+// Settings opener
 private func openSystemSettings() {
     guard let url = URL(string: UIApplication.openSettingsURLString) else { return }
     UIApplication.shared.open(url)

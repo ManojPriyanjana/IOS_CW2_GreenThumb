@@ -78,7 +78,7 @@ struct PlantHarvestingView: View {
         }
     }
 
-    // MARK: - EventKit helpers
+    // EventKit helpers
     @State private var showEKMessage = false
     @State private var ekMessage = ""
     private var isCalendarEnabled: Bool { UserDefaultsSettingsStore().load().syncHarvestToCalendar }

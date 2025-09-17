@@ -2,7 +2,7 @@
 import SwiftUI
 import CoreLocation
 
-// MARK: - Theme (local, no extensions needed)
+//  Theme (local, no extensions needed)
 
 fileprivate enum GTTheme {
     static let greenA = Color(red: 0.10, green: 0.55, blue: 0.38)   // deep green
@@ -18,7 +18,7 @@ fileprivate enum GTTheme {
     static let stroke        = Color.black.opacity(0.06)
 }
 
-// MARK: - View
+//  View
 
 public struct WeatherView: View {
     @StateObject private var vm: WeatherViewModel
@@ -97,7 +97,7 @@ public struct WeatherView: View {
         }
     }
 
-    // MARK: - Sections
+    //  Sections
 
     @ViewBuilder
     private func content() -> some View {
@@ -174,7 +174,7 @@ public struct WeatherView: View {
     }
 }
 
-// MARK: - Card
+//  Card
 
 fileprivate struct WeatherCard: View {
     let title: String
@@ -224,7 +224,7 @@ fileprivate struct WeatherCard: View {
     }
 }
 
-// MARK: - Suggestions
+// Suggestions
 
 fileprivate struct SuggestionsSection: View {
     let suggestions: [Suggestion]
@@ -263,7 +263,7 @@ fileprivate struct SuggestionsSection: View {
     }
 }
 
-// MARK: - Forecast strip
+// Forecast strip
 
 fileprivate struct ForecastStrip: View {
     let days: [ForecastDay]
@@ -295,7 +295,7 @@ fileprivate struct ForecastStrip: View {
     }
 }
 
-// MARK: - Preview
+// Preview
 
 #Preview("Mock") {
     NavigationStack { WeatherView(mock: true) }

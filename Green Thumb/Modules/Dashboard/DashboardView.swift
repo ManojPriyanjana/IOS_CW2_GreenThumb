@@ -78,7 +78,7 @@ struct DashboardView: View {
     }
 }
 
-// MARK: - Sections
+// Sections
 
 private struct ARCard: View {
     @EnvironmentObject private var colorCtl: ColorSchemeController
@@ -468,7 +468,7 @@ private struct PlantsGrid: View {
     }
 }
 
-// MARK: - Favorite Plants Section
+// Favorite Plants Section
 
 private struct FavoritePlantsSection: View {
     let allPlants: [Plant]

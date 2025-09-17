@@ -34,7 +34,7 @@ struct AuthGateView: View {
     }
 }
 
-// MARK: - Onboarding View
+//  Onboarding View
 struct OnboardingView: View {
     @Binding var isOnboardingComplete: Bool
     @State private var currentPage = 0
@@ -104,7 +104,7 @@ struct OnboardingView: View {
     }
 }
 
-// MARK: - Welcome Page
+// Welcome Page
 struct WelcomePage: View {
     var body: some View {
         VStack(spacing: 30) {
@@ -138,7 +138,7 @@ struct WelcomePage: View {
     }
 }
 
-// MARK: - Features Page
+// Features Page
 struct FeaturesPage: View {
     var body: some View {
         VStack(spacing: 40) {
@@ -212,7 +212,7 @@ struct FeatureRow: View {
     }
 }
 
-// MARK: - Permissions Page
+// Permissions Page
 struct PermissionsPage: View {
     @State private var cameraStatus: String = "Not Requested"
     @State private var calendarStatus: String = "Not Requested"
@@ -422,7 +422,7 @@ struct PermissionRow: View {
     }
 }
 
-// MARK: - Get Started Page
+// Get Started Page
 struct GetStartedPage: View {
     @Binding var isOnboardingComplete: Bool
     

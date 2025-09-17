@@ -19,7 +19,7 @@ final class NotificationManager: NSObject, UNUserNotificationCenterDelegate {
         return secs >= start || secs < end // overnight (e.g., 21:00–07:00)
     }
 
-    // MARK: - Scheduling helpers
+    // Scheduling helpers
 
     /// Schedule a local notification at a specific date/time.
     /// If the provided date is in the past, it fires in ~5 seconds.
@@ -116,7 +116,7 @@ final class NotificationManager: NSObject, UNUserNotificationCenterDelegate {
         UNUserNotificationCenter.current().removePendingNotificationRequests(withIdentifiers: [id])
     }
 
-    // MARK: - Diagnostics
+    // Diagnostics
 
     /// Print current authorization and pending requests to help debug flaky notifications.
     func debugLogState(reason: String = "") {
@@ -138,7 +138,7 @@ final class NotificationManager: NSObject, UNUserNotificationCenterDelegate {
         }
     }
 
-    // MARK: - UNUserNotificationCenterDelegate
+    // UNUserNotificationCenterDelegate
 
     func userNotificationCenter(_ center: UNUserNotificationCenter,
                                 willPresent notification: UNNotification,

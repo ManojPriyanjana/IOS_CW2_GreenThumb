@@ -110,7 +110,7 @@ final class EventKitService {
         }
     }
 
-    // MARK: - Mapping persistence
+    // Mapping persistence
     private func mapping() -> [String: String] {
         (UserDefaults.standard.dictionary(forKey: mappingKey) as? [String: String]) ?? [:]
     }
@@ -118,7 +118,7 @@ final class EventKitService {
         UserDefaults.standard.set(map, forKey: mappingKey)
     }
 
-    // MARK: - Calendar (Harvest)
+    //  Calendar (Harvest)
     func createOrUpdateEvent(scheduleKey: String,
                              title: String,
                              start: Date?,
