@@ -55,17 +55,19 @@ struct AddGlobalTaskSheet: View {
                 // Plant
                 if fixedPlant == nil {
                     Section("Plant") {
-                        Picker("Plant", selection: $selectedPlantID) {
-                            Text("No plant").tag(Optional<NSManagedObjectID>.none)
-                            ForEach(plants) { p in
-                                Text(p.name ?? "Plant").tag(Optional(p.objectID))
+                        NavigationLink {
+                            PlantPickerListView(selectedPlantID: $selectedPlantID)
+                        } label: {
+                            HStack {
+                                Text("Plant")
+                                Spacer()
+                                Text(selectedPlant?.name ?? "No plant")
+                                    .foregroundStyle(.secondary)
                             }
                         }
-                        if !hasPlantSelection {
-                            Text("Select a plant to save this task.")
-                                .font(.caption)
-                                .foregroundStyle(.secondary)
-                        }
+                        Text("Optional: link this task to a plant.")
+                            .font(.caption)
+                            .foregroundStyle(.secondary)
                     }
                 } else {
                     // Show read-only info when scoped to a plant
@@ -84,15 +86,19 @@ struct AddGlobalTaskSheet: View {
                     TextField("Title (e.g., Water 500ml)", text: $title)
 
                     LazyVGrid(columns: [
-                        GridItem(.flexible(minimum: 110), spacing: 8),
-                        GridItem(.flexible(minimum: 110), spacing: 8)
-                    ], spacing: 8) {
+                        GridItem(.flexible(minimum: 110), spacing: 12, alignment: .leading),
+                        GridItem(.flexible(minimum: 110), spacing: 12, alignment: .leading)
+                    ], spacing: 12) {
                         ForEach(types, id: \.self) { t in
                             SelectablePill(
                                 selected: type == t,
                                 label: t.capitalized,
                                 systemImage: icon(for: t)
                             ) { type = t }
+                        }
+                        // Balance the grid so last row aligns, even with an odd count
+                        if types.count % 2 != 0 {
+                            PlaceholderCell()
                         }
                     }
                     .padding(.vertical, 4)
@@ -151,7 +157,7 @@ struct AddGlobalTaskSheet: View {
                 }
                 ToolbarItem(placement: .confirmationAction) {
                     Button("Save") { save() }
-                        .disabled(title.trimmingCharacters(in: .whitespaces).isEmpty || !hasPlantSelection)
+                        .disabled(title.trimmingCharacters(in: .whitespaces).isEmpty)
                 }
             }
             .alert("Unable to save task", isPresented: $showSaveError) {
@@ -168,12 +174,6 @@ struct AddGlobalTaskSheet: View {
 
     // Save
     private func save() {
-        // Guard against missing plant if required
-    if fixedPlant == nil && selectedPlantID == nil {
-            saveErrorMessage = "Please select a plant before saving."
-            showSaveError = true
-            return
-        }
         do {
             let t = try TaskRepository(ctx: ctx).create(
         for: fixedPlant ?? selectedPlant,   // use fixedPlant if present
@@ -283,5 +283,12 @@ private struct PrioritySelectPill: View {
                 .clipShape(Capsule())
         }
         .buttonStyle(.plain)
+    }
+}
+
+// Invisible spacer cell to keep the grid balanced (so columns align nicely)
+private struct PlaceholderCell: View {
+    var body: some View {
+        Color.clear.frame(height: 0)
     }
 }
