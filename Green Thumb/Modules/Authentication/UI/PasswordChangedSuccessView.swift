@@ -38,6 +38,6 @@ struct PasswordChangedSuccessView: View {
         PasswordChangedSuccessView()
             .environmentObject(SessionStore())          // only if needed
             .environmentObject(ColorSchemeController())  // only if used
-    }
+     }
 }
 
