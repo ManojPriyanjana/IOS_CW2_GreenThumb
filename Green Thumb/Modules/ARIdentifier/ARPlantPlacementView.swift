@@ -11,19 +11,22 @@ struct ARPlantPlacementView: View {
     let models: [PlantModel]
     @State private var selected: PlantModel?
     @State private var hasPlaced = false
+    // User-adjustable scale multiplier (1.0 = default). Base scale is computed per model at placement.
+    @State private var userScale: Float = 1.0
+    @State private var baseScale: Float = 0.1
 
     var body: some View {
         Group {
 #if canImport(ARKit)
             if ARWorldTrackingConfiguration.isSupported {
                 ZStack(alignment: .bottom) {
-                    ARContainerView(selected: $selected, placed: $hasPlaced)
+                    ARContainerView(selected: $selected, placed: $hasPlaced, userScale: $userScale, baseScale: $baseScale)
                         .ignoresSafeArea()
 
                     // Subtle hint until a model is placed
                     if !hasPlaced {
                         VStack {
-                            Text("Move iPhone to detect a surface\nThen tap to place your plant")
+                            Text("Move iPhone to detect a surface\nTap to place a plant")
                                 .font(.callout)
                                 .multilineTextAlignment(.center)
                                 .padding(.vertical, 12)
@@ -38,11 +41,17 @@ struct ARPlantPlacementView: View {
                 }
                 // Keep the picker above any TabBar using a safe area inset
                 .safeAreaInset(edge: .bottom) {
-                    ModelPicker(models: models, selected: $selected)
-                        .background(.regularMaterial)
-                        .clipShape(RoundedRectangle(cornerRadius: 16, style: .continuous))
-                        .padding(.horizontal, 8)
-                        .padding(.bottom, 8)
+                    VStack(spacing: 8) {
+                        if hasPlaced {
+                            ScaleControl(userScale: $userScale, onReset: { userScale = 1.0 })
+                                .transition(.move(edge: .bottom).combined(with: .opacity))
+                        }
+                        ModelPicker(models: models, selected: $selected)
+                    }
+                    .background(.regularMaterial)
+                    .clipShape(RoundedRectangle(cornerRadius: 16, style: .continuous))
+                    .padding(.horizontal, 8)
+                    .padding(.bottom, 8)
                 }
             } else {
                 UnsupportedView()
@@ -76,6 +85,8 @@ private struct UnsupportedView: View {
 private struct ARContainerView: UIViewRepresentable {
     @Binding var selected: PlantModel?
     var placed: Binding<Bool>
+    @Binding var userScale: Float
+    @Binding var baseScale: Float
 
     func makeUIView(context: Context) -> ARView {
         let view = ARView(frame: .zero)
@@ -97,11 +108,18 @@ private struct ARContainerView: UIViewRepresentable {
 
         context.coordinator.view = view
         context.coordinator.placed = placed
+        context.coordinator.baseScaleBinding = $baseScale
+        context.coordinator.userScaleBinding = $userScale
         return view
     }
 
     func updateUIView(_ uiView: ARView, context: Context) {
         context.coordinator.selected = selected
+        // Push latest slider value through to the entity scale safely, but only apply when it actually changed
+        if context.coordinator.latestUserScaleValue != userScale {
+            context.coordinator.latestUserScaleValue = userScale
+            context.coordinator.applyScaleIfNeeded()
+        }
     }
 
     func makeCoordinator() -> Coordinator { Coordinator() }
@@ -110,6 +128,11 @@ private struct ARContainerView: UIViewRepresentable {
         weak var view: ARView?
         var selected: PlantModel?
         var placed: Binding<Bool>?
+        var baseScaleBinding: Binding<Float>?
+        var userScaleBinding: Binding<Float>?
+    var latestUserScaleValue: Float = 1.0
+    private var lastAppliedUserScale: Float = 1.0
+        private var currentModel: ModelEntity?
 
         @objc func handleTap(_ sender: UITapGestureRecognizer) {
             guard let view = view else { return }
@@ -132,18 +155,24 @@ private struct ARContainerView: UIViewRepresentable {
                     print("[AR] Loaded entity is not a ModelEntity")
                     return
                 }
-                // Set a medium, consistent initial footprint ~25cm on the largest axis
+                // Set a smaller, consistent initial footprint ~12cm on the largest axis
                 let bounds = model.visualBounds(relativeTo: nil)
                 let size = bounds.extents
-                let target: Float = 0.25 // 25cm card-like
+                let target: Float = 0.12 // 12cm to start smaller
                 let maxDim = max(size.x, max(size.y, size.z))
                 let base = maxDim > 0 ? target / maxDim : selected.scale
-                let clamped = max(0.2, min(base, 2.0))
-                model.scale = SIMD3(repeating: clamped)
+                let clampedBase = clamp(base, min: 0.02, max: 1.0)
+                // Reset user scale to 1 for new placement
+                userScaleBinding?.wrappedValue = 1.0
+                latestUserScaleValue = 1.0
+                lastAppliedUserScale = 1.0
+                baseScaleBinding?.wrappedValue = clampedBase
+                model.scale = SIMD3(repeating: clampedBase)
                 let anchor = AnchorEntity(world: transform)
                 anchor.addChild(model)
                 view?.scene.addAnchor(anchor)
                 enableGestures(on: model)
+                currentModel = model
                 placed?.wrappedValue = true
             } catch {
                 print("[AR] Failed to load: \(error)")
@@ -153,6 +182,19 @@ private struct ARContainerView: UIViewRepresentable {
         private func enableGestures(on entity: ModelEntity) {
             entity.generateCollisionShapes(recursive: true)
             view?.installGestures([.translation, .rotation, .scale], for: entity)
+        }
+
+        func applyScaleIfNeeded() {
+            guard let current = currentModel else { return }
+            guard lastAppliedUserScale != latestUserScaleValue else { return }
+            let base = baseScaleBinding?.wrappedValue ?? 0.1
+            let combined = clamp(base * latestUserScaleValue, min: 0.02, max: 3.0)
+            current.scale = SIMD3(repeating: combined)
+            lastAppliedUserScale = latestUserScaleValue
+        }
+
+        private func clamp(_ value: Float, min: Float, max: Float) -> Float {
+            Swift.max(min, Swift.min(max, value))
         }
     }
 }
@@ -192,3 +234,42 @@ private struct ModelPicker: View {
     }
 }
 #endif
+
+// MARK: - Small Scale Control UI
+private struct ScaleControl: View {
+    @Binding var userScale: Float
+    var onReset: () -> Void
+
+    private let range: ClosedRange<Float> = 0.5...2.0 // 50% - 200% of base
+
+    var body: some View {
+        VStack(spacing: 8) {
+            HStack {
+                Label("Adjust Size", systemImage: "arrow.up.left.and.arrow.down.right")
+                    .font(.subheadline)
+                    .foregroundStyle(.secondary)
+                Spacer()
+                Button(role: .none) { onReset() } label: {
+                    Label("Reset", systemImage: "arrow.counterclockwise")
+                }
+                .buttonStyle(.borderless)
+                .font(.subheadline)
+                .accessibilityLabel("Reset size to default")
+            }
+            HStack(spacing: 12) {
+                Image(systemName: "minus")
+                    .foregroundStyle(.secondary)
+                Slider(value: Binding(
+                    get: { Double(userScale) },
+                    set: { userScale = Float($0) }
+                ), in: Double(range.lowerBound)...Double(range.upperBound))
+                .accessibilityLabel("Size slider")
+                .accessibilityValue("\(Int(userScale * 100)) percent")
+                Image(systemName: "plus")
+                    .foregroundStyle(.secondary)
+            }
+        }
+        .padding(12)
+        .background(.ultraThinMaterial, in: RoundedRectangle(cornerRadius: 14, style: .continuous))
+    }
+}
