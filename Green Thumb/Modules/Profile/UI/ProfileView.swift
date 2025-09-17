@@ -46,7 +46,6 @@ public struct ProfileView: View {
                 twoStats
                 accountSecurityCard
                 preferencesCard
-                connectedFeaturesCard
                 supportAboutCard
                 signOutSection
             }
