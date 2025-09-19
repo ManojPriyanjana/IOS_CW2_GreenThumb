@@ -51,12 +51,29 @@ struct ResetPasswordView: View {
         !password.isEmpty && password == confirm && password.count >= 6
     }
 
+    /// Convert technical Firebase errors to user-friendly messages
+    private func userFriendlyErrorMessage(from error: Error) -> String {
+        let errorDescription = error.localizedDescription.lowercased()
+        
+        if errorDescription.contains("malformed") || errorDescription.contains("expired") {
+            return "The password reset link has expired. Please request a new one."
+        } else if errorDescription.contains("invalid-action-code") {
+            return "The password reset link is invalid. Please request a new one."
+        } else if errorDescription.contains("weak-password") {
+            return "Please choose a stronger password (at least 6 characters)."
+        } else if errorDescription.contains("network") {
+            return "Please check your internet connection and try again."
+        } else {
+            return "Unable to reset password. Please try again or request a new reset link."
+        }
+    }
+
     private func reset() async {
         error = nil; isResetting = true
         do {
             try await Auth.auth().confirmPasswordReset(withCode: oobCode, newPassword: password)
             done = true
-        } catch { self.error = error.localizedDescription }
+        } catch { self.error = userFriendlyErrorMessage(from: error) }
         isResetting = false
     }
 }

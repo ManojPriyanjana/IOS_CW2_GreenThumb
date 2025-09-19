@@ -56,6 +56,21 @@ struct VerifyResetCodeView: View {
         }
     }
 
+    /// Convert technical Firebase errors to user-friendly messages
+    private func userFriendlyErrorMessage(from error: Error) -> String {
+        let errorDescription = error.localizedDescription.lowercased()
+        
+        if errorDescription.contains("invalid-action-code") || errorDescription.contains("expired") {
+            return "The reset code has expired or is invalid. Please request a new one."
+        } else if errorDescription.contains("malformed") {
+            return "Please enter a valid reset code."
+        } else if errorDescription.contains("network") {
+            return "Please check your internet connection and try again."
+        } else {
+            return "Unable to verify reset code. Please try again or request a new one."
+        }
+    }
+
     private func verify() async {
         error = nil; isVerifying = true
         let code = Self.extractOobCode(from: codeOrURL) ?? codeOrURL
@@ -64,7 +79,7 @@ struct VerifyResetCodeView: View {
             self.verifiedCode = code
             self.emailFromCode = email
             self.goToReset = true
-        } catch { self.error = error.localizedDescription }
+        } catch { self.error = userFriendlyErrorMessage(from: error) }
         isVerifying = false
     }
 

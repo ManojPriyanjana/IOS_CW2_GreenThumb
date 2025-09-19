@@ -57,7 +57,7 @@ final class SessionStore: ObservableObject {
             _ = try? KeychainService.deleteBiometricProtected()
             phase = .loggedOut
         } catch {
-            errorMessage = error.localizedDescription
+            errorMessage = userFriendlyErrorMessage(from: error)
         }
     }
 
@@ -89,10 +89,37 @@ final class SessionStore: ObservableObject {
         phase = biometricsEnabled ? .locked : .authenticated
     }
 
+    /// Convert technical Firebase errors to user-friendly messages
+    private func userFriendlyErrorMessage(from error: Error) -> String {
+        let errorDescription = error.localizedDescription.lowercased()
+        
+        // Check for common Firebase Auth error patterns
+        if errorDescription.contains("malformed") || errorDescription.contains("expired") {
+            return "Please try signing in again. Your session may have expired."
+        } else if errorDescription.contains("invalid-email") {
+            return "Please enter a valid email address."
+        } else if errorDescription.contains("user-not-found") {
+            return "No account found with this email address."
+        } else if errorDescription.contains("wrong-password") {
+            return "Incorrect password. Please try again."
+        } else if errorDescription.contains("weak-password") {
+            return "Please choose a stronger password."
+        } else if errorDescription.contains("email-already-in-use") {
+            return "An account with this email already exists."
+        } else if errorDescription.contains("too-many-requests") {
+            return "Too many failed attempts. Please try again later."
+        } else if errorDescription.contains("network") {
+            return "Please check your internet connection and try again."
+        } else {
+            // Fallback to a generic friendly message
+            return "Something went wrong. Please try again."
+        }
+    }
+
     /// Fix: accept async throwing work and await it here
     private func withErrorHandling(_ work: () async throws -> Void) async {
         errorMessage = nil
         do { try await work() }
-        catch { errorMessage = error.localizedDescription }
+        catch { errorMessage = userFriendlyErrorMessage(from: error) }
     }
 }
