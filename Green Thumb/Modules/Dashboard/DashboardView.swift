@@ -55,7 +55,7 @@ struct DashboardView: View {
                 startPoint: .topLeading, endPoint: .bottomTrailing
             )
         )
-        .navigationTitle("Dashboard")
+    .navigationTitle(greetingTitle)
         .toolbarTitleDisplayMode(.large)
         .toolbar {
             ToolbarItem(placement: .primaryAction) {
@@ -79,6 +79,19 @@ struct DashboardView: View {
 }
 
 // Sections
+
+// MARK: - Greeting Helper
+private extension DashboardView {
+    var greetingTitle: String {
+        let hour = Calendar.current.component(.hour, from: Date())
+        switch hour {
+        case 5..<12:  return "Good morning"
+        case 12..<17: return "Good afternoon"
+        case 17..<22: return "Good evening"
+        default:      return "Good night"
+        }
+    }
+}
 
 private struct ARCard: View {
     @EnvironmentObject private var colorCtl: ColorSchemeController
